@@ -11,14 +11,6 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        luxury: {
-                            base: 'var(--bg-base, #1a2318)',
-                            card: 'var(--bg-card, #253322)',
-                            glow: 'var(--bg-glow, #2e3d2a)',
-                            accent: 'var(--accent-color, #83b672)'
-                        }
-                    },
                     fontFamily: {
                         tajawal: ['Tajawal', 'sans-serif']
                     }
@@ -30,71 +22,72 @@
         :root {
             --bg-base: #1a2318;
             --bg-card: #253322;
-            --bg-glow: #2e3d2a;
+            --text-color: #e2e8f0;
             --accent-color: #83b672;
             --body-bg: #121811;
         }
         body.theme-burgundy {
             --bg-base: #23181a;
             --bg-card: #332225;
-            --bg-glow: #3d2a2e;
             --accent-color: #b67283;
             --body-bg: #181112;
+            --text-color: #fce7ec;
         }
         body.theme-navy {
             --bg-base: #181d23;
             --bg-card: #222833;
-            --bg-glow: #2a323d;
             --accent-color: #7296b6;
             --body-bg: #111418;
+            --text-color: #e6edf5;
+        }
+        body.theme-olive {
+            --bg-base: #1a2318;
+            --bg-card: #253322;
+            --accent-color: #83b672;
+            --body-bg: #121811;
+            --text-color: #e2e8f0;
         }
         body.theme-light {
             --bg-base: #f0f4ef;
             --bg-card: #ffffff;
-            --bg-glow: #e2e8e0;
             --accent-color: #558045;
             --body-bg: #e6ebe4;
-            color: #1a2318 !important;
+            --text-color: #1a2318 !important;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: var(--body-bg);
-            color: #e2e8f0;
+            color: var(--text-color);
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+        }
+        .custom-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(131, 182, 114, 0.2);
         }
         .app-header-title {
             background: linear-gradient(135deg, #a7f3d0 0%, #4ade80 50%, #86efac 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .glowing-card {
-            box-shadow: 0 4px 20px -2px rgba(46, 61, 42, 0.3);
-            border: 1px solid rgba(131, 182, 114, 0.2);
-        }
-        .header-framed-box {
-            border: 2px solid var(--accent-color);
-            background: var(--bg-card);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
     </style>
 </head>
-<body class="pb-24 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between">
+<body class="pb-24 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between theme-olive">
 
-    <!-- Auth Screen (Strict Login & Registration) -->
+    <!-- Auth Screen (Strict Login & Registration - No Master Credentials Exposed) -->
     <div id="auth-screen" class="fixed inset-0 bg-[#121811] z-50 flex flex-col justify-center p-6 space-y-6">
         <div class="text-center space-y-2">
             <h1 class="text-4xl font-black app-header-title inline-block px-4">طيوري</h1>
             <p class="text-sm text-emerald-400 font-bold mt-2">أهلاً بك في تطبيق طيوري</p>
         </div>
-        <div class="bg-olive-card p-5 rounded-3xl glowing-card space-y-4 bg-[#253322]">
-            <h2 id="auth-title" class="text-sm font-bold text-emerald-100 text-center">تسجيل الدخول لحسابك</h2>
+        <div class="custom-card p-5 rounded-3xl space-y-4">
+            <h2 id="auth-title" class="text-sm font-bold text-center">تسجيل الدخول لحسابك</h2>
             <div id="register-fields" class="space-y-3 hidden">
                 <input type="text" id="reg-name" placeholder="الاسم الكامل" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
             </div>
-            <input type="text" id="auth-email" placeholder="البريد أو اسم المستخدم (المالك: 22md6)" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
-            <input type="password" id="auth-pass" placeholder="كلمة المرور (المالك: 22md61997)" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
+            <input type="text" id="auth-email" placeholder="البريد أو اسم المستخدم" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
+            <input type="password" id="auth-pass" placeholder="كلمة المرور" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
             
             <button onclick="handleAuthSubmit()" id="auth-btn" class="w-full py-3 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-lg hover:bg-emerald-500">دخول</button>
             
@@ -106,13 +99,13 @@
 
     <!-- Sidebar Menu -->
     <div id="sidebar-menu" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex justify-end">
-        <div class="w-72 bg-[#253322] h-full p-5 space-y-6 flex flex-col justify-between border-r border-emerald-900/50 overflow-y-auto text-white">
+        <div class="w-72 custom-card h-full p-5 space-y-6 flex flex-col justify-between border-r border-emerald-900/50 overflow-y-auto">
             <div class="space-y-6">
                 <div class="flex items-center justify-between border-b border-emerald-900/40 pb-4">
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-full bg-emerald-600/30 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 text-lg" id="sidebar-initial">م</div>
                         <div>
-                            <h3 id="sidebar-username" class="font-bold text-sm text-emerald-100">مهدي الشمري</h3>
+                            <h3 id="sidebar-username" class="font-bold text-sm">مهدي الشمري</h3>
                             <span class="text-[10px] text-emerald-400/80 block">عضو مجتمع طيوري</span>
                         </div>
                     </div>
@@ -127,15 +120,15 @@
 
                 <div class="space-y-2 text-xs">
                     <div class="text-[10px] text-emerald-500 font-bold px-1">أدوات الإنتاج والجينات</div>
-                    <button onclick="toggleSidebar(); openModal('genetics-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-200">
+                    <button onclick="toggleSidebar(); openModal('genetics-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40">
                         <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-400"></i> حاسبة الجينات والألوان</span>
                         <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
                     </button>
-                    <button onclick="toggleSidebar(); openModal('hatch-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-200">
+                    <button onclick="toggleSidebar(); openModal('hatch-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40">
                         <span class="flex items-center gap-2"><i class="fa-solid fa-egg text-emerald-400"></i> حاسبة حضانة البيض والفقس</span>
                         <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
                     </button>
-                    <button onclick="toggleSidebar(); openModal('diseases-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-200">
+                    <button onclick="toggleSidebar(); openModal('diseases-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40">
                         <span class="flex items-center gap-2"><i class="fa-solid fa-book-medical text-emerald-400"></i> دليل الأمراض والأدوية</span>
                         <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
                     </button>
@@ -159,36 +152,32 @@
 
     <!-- App Header -->
     <header class="flex justify-between items-center my-2 px-1">
-        <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl bg-[#253322] border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
+        <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl custom-card border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
         
-        <div class="header-framed-box px-5 py-1.5 rounded-2xl text-center">
+        <div class="border-2 border-emerald-500 custom-card px-5 py-1.5 rounded-2xl text-center">
             <h1 class="text-xl font-black app-header-title">تطبيق طيوري</h1>
             <p class="text-[9px] text-emerald-400/90 font-medium">بإدارة مهدي مرهون الشمري</p>
         </div>
 
-        <button onclick="switchScreen('settings')" class="w-9 h-9 rounded-xl bg-[#253322] border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-gear"></i></button>
+        <button onclick="switchScreen('settings')" class="w-9 h-9 rounded-xl custom-card border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-gear"></i></button>
     </header>
 
     <!-- Main Screens -->
     <main id="app-content" class="space-y-4 flex-grow mt-2">
-        <!-- Home Screen -->
+        <!-- Home Screen (Profit Card Removed, Direct Navigation Enabled) -->
         <section id="screen-home" class="space-y-4">
             <div class="grid grid-cols-2 gap-2.5">
-                <div class="bg-gradient-to-br from-indigo-950/90 to-purple-900/70 p-3.5 rounded-2xl border border-indigo-500/30 shadow-lg">
-                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-indigo-200">أمراض مسجلة</span><i class="fa-solid fa-shield-virus text-indigo-400"></i></div>
-                    <div class="mt-2 text-2xl font-black text-white">0</div>
-                </div>
-                <div class="bg-gradient-to-br from-emerald-950/90 to-teal-900/70 p-3.5 rounded-2xl border border-emerald-500/30 shadow-lg">
+                <div onclick="switchScreen('birds')" class="bg-gradient-to-br from-emerald-950/90 to-teal-900/70 p-3.5 rounded-2xl border border-emerald-500/30 shadow-lg cursor-pointer">
                     <div class="flex justify-between items-start"><span class="text-xs font-semibold text-emerald-200">الطيور النشطة</span><i class="fa-solid fa-feather text-emerald-400"></i></div>
                     <div class="mt-2 text-2xl font-black text-white" id="stat-birds">0</div>
                 </div>
-                <div class="bg-gradient-to-br from-teal-950/90 to-cyan-900/70 p-3.5 rounded-2xl border border-teal-500/30 shadow-lg">
-                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-teal-200">صافي الربح</span><i class="fa-solid fa-wallet text-teal-400"></i></div>
-                    <div class="mt-2 text-2xl font-black text-white">0 <span class="text-xs">د.ع</span></div>
+                <div onclick="openModal('diseases-modal')" class="bg-gradient-to-br from-indigo-950/90 to-purple-900/70 p-3.5 rounded-2xl border border-indigo-500/30 shadow-lg cursor-pointer">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-indigo-200">أمراض مسجلة</span><i class="fa-solid fa-shield-virus text-indigo-400"></i></div>
+                    <div class="mt-2 text-2xl font-black text-white">2</div>
                 </div>
-                <div class="bg-gradient-to-br from-amber-950/90 to-orange-900/70 p-3.5 rounded-2xl border border-amber-500/30 shadow-lg">
-                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-amber-200">بيض نشط</span><i class="fa-solid fa-egg text-amber-400"></i></div>
-                    <div class="mt-2 text-2xl font-black text-white">0</div>
+                <div onclick="openModal('hatch-modal')" class="bg-gradient-to-br from-amber-950/90 to-orange-900/70 p-3.5 rounded-2xl border border-amber-500/30 shadow-lg cursor-pointer col-span-2">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-amber-200">حاسبة حضانة البيض والفقس والتربیة</span><i class="fa-solid fa-egg text-amber-400"></i></div>
+                    <div class="mt-1 text-xs text-amber-200/80">انقر هنا لمتابعة مواعيد التفقيس والدبلات بدقة</div>
                 </div>
             </div>
 
@@ -213,8 +202,8 @@
 
         <!-- Health & Care Hub Screen -->
         <section id="screen-health" class="space-y-3 hidden">
-            <div class="bg-[#253322] p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
-                <h3 class="font-bold text-sm text-emerald-100">الصحة والرعاية</h3>
+            <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                <h3 class="font-bold text-sm">الصحة والرعاية</h3>
                 <button onclick="switchScreen('home')" class="text-xs text-emerald-400"><i class="fa-solid fa-arrow-right"></i> الرئيسية</button>
             </div>
             <div class="grid grid-cols-2 gap-3">
@@ -243,7 +232,7 @@
 
         <!-- Birds / Cages / Breeding Screen -->
         <section id="screen-birds" class="space-y-3 hidden">
-            <div class="flex bg-[#253322] p-1 rounded-xl border border-emerald-900/50 text-xs font-bold">
+            <div class="flex custom-card p-1 rounded-xl border border-emerald-900/50 text-xs font-bold">
                 <button onclick="switchBirdTab('tab-birds')" id="btntab-birds" class="flex-1 py-2 text-center rounded-lg bg-emerald-700 text-white">الطيور</button>
                 <button onclick="switchBirdTab('tab-cages')" id="btntab-cages" class="flex-1 py-2 text-center rounded-lg text-emerald-400">الأقفاص</button>
                 <button onclick="switchBirdTab('tab-breeding')" id="btntab-breeding" class="flex-1 py-2 text-center rounded-lg text-emerald-400">تكاثر</button>
@@ -251,9 +240,9 @@
 
             <!-- Tab 1: Birds -->
             <div id="tab-birds" class="space-y-3">
-                <div class="bg-[#253322] p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
                     <div>
-                        <h3 class="font-bold text-sm text-emerald-100">طيوري</h3>
+                        <h3 class="font-bold text-sm">طيوري</h3>
                         <p class="text-[11px] text-emerald-400/80" id="birds-count-text">0 الطيور</p>
                     </div>
                     <span class="text-xl">🦜</span>
@@ -265,9 +254,9 @@
 
             <!-- Tab 2: Cages -->
             <div id="tab-cages" class="space-y-3 hidden">
-                <div class="bg-[#253322] p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
                     <div>
-                        <h3 class="font-bold text-sm text-emerald-100">الأقفاص</h3>
+                        <h3 class="font-bold text-sm">الأقفاص</h3>
                         <p class="text-[11px] text-emerald-400/80" id="cages-count-text">0 الأقفاص</p>
                     </div>
                     <span class="text-xl">🪺</span>
@@ -279,9 +268,9 @@
 
             <!-- Tab 3: Breeding -->
             <div id="tab-breeding" class="space-y-3 hidden">
-                <div class="bg-[#253322] p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
                     <div>
-                        <h3 class="font-bold text-sm text-emerald-100">إدارة ومتابعة أزواج الإنتاج</h3>
+                        <h3 class="font-bold text-sm">إدارة ومتابعة أزواج الإنتاج</h3>
                         <p class="text-[11px] text-emerald-400/80" id="pairs-count-text">الأزواج النشطة: 0</p>
                     </div>
                     <span class="text-xl">🕊️</span>
@@ -294,28 +283,40 @@
 
         <!-- Community Screen -->
         <section id="screen-community" class="space-y-3 hidden">
-            <div class="bg-[#253322] p-4 rounded-2xl glowing-card space-y-2">
-                <h3 class="font-bold text-emerald-100 text-sm">مجتمع المربين</h3>
+            <div class="custom-card p-4 rounded-2xl space-y-2">
+                <h3 class="font-bold text-sm">مجتمع المربين</h3>
                 <p class="text-xs text-emerald-400/80">تواصل وتبادل الخبرات مع المربين في العراق والعالم العربي.</p>
             </div>
         </section>
 
         <!-- Market Screen -->
         <section id="screen-market" class="space-y-3 hidden">
-            <div class="bg-[#253322] p-4 rounded-2xl glowing-card space-y-2">
-                <h3 class="font-bold text-emerald-100 text-sm">سوق الطيور والمستلزمات</h3>
+            <div class="custom-card p-4 rounded-2xl space-y-2">
+                <h3 class="font-bold text-sm">سوق الطيور والمستلزمات</h3>
                 <p class="text-xs text-emerald-400/80">عرض الطيور للبيع أو البدل.</p>
             </div>
         </section>
 
-        <!-- Settings Screen (With Theme Customizer & No Premium) -->
+        <!-- Settings Screen (No Premium, Complete Theme Selector with Dynamic Font Colors, Dark Mode, Profile Edit) -->
         <section id="screen-settings" class="space-y-3 hidden">
-            <div class="bg-[#253322] p-4 rounded-2xl glowing-card space-y-4">
-                <h3 class="font-bold text-sm text-emerald-100"><i class="fa-solid fa-gear"></i> إعدادات التطبيق (مجاني بالكامل)</h3>
+            <div class="custom-card p-4 rounded-2xl space-y-4">
+                <!-- User Profile Card in Settings -->
+                <div class="bg-[#1a2318] p-3.5 rounded-xl border border-emerald-900/40 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-600/30 border border-emerald-500 flex items-center justify-center font-bold text-emerald-400" id="settings-avatar">م</div>
+                        <div>
+                            <h4 class="font-bold text-xs" id="settings-profile-name">مهدي الشمري</h4>
+                            <p class="text-[10px] text-emerald-400" id="settings-profile-email">mahdialshmary7@gmail.com</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal('profile-edit-modal')" class="px-3 py-1.5 bg-emerald-700 text-white rounded-lg text-[11px] font-bold">تعديل الملف</button>
+                </div>
+
+                <h3 class="font-bold text-sm flex items-center gap-2"><i class="fa-solid fa-gear"></i> إعدادات التطبيق (مجاني بالكامل)</h3>
                 <div class="space-y-3 text-xs">
-                    <!-- Theme Selector -->
+                    <!-- Theme Selector & Dynamic Color Adjuster -->
                     <div class="space-y-1.5 p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
-                        <span class="block font-bold text-emerald-300">اختر لون الواجهة الراقي (Luxury):</span>
+                        <span class="block font-bold">اختر لون الخلفية والواجهة الراقي:</span>
                         <div class="grid grid-cols-4 gap-2 pt-1">
                             <button onclick="setAppTheme('olive')" class="py-1.5 bg-[#253322] border border-emerald-500 rounded-lg text-[10px] font-bold text-emerald-200">زيتوني</button>
                             <button onclick="setAppTheme('burgundy')" class="py-1.5 bg-[#332225] border border-rose-500 rounded-lg text-[10px] font-bold text-rose-200">برغندي</button>
@@ -325,11 +326,15 @@
                     </div>
 
                     <div class="flex items-center justify-between p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
+                        <span>الوضع الداكن (Dark Mode)</span>
+                        <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode(this)" class="accent-emerald-500 w-4 h-4">
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
                         <span>إشعارات المواعيد والتفقيس</span>
                         <input type="checkbox" checked class="accent-emerald-500 w-4 h-4">
                     </div>
                     <div class="flex items-center justify-between p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
-                        <span>العملة الافتراضية</span>
+                        <span>العملة المفضلة</span>
                         <span class="text-emerald-400 font-bold">دينار عراقي (د.ع)</span>
                     </div>
                     <button onclick="exportData()" class="w-full py-2.5 bg-emerald-700 text-white rounded-xl font-bold">تصدير نسخة احتياطية للبيانات</button>
@@ -340,7 +345,7 @@
     </main>
 
     <!-- Floating Action Button (+) at Bottom Left -->
-    <button onclick="openModal('add-modal')" class="fixed bottom-16 left-4 w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-[#1a2318] rounded-full shadow-2xl flex items-center justify-center text-xl font-black z-40 border-2 border-emerald-300">
+    <button onclick="openAddModalSelection()" class="fixed bottom-16 left-4 w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-[#1a2318] rounded-full shadow-2xl flex items-center justify-center text-xl font-black z-40 border-2 border-emerald-300">
         <i class="fa-solid fa-plus"></i>
     </button>
 
@@ -352,32 +357,169 @@
         <button onclick="switchScreen('market')" id="nav-market" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-store text-base"></i><span>السوق</span></button>
     </nav>
 
+    <!-- Detailed Profile Edit Modal -->
+    <div id="profile-edit-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">تعديل الملف الشخصي</h3>
+                <button onclick="closeModal('profile-edit-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">الاسم الكامل</label>
+                    <input type="text" id="edit-name" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">البريد الإلكتروني</label>
+                    <input type="email" id="edit-email" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">رقم الهاتف</label>
+                    <input type="text" id="edit-phone" placeholder="07xxxxxxxxx" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">سنوات الخبرة</label>
+                    <input type="number" id="edit-exp" value="0" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">رابط حساب فيسبوك (لزيادة الثقة)</label>
+                    <input type="text" id="edit-fb" placeholder="رابط الفيسبوك" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">الجنس</label>
+                    <select id="edit-gender" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="ذكر">ذكر</option>
+                        <option value="أنثى">أنثى</option>
+                    </select>
+                </div>
+                <button onclick="saveProfileChanges()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Add Bird Modal (Matching Reference Image Layouts) -->
+    <div id="modal-add-bird" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">إضافة طائر</h3>
+                <button onclick="closeModal('modal-add-bird')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">الاسم أو رقم الحلقة</label>
+                    <input type="text" id="bird-ring" placeholder="مثل: زغلول 1" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر النوع</label>
+                    <select id="bird-species" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="كناري">كناري (Canary)</option>
+                        <option value="بادجي">بادجي (Budgie)</option>
+                        <option value="كوكتيل">كوكتيل (Cockatiel)</option>
+                        <option value="روز">روز (Rosey)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">الطفرة</label>
+                    <input type="text" id="bird-mutation" placeholder="مثل: فاهل، لوتينو، عادي" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-[10px] text-emerald-400">تاريخ الميلاد</label>
+                        <input type="date" id="bird-dob" class="w-full p-2 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1 text-[11px]">
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-emerald-400">الجنس</label>
+                        <select id="bird-gender" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                            <option value="غير معروف">غير معروف</option>
+                            <option value="ذكر">ذكر</option>
+                            <option value="أنثى">أنثى</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر القفص</label>
+                    <select id="bird-cage-select" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="بدون قفص">بدون قفص</option>
+                    </select>
+                </div>
+                <button onclick="submitNewBird()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Add Cage Modal -->
+    <div id="modal-add-cage" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">إضافة قفص جديد</h3>
+                <button onclick="closeModal('modal-add-cage')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">وصف أو اسم القفص</label>
+                    <input type="text" id="cage-desc" placeholder="مثل: قفص خشب أرضي كبير" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <button onclick="submitNewCage()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ القفص</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Add Breeding Pair Modal (Select from existing birds) -->
+    <div id="modal-add-pair" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">إضافة زوج تزاوج</h3>
+                <button onclick="closeModal('modal-add-pair')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر الذكر (من طيورك)</label>
+                    <select id="pair-male" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="غير محدد">اختر الذكر</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر الأنثى (من طيورك)</label>
+                    <select id="pair-female" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="غير محدد">اختر الأنثى</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر القفص</label>
+                    <select id="pair-cage" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="بدون قفص">بدون قفص</option>
+                    </select>
+                </div>
+                <button onclick="submitNewPair()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ الزوج</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Genetics Calculator Modal -->
     <div id="genetics-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#253322] text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4 max-h-[90vh] overflow-y-auto">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
-                <h3 class="font-bold text-sm text-emerald-100"><i class="fa-solid fa-dna"></i> متنبئ الجينات والطفرات</h3>
+                <h3 class="font-bold text-sm">متنبئ الجينات والطفرات</h3>
                 <button onclick="closeModal('genetics-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
                     <label class="text-[10px] text-emerald-400">اختر نوع الطائر:</label>
-                    <select id="gen-bird-type" onchange="updateMutationsList()" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-white mt-1">
+                    <select id="gen-bird-type" onchange="updateMutationsList()" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
                         <option value="budgie">بادجي (Budgie)</option>
                         <option value="canary">كناري (Canary)</option>
                         <option value="cockatiel">كوكتيل (Cockatiel)</option>
-                        <option value="lovebird">طيور الحب (Lovebirds)</option>
                     </select>
                 </div>
                 <div class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2">
-                    <span class="font-bold text-emerald-200">طفرة الأب (ذكر):</span>
+                    <span class="font-bold">طفرة الأب (ذكر):</span>
                     <select id="father-mutation" class="w-full p-2 rounded-lg bg-[#253322] border border-emerald-900 text-white text-xs"></select>
                 </div>
                 <div class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2">
-                    <span class="font-bold text-emerald-200">طفرة الأم (أنثى):</span>
+                    <span class="font-bold">طفرة الأم (أنثى):</span>
                     <select id="mother-mutation" class="w-full p-2 rounded-lg bg-[#253322] border border-emerald-900 text-white text-xs"></select>
                 </div>
-                <div id="genetics-result" class="bg-emerald-950/60 p-3 rounded-xl border border-emerald-800/40 text-emerald-200 text-center hidden">
+                <div id="genetics-result" class="bg-emerald-950/60 p-3 rounded-xl border border-emerald-800/40 text-center hidden">
                     <p class="font-bold">النتائج الوراثية المتوقعة:</p>
                     <p id="gen-output-text" class="text-[11px] mt-1 text-emerald-300"></p>
                 </div>
@@ -388,25 +530,23 @@
 
     <!-- Hatching Calculator Modal -->
     <div id="hatch-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#253322] text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4">
             <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
-                <h3 class="font-bold text-sm text-emerald-100"><i class="fa-solid fa-egg"></i> حاسبة حضانة البيض والفقس</h3>
+                <h3 class="font-bold text-sm">حاسبة حضانة البيض والفقس</h3>
                 <button onclick="closeModal('hatch-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
                     <label class="text-[10px] text-emerald-400">نوع الطائر:</label>
-                    <select id="hatch-species" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-white mt-1">
+                    <select id="hatch-species" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
                         <option value="18">بادجي (Budgie) - 18 يوم</option>
                         <option value="14">كناري (Canary) - 14 يوم</option>
                         <option value="21">كوكتيل (Cockatiel) - 21 يوم</option>
-                        <option value="23">طيور الحب (Lovebirds) - 23 يوم</option>
-                        <option value="13">زيبرا فنج (Zebra Finch) - 13 يوم</option>
                     </select>
                 </div>
                 <div>
                     <label class="text-[10px] text-emerald-400">تاريخ وضع البيضة:</label>
-                    <input type="date" id="hatch-date" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-white mt-1">
+                    <input type="date" id="hatch-date" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
                 </div>
                 <button onclick="calculateHatching()" class="w-full py-2 bg-emerald-600 text-white rounded-xl font-bold">احسب المواعيد</button>
                 <div id="hatch-results" class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2 text-[11px] hidden">
@@ -421,9 +561,9 @@
 
     <!-- Diseases & Treatments Database Modal -->
     <div id="diseases-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#253322] text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-3 max-h-[85vh] overflow-y-auto">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-3 max-h-[85vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
-                <h3 class="font-bold text-sm text-emerald-100"><i class="fa-solid fa-book-medical"></i> دليل الأمراض والأدوية</h3>
+                <h3 class="font-bold text-sm">دليل الأمراض والأدوية</h3>
                 <button onclick="closeModal('diseases-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
@@ -433,7 +573,7 @@
                 </div>
                 <div class="p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
                     <h4 class="font-bold text-emerald-300">2. فاش الريش (Mites)</h4>
-                    <p class="text-[11px] text-emerald-400/80 mt-1">الأعراض: حكة مستمرة، قلة النوم ليلاً.<br>العلاج: رش الأقفاص بمبيد آمن (إيفرمكتين) وتطهير الزوايا.</p>
+                    <p class="text-[11px] text-emerald-400/80 mt-1">الأعراض: حكة مستمرة، قلة النوم ليلاً.<br>العلاج: رش الأقفاص بمبيد آمن وتطهير الزوايا.</p>
                 </div>
             </div>
             <button onclick="closeModal('diseases-modal')" class="w-full py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold">إغلاق الدليل</button>
@@ -442,50 +582,35 @@
 
     <!-- Admin Panel Modal (Exclusive for 22md6) -->
     <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#253322] text-white p-5 rounded-2xl w-full max-w-md border border-amber-600/50 space-y-4 max-h-[90vh] overflow-y-auto">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-md border border-amber-600/50 space-y-4 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b border-amber-900/40 pb-2">
-                <h3 class="font-bold text-sm text-amber-200"><i class="fa-solid fa-shield-halved"></i> لوحة تحكم المالك (Admin Panel)</h3>
+                <h3 class="font-bold text-sm text-amber-200">لوحة تحكم المالك (Admin Panel)</h3>
                 <button onclick="closeModal('admin-modal')" class="text-amber-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <p class="text-[11px] text-amber-300">مرحباً بك يا مهدي (المالك). يمكنك هنا متابعة المشتركين المسجلين في التطبيق والتحكم بالبيانات:</p>
-                <div id="admin-users-list" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-[#1a2318] rounded-xl border border-emerald-900">
-                    <!-- Users injected via JS -->
-                </div>
+                <div id="admin-users-list" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-[#1a2318] rounded-xl border border-emerald-900"></div>
             </div>
             <button onclick="closeModal('admin-modal')" class="w-full py-2 bg-amber-600 text-white rounded-xl font-bold">إغلاق لوحة المالك</button>
         </div>
     </div>
 
-    <!-- General Add Modal -->
-    <div id="add-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#253322] text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-3">
-            <h3 class="font-bold text-sm text-emerald-100">إضافة عنصر جديد لمزرعتك</h3>
-            <select id="add-type" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
-                <option value="bird">طائر جديد</option>
-                <option value="cage">قفص جديد</option>
-                <option value="pair">زوج تزاوج (إنتاج)</option>
-            </select>
-            <input type="text" id="add-name" placeholder="اسم الطائر، رقم الحلقة، أو وصف القفص" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
-            <button onclick="saveItem()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold">حفظ في التطبيق</button>
-            <button onclick="closeModal('add-modal')" class="w-full py-2 bg-[#1a2318] text-emerald-300 rounded-xl text-xs font-bold">إلغاء</button>
-        </div>
-    </div>
-
     <script>
-        let appData = JSON.parse(localStorage.getItem('toyoori_final_data')) || {
+        let appData = JSON.parse(localStorage.getItem('toyoori_final_v3')) || {
             currentUser: null,
-            usersList: [{name: "مهدي الشمري", email: "22md6", pass: "22md61997"}],
+            usersList: [{name: "مهدي الشمري", email: "22md6", pass: "22md61997", phone: "07700000000", exp: "5", fb: "", gender: "ذكر"}],
             birds: [],
             cages: [],
             pairs: [],
-            theme: 'olive'
+            theme: 'olive',
+            darkMode: false
         };
 
         let isLoginMode = true;
 
         window.onload = function() {
             setAppTheme(appData.theme || 'olive');
+            if(appData.darkMode) document.body.classList.add('dark');
             if(appData.currentUser) {
                 initUserSession(appData.currentUser);
             }
@@ -496,10 +621,15 @@
         function setAppTheme(themeName) {
             appData.theme = themeName;
             saveToStorage();
-            document.body.className = "pb-24 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between";
-            if(themeName === 'burgundy') document.body.classList.add('theme-burgundy');
-            else if(themeName === 'navy') document.body.classList.add('theme-navy');
-            else if(themeName === 'light') document.body.classList.add('theme-light');
+            document.body.classList.remove('theme-olive', 'theme-burgundy', 'theme-navy', 'theme-light');
+            document.body.classList.add('theme-' + themeName);
+        }
+
+        function toggleDarkMode(el) {
+            appData.darkMode = el.checked;
+            saveToStorage();
+            if(el.checked) document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
         }
 
         function toggleAuthMode() {
@@ -520,7 +650,7 @@
                 let name = document.getElementById('reg-name').value.trim() || 'مربي طيور';
                 let exists = appData.usersList.find(u => u.email === email);
                 if(exists) { alert('البريد مسجل مسبقاً!'); return; }
-                let newUser = { name, email, pass };
+                let newUser = { name, email, pass, phone: "", exp: "0", fb: "", gender: "ذكر" };
                 appData.usersList.push(newUser);
                 appData.currentUser = newUser;
                 saveToStorage();
@@ -540,10 +670,21 @@
         function initUserSession(user) {
             document.getElementById('sidebar-username').innerText = user.name;
             document.getElementById('sidebar-initial').innerText = user.name.charAt(0);
+            document.getElementById('settings-profile-name').innerText = user.name;
+            document.getElementById('settings-profile-email').innerText = user.email;
+            document.getElementById('settings-avatar').innerText = user.name.charAt(0);
+
+            document.getElementById('edit-name').value = user.name;
+            document.getElementById('edit-email').value = user.email;
+            document.getElementById('edit-phone').value = user.phone || '';
+            document.getElementById('edit-exp').value = user.exp || 0;
+            document.getElementById('edit-fb').value = user.fb || '';
+            document.getElementById('edit-gender').value = user.gender || 'ذكر';
+
             document.getElementById('auth-screen').classList.add('hidden');
             
-            // Check if user is Admin (22md6)
-            if(user.email === '22md6' || user.name === 'مهدي الشمري' || user.pass === '22md61997') {
+            // Check Admin 22md6 secretly
+            if(user.email === '22md6' || user.pass === '22md61997') {
                 document.getElementById('admin-menu-item').classList.remove('hidden');
             } else {
                 document.getElementById('admin-menu-item').classList.add('hidden');
@@ -551,9 +692,28 @@
             updateUI();
         }
 
+        function saveProfileChanges() {
+            if(!appData.currentUser) return;
+            appData.currentUser.name = document.getElementById('edit-name').value;
+            appData.currentUser.email = document.getElementById('edit-email').value;
+            appData.currentUser.phone = document.getElementById('edit-phone').value;
+            appData.currentUser.exp = document.getElementById('edit-exp').value;
+            appData.currentUser.fb = document.getElementById('edit-fb').value;
+            appData.currentUser.gender = document.getElementById('edit-gender').value;
+
+            // update in usersList
+            let idx = appData.usersList.findIndex(u => u.email === appData.currentUser.email);
+            if(idx !== -1) appData.usersList[idx] = appData.currentUser;
+
+            saveToStorage();
+            initUserSession(appData.currentUser);
+            closeModal('profile-edit-modal');
+            alert('تم حفظ التعديلات الشخصية بنجاح!');
+        }
+
         function openAdminPanel() {
             let listEl = document.getElementById('admin-users-list');
-            listEl.innerHTML = appData.usersList.map(u => `<div class="p-2 border-b border-emerald-900/40 text-[11px]">👤 <b>${u.name}</b> (${u.email})</div>`).join('');
+            listEl.innerHTML = appData.usersList.map(u => `<div class="p-2 border-b border-emerald-900/40 text-[11px]">👤 <b>${u.name}</b> (${u.email}) - خبرة: ${u.exp || 0} سنوات</div>`).join('');
             openModal('admin-modal');
         }
 
@@ -565,12 +725,63 @@
         }
 
         function saveToStorage() {
-            localStorage.setItem('toyoori_final_data', JSON.stringify(appData));
+            localStorage.setItem('toyoori_final_v3', JSON.stringify(appData));
         }
 
         function toggleSidebar() { document.getElementById('sidebar-menu').classList.toggle('hidden'); }
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function openAddModalSelection() {
+            let choice = prompt("ماذا تريد أن تضيف؟\n1. طائر\n2. قفص\n3. زوج تزاوج", "1");
+            if(choice === "1") { updateCageDropdowns(); openModal('modal-add-bird'); }
+            else if(choice === "2") { openModal('modal-add-cage'); }
+            else if(choice === "3") { updatePairDropdowns(); openModal('modal-add-pair'); }
+        }
+
+        function updateCageDropdowns() {
+            let sel = document.getElementById('bird-cage-select');
+            sel.innerHTML = `<option value="بدون قفص">بدون قفص</option>` + appData.cages.map(c => `<option value="${c}">${c}</option>`).join('');
+        }
+
+        function updatePairDropdowns() {
+            let maleSel = document.getElementById('pair-male');
+            let femaleSel = document.getElementById('pair-female');
+            let cageSel = document.getElementById('pair-cage');
+
+            let birdOptions = appData.birds.length === 0 ? `<option value="لا توجد طيور">لا توجد طيور مضافة</option>` : appData.birds.map(b => `<option value="${b}">${b}</option>`).join('');
+            maleSel.innerHTML = birdOptions;
+            femaleSel.innerHTML = birdOptions;
+            cageSel.innerHTML = `<option value="بدون قفص">بدون قفص</option>` + appData.cages.map(c => `<option value="${c}">${c}</option>`).join('');
+        }
+
+        function submitNewBird() {
+            let ring = document.getElementById('bird-ring').value.trim() || 'طائر جديد';
+            appData.birds.push(ring);
+            saveToStorage();
+            updateUI();
+            closeModal('modal-add-bird');
+            alert('تم إضافة الطائر بنجاح!');
+        }
+
+        function submitNewCage() {
+            let desc = document.getElementById('cage-desc').value.trim() || 'قفص جديد';
+            appData.cages.push(desc);
+            saveToStorage();
+            updateUI();
+            closeModal('modal-add-cage');
+            alert('تم إضافة القفص بنجاح!');
+        }
+
+        function submitNewPair() {
+            let m = document.getElementById('pair-male').value;
+            let f = document.getElementById('pair-female').value;
+            appData.pairs.push(`ذكر (${m}) 🕊️ أنثى (${f})`);
+            saveToStorage();
+            updateUI();
+            closeModal('modal-add-pair');
+            alert('تم إضافة زوج التزاوج بنجاح!');
+        }
 
         function switchScreen(name) {
             ['home', 'health', 'birds', 'community', 'market', 'settings'].forEach(s => {
@@ -590,7 +801,7 @@
         }
 
         function openHealthSection(section) {
-            alert('تم الانتقال إلى قسم: ' + section);
+            alert('تم الانتقال الفعلي إلى قسم الصحة: ' + section);
         }
 
         function switchBirdTab(tabId) {
@@ -607,20 +818,6 @@
             let activeB = document.getElementById('btn' + tabId);
             activeB.classList.remove('text-emerald-400');
             activeB.classList.add('bg-emerald-700', 'text-white');
-        }
-
-        function saveItem() {
-            let type = document.getElementById('add-type').value;
-            let name = document.getElementById('add-name').value.trim() || 'عنصر جديد';
-            
-            if(type === 'bird') appData.birds.push(name);
-            else if(type === 'cage') appData.cages.push(name);
-            else if(type === 'pair') appData.pairs.push(name);
-
-            saveToStorage();
-            updateUI();
-            closeModal('add-modal');
-            document.getElementById('add-name').value = '';
         }
 
         function updateUI() {
@@ -668,10 +865,9 @@
         }
 
         const mutationsDB = {
-            budgie: ["عادي (Normal)", "لوتينو (Lutino)", "ألبينو (Albino)", "سندويش / بايد (Pied)", "أوبالين (Opaline)"],
+            budgie: ["عادي (Normal)", "لوتينو (Lutino)", "ألبينو (Albino)", "سندويش / بايد (Pied)"],
             canary: ["أصفر فاهل (Yellow Fahl)", "أحمر موزايك (Red Mosaic)", "أبيض سادة (White)"],
-            cockatiel: ["رمادي عادي (Normal Grey)", "لوتينو (Lutino)", "بيرل (Pearl)"],
-            lovebird: ["فيشر أخضر (Fischer)", "ماسكد بنفسجي (Masked)"]
+            cockatiel: ["رمادي عادي (Normal Grey)", "لوتينو (Lutino)", "بيرل (Pearl)"]
         };
 
         function updateMutationsList() {
@@ -684,13 +880,13 @@
         function calculateGenetics() {
             let f = document.getElementById('father-mutation').value;
             let m = document.getElementById('mother-mutation').value;
-            document.getElementById('gen-output-text').innerText = `نتيجة التزاوج بين الأب (${f}) والأم (${m}): فروخ حاملة للصفات المشتركة وطفرات وراثية حسب قوانين مندل.`;
+            document.getElementById('gen-output-text').innerText = `نتيجة التزاوج بين الأب (${f}) والأم (${m}): فروخ حاملة للصفات المشتركة والطفرات الوراثية حسب قوانين مندل.`;
             document.getElementById('genetics-result').classList.remove('hidden');
         }
 
         function clearAllData() {
             if(confirm('هل أنت متأكد من مسح كافة البيانات؟')) {
-                localStorage.removeItem('toyoori_final_data');
+                localStorage.removeItem('toyoori_final_v3');
                 location.reload();
             }
         }
