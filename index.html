@@ -50,328 +50,386 @@
         .feather-decor::before {
             content: '🌿';
             position: absolute;
-            right: -24px;
-            top: -2px;
+            right: -26px;
+            top: 0px;
             font-size: 1.1rem;
         }
         .feather-decor::after {
             content: '🪶';
             position: absolute;
-            left: -24px;
-            top: -2px;
+            left: -26px;
+            top: 0px;
             font-size: 1.1rem;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="pb-24 pt-4 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between">
+<body class="pb-24 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between">
 
-    <!-- App Header with Leaf/Feather Motifs -->
-    <header class="text-center my-3 relative">
-        <div class="inline-block relative">
-            <h1 class="text-4xl font-black tracking-wide app-header-title feather-decor px-6">طيوري</h1>
-            <p class="text-xs text-emerald-400/90 font-medium mt-1 tracking-wider">بإدارة مهدي مرهون الشمري</p>
+    <!-- Auth Screen / Welcome -->
+    <div id="auth-screen" class="fixed inset-0 bg-[#121811] z-50 flex flex-col justify-center p-6 space-y-6">
+        <div class="text-center space-y-2">
+            <h1 class="text-4xl font-black app-header-title feather-decor inline-block px-8">طيوري</h1>
+            <p class="text-xs text-emerald-400 font-bold">أهلاً بك في تطبيق طيوري</p>
         </div>
+        <div class="bg-olive-card p-5 rounded-3xl glowing-card space-y-4">
+            <h2 id="auth-title" class="text-sm font-bold text-emerald-100 text-center">تسجيل الدخول لحسابك</h2>
+            <div id="register-fields" class="space-y-3 hidden">
+                <input type="text" id="reg-name" placeholder="اسم المستخدم" class="w-full p-3 rounded-xl bg-olive-base border border-emerald-900/50 text-xs text-white">
+            </div>
+            <input type="email" id="auth-email" placeholder="البريد الإلكتروني" class="w-full p-3 rounded-xl bg-olive-base border border-emerald-900/50 text-xs text-white">
+            <input type="password" id="auth-pass" placeholder="كلمة المرور" class="w-full p-3 rounded-xl bg-olive-base border border-emerald-900/50 text-xs text-white">
+            
+            <button onclick="handleAuth()" id="auth-btn" class="w-full py-3 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-lg">دخول</button>
+            
+            <div class="text-center">
+                <button onclick="toggleAuthMode()" id="auth-switch" class="text-[11px] text-emerald-400 hover:underline">ليس لديك حساب؟ سجل حساب جديد</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu (Matching Image 3) -->
+    <div id="sidebar-menu" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex justify-end">
+        <div class="w-72 bg-olive-card h-full p-5 space-y-6 flex flex-col justify-between border-r border-emerald-900/50 overflow-y-auto">
+            <div class="space-y-6">
+                <div class="flex items-center justify-between border-b border-emerald-900/40 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-emerald-600/30 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 text-lg" id="sidebar-initial">م</div>
+                        <div>
+                            <h3 id="sidebar-username" class="font-bold text-sm text-emerald-100">مهدي الشمري</h3>
+                            <span class="text-[10px] text-emerald-400/80">عضو مجتمع فريي</span>
+                        </div>
+                    </div>
+                    <button onclick="toggleSidebar()" class="text-emerald-400 text-lg"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="bg-olive-base p-3 rounded-2xl grid grid-cols-3 text-center text-xs border border-emerald-900/30">
+                    <div><span class="block font-black text-white" id="count-birds">0</span><span class="text-[10px] text-emerald-400">طيور</span></div>
+                    <div class="border-x border-emerald-900/40"><span class="block font-black text-white" id="count-cages">0</span><span class="text-[10px] text-emerald-400">أقفاص</span></div>
+                    <div><span class="block font-black text-white" id="count-pairs">0</span><span class="text-[10px] text-emerald-400">أزواج</span></div>
+                </div>
+
+                <div class="space-y-2 text-xs">
+                    <div class="text-[10px] text-emerald-500 font-bold px-1">أدوات الإنتاج والجينات</div>
+                    <button onclick="toggleSidebar(); openModal('genetics-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-olive-base hover:bg-emerald-950/40 text-emerald-200">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-400"></i> حاسبة الجينات والألوان</span>
+                        <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
+                    </button>
+                    <button onclick="toggleSidebar(); openModal('hatch-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-olive-base hover:bg-emerald-950/40 text-emerald-200">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-egg text-emerald-400"></i> حاسبة حضانة البيض والفقس</span>
+                        <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
+                    </button>
+                    <button onclick="toggleSidebar(); alert('دليل الأمراض والأدوية')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-olive-base hover:bg-emerald-950/40 text-emerald-200">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-book-medical text-emerald-400"></i> دليل الأمراض والأدوية</span>
+                        <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <button onclick="toggleSidebar(); alert('ترقية الحساب')" class="w-full py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-crown"></i> ترقية الحساب إلى بريميوم
+                </button>
+                <button onclick="logout()" class="w-full py-2.5 bg-red-950/60 text-red-300 border border-red-800/40 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Header -->
+    <header class="flex justify-between items-center my-2 px-1">
+        <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl bg-olive-card border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
+        <div class="text-center">
+            <h1 class="text-3xl font-black app-header-title feather-decor px-4">طيوري</h1>
+            <p class="text-[10px] text-emerald-400/90 font-medium mt-1">بإدارة مهدي مرهون الشمري</p>
+        </div>
+        <button onclick="switchScreen('settings')" class="w-9 h-9 rounded-xl bg-olive-card border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-gear"></i></button>
     </header>
 
-    <!-- Main Screens Container -->
-    <main id="app-content" class="space-y-4 flex-grow">
-        <!-- Screen 1: Dashboard Home -->
+    <!-- Main Screens -->
+    <main id="app-content" class="space-y-4 flex-grow mt-2">
+        <!-- Home Screen -->
         <section id="screen-home" class="space-y-4">
-            <!-- User Profile Quick Bar -->
-            <div class="bg-olive-card p-3.5 rounded-2xl glowing-card flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-full bg-emerald-600/30 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 text-lg shadow-inner">
-                        م
-                    </div>
-                    <div>
-                        <h2 class="text-sm font-bold text-emerald-100">مساء الخير، مهدي</h2>
-                        <span class="text-[10px] bg-emerald-950/80 text-emerald-400 border border-emerald-800/50 px-2 py-0.5 rounded-full font-semibold">عضو مجتمع فريي</span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button class="w-9 h-9 rounded-xl bg-olive-base border border-emerald-900/40 text-emerald-400 flex items-center justify-center text-sm"><i class="fa-solid fa-bell"></i></button>
-                    <button onclick="switchScreen('settings')" class="w-9 h-9 rounded-xl bg-olive-base border border-emerald-900/40 text-emerald-400 flex items-center justify-center text-sm"><i class="fa-solid fa-gear"></i></button>
-                </div>
-            </div>
-
-            <!-- Stats Grid (Colored Glowing Cards) -->
             <div class="grid grid-cols-2 gap-2.5">
-                <div class="bg-gradient-to-br from-indigo-950/90 to-purple-900/70 p-3.5 rounded-2xl border border-indigo-500/30 shadow-lg relative overflow-hidden">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-semibold text-indigo-200">أمراض</span>
-                        <i class="fa-solid fa-shield-virus text-indigo-400 text-base"></i>
-                    </div>
+                <div class="bg-gradient-to-br from-indigo-950/90 to-purple-900/70 p-3.5 rounded-2xl border border-indigo-500/30 shadow-lg">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-indigo-200">أمراض</span><i class="fa-solid fa-shield-virus text-indigo-400"></i></div>
                     <div class="mt-2 text-2xl font-black text-white">0</div>
                 </div>
-                <div class="bg-gradient-to-br from-emerald-950/90 to-teal-900/70 p-3.5 rounded-2xl border border-emerald-500/30 shadow-lg relative overflow-hidden">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-semibold text-emerald-200">إجمالي الطيور النشطة</span>
-                        <i class="fa-solid fa-feather text-emerald-400 text-base"></i>
-                    </div>
-                    <div class="mt-2 text-2xl font-black text-white">6</div>
+                <div class="bg-gradient-to-br from-emerald-950/90 to-teal-900/70 p-3.5 rounded-2xl border border-emerald-500/30 shadow-lg">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-emerald-200">الطيور النشطة</span><i class="fa-solid fa-feather text-emerald-400"></i></div>
+                    <div class="mt-2 text-2xl font-black text-white" id="stat-birds">0</div>
                 </div>
-                <div class="bg-gradient-to-br from-teal-950/90 to-cyan-900/70 p-3.5 rounded-2xl border border-teal-500/30 shadow-lg relative overflow-hidden">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-semibold text-teal-200">صافي الربح</span>
-                        <i class="fa-solid fa-wallet text-teal-400 text-base"></i>
-                    </div>
-                    <div class="mt-2 text-2xl font-black text-white">0 <span class="text-xs font-normal">د.ع</span></div>
+                <div class="bg-gradient-to-br from-teal-950/90 to-cyan-900/70 p-3.5 rounded-2xl border border-teal-500/30 shadow-lg">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-teal-200">صافي الربح</span><i class="fa-solid fa-wallet text-teal-400"></i></div>
+                    <div class="mt-2 text-2xl font-black text-white">0 <span class="text-xs">د.ع</span></div>
                 </div>
-                <div class="bg-gradient-to-br from-amber-950/90 to-orange-900/70 p-3.5 rounded-2xl border border-amber-500/30 shadow-lg relative overflow-hidden">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-semibold text-amber-200">بيض نشط</span>
-                        <i class="fa-solid fa-egg text-amber-400 text-base"></i>
-                    </div>
-                    <div class="mt-2 text-2xl font-black text-white">3</div>
+                <div class="bg-gradient-to-br from-amber-950/90 to-orange-900/70 p-3.5 rounded-2xl border border-amber-500/30 shadow-lg">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-amber-200">بيض نشط</span><i class="fa-solid fa-egg text-amber-400"></i></div>
+                    <div class="mt-2 text-2xl font-black text-white">0</div>
                 </div>
-            </div>
-
-            <!-- Daily Tasks Card -->
-            <div class="bg-olive-card p-4 rounded-2xl glowing-card space-y-3">
-                <div class="flex items-center justify-between border-b border-emerald-900/40 pb-2">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-list-check text-emerald-400"></i>
-                        <h3 class="font-bold text-sm text-emerald-100">مهام اليوم</h3>
-                    </div>
-                    <button class="text-xs text-emerald-400 hover:underline font-semibold">+ إضافة</button>
-                </div>
-                <div class="space-y-2">
-                    <label class="flex items-center gap-3 p-2.5 rounded-xl bg-olive-base/80 border border-emerald-900/30 text-xs">
-                        <input type="checkbox" checked class="accent-emerald-500 w-4 h-4 rounded">
-                        <span class="line-through text-emerald-400/60">تغيير مياه المشربيات (الصباح)</span>
-                    </label>
-                    <label class="flex items-center gap-3 p-2.5 rounded-xl bg-olive-base/80 border border-emerald-900/30 text-xs">
-                        <input type="checkbox" class="accent-emerald-500 w-4 h-4 rounded">
-                        <span>تقديم وجبة البيض بالبقسماط للأزواج</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Quick Banners & Breeder Tools -->
-            <div class="bg-gradient-to-r from-emerald-900/40 to-olive-card p-3.5 rounded-2xl border border-emerald-600/30 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 text-lg">
-                        <i class="fa-solid fa-dna"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-emerald-100">حاسبة الجينات والألوان</h4>
-                        <p class="text-[10px] text-emerald-400/80">توقع طفرات وجينات الفروخ</p>
-                    </div>
-                </div>
-                <button onclick="openModal('genetics-modal')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-md hover:bg-emerald-500">احسب الآن</button>
             </div>
         </section>
 
-        <!-- Screen 2: Birds & Breeding Management -->
+        <!-- Birds / Cages / Breeding Screen (Matching Images 4, 5, 6) -->
         <section id="screen-birds" class="space-y-3 hidden">
-            <!-- Top Sub Navigation Bar -->
+            <!-- Sub Navigation (Matching Images 4, 5, 6) -->
             <div class="flex bg-olive-card p-1 rounded-xl border border-emerald-900/50 text-xs font-bold">
-                <button onclick="switchBirdTab('tab-birds-list')" id="btn-tab-birds-list" class="flex-1 py-2 text-center rounded-lg bg-emerald-700 text-white">الطيور (6)</button>
-                <button onclick="switchBirdTab('tab-cages-list')" id="btn-tab-cages-list" class="flex-1 py-2 text-center rounded-lg text-emerald-400">الأقفاص (5)</button>
-                <button onclick="switchBirdTab('tab-pairs-list')" id="btn-tab-pairs-list" class="flex-1 py-2 text-center rounded-lg text-emerald-400">التزاوج (3)</button>
+                <button onclick="switchBirdTab('tab-birds')" id="btntab-birds" class="flex-1 py-2 text-center rounded-lg bg-emerald-700 text-white">الطيور</button>
+                <button onclick="switchBirdTab('tab-cages')" id="btntab-cages" class="flex-1 py-2 text-center rounded-lg text-emerald-400">الأقفاص</button>
+                <button onclick="switchBirdTab('tab-breeding')" id="btntab-breeding" class="flex-1 py-2 text-center rounded-lg text-emerald-400">تكاثر</button>
             </div>
 
-            <!-- Add New Bird Action Button -->
-            <button onclick="openModal('add-bird-modal')" class="w-full py-3 bg-emerald-600 text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg border border-emerald-400/30">
-                <i class="fa-solid fa-circle-plus"></i> إضافة طائر جديد
-            </button>
-
-            <!-- Birds List Tab -->
-            <div id="tab-birds-list" class="space-y-2.5">
-                <div class="bg-olive-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-900/50 border border-emerald-700/50 flex items-center justify-center text-2xl">🦜</div>
-                        <div>
-                            <h4 class="text-sm font-bold text-emerald-100">كوكتيل بيرل وايت فيس</h4>
-                            <p class="text-[11px] text-emerald-400/80">القفص: خشبي أرضي 1 | ذكر</p>
-                        </div>
-                    </div>
-                    <span class="px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-700/40 rounded-lg text-[10px] font-bold">نشط</span>
-                </div>
-                <div class="bg-olive-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-900/50 border border-emerald-700/50 flex items-center justify-center text-2xl">🐤</div>
-                        <div>
-                            <h4 class="text-sm font-bold text-emerald-100">كناري أصفر فاهل</h4>
-                            <p class="text-[11px] text-emerald-400/80">القفص: حديد صغير 2 | أنثى</p>
-                        </div>
-                    </div>
-                    <span class="px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-700/40 rounded-lg text-[10px] font-bold">نشط</span>
-                </div>
-            </div>
-
-            <!-- Cages Tab -->
-            <div id="tab-cages-list" class="space-y-2.5 hidden">
-                <div class="bg-olive-card p-3.5 rounded-2xl border border-emerald-900/40 flex justify-between items-center">
+            <!-- Tab 1: Birds -->
+            <div id="tab-birds" class="space-y-3">
+                <div class="bg-gradient-to-r from-olive-card to-emerald-950/50 p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
                     <div>
-                        <h4 class="text-sm font-bold text-emerald-100">قفص خشبي أرضي كبير</h4>
-                        <p class="text-xs text-emerald-400/70">عدد الطيور: 2 | إنتاج</p>
+                        <h3 class="font-bold text-sm text-emerald-100">طيوري</h3>
+                        <p class="text-[11px] text-emerald-400/80" id="birds-count-text">0 الطيور</p>
                     </div>
-                    <i class="fa-solid fa-border-all text-emerald-500 text-lg"></i>
+                    <span class="text-xl">🦜</span>
+                </div>
+                <div id="user-birds-list" class="space-y-2">
+                    <p class="text-xs text-emerald-400/60 text-center py-6">لا توجد طيور مضافة حالياً.</p>
                 </div>
             </div>
 
-            <!-- Pairs Tab -->
-            <div id="tab-pairs-list" class="space-y-2.5 hidden">
-                <div class="bg-olive-card p-3.5 rounded-2xl border border-emerald-900/40 space-y-2">
-                    <div class="flex justify-between items-center text-xs border-b border-emerald-900/30 pb-2">
-                        <span class="font-bold text-emerald-200">زوج الكوكتيل #1</span>
-                        <span class="text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded text-[10px]">3 بيضات</span>
+            <!-- Tab 2: Cages (Matching Image 5) -->
+            <div id="tab-cages" class="space-y-3 hidden">
+                <div class="bg-gradient-to-r from-olive-card to-emerald-950/50 p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-sm text-emerald-100">الأقفاص</h3>
+                        <p class="text-[11px] text-emerald-400/80" id="cages-count-text">0 الأقفاص</p>
                     </div>
-                    <p class="text-xs text-emerald-300/80">تاريخ البداية: 2026-10-15</p>
+                    <span class="text-xl">🪺</span>
+                </div>
+                <div id="user-cages-list" class="space-y-2">
+                    <p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أقفاص مضافة حالياً.</p>
+                </div>
+            </div>
+
+            <!-- Tab 3: Breeding (Matching Image 6) -->
+            <div id="tab-breeding" class="space-y-3 hidden">
+                <div class="bg-gradient-to-r from-olive-card to-emerald-950/50 p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-sm text-emerald-100">إدارة ومتابعة أزواج الإنتاج</h3>
+                        <p class="text-[11px] text-emerald-400/80">الأزواج النشطة: 0</p>
+                    </div>
+                    <span class="text-xl">🕊️</span>
+                </div>
+                <div id="user-breeding-list" class="space-y-2">
+                    <p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أزواج تزاوج مضافة.</p>
                 </div>
             </div>
         </section>
-        <!-- Screen 3: Community -->
+
+        <!-- Community Screen -->
         <section id="screen-community" class="space-y-3 hidden">
             <div class="bg-olive-card p-4 rounded-2xl glowing-card space-y-2">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-emerald-100 text-sm">مجتمع المربين</h3>
-                    <button class="px-3 py-1 bg-emerald-600 text-white rounded-xl text-xs font-bold">+ منشور جديد</button>
-                </div>
-                <p class="text-xs text-emerald-400/80">تواصل، ناقش، وتبادل الخبرات الطبية والتعولية.</p>
-            </div>
-            <!-- Community Post Card -->
-            <div class="bg-olive-card p-4 rounded-2xl border border-emerald-900/40 space-y-3">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-full bg-emerald-700/50 flex items-center justify-center font-bold text-xs">أ</div>
-                    <div>
-                        <h4 class="text-xs font-bold text-emerald-100">أحمد أيمن</h4>
-                        <span class="text-[10px] text-emerald-400/70">16 أكتوبر 2026</span>
-                    </div>
-                </div>
-                <p class="text-xs text-emerald-200">أهلاً بكل المربين الانضمام إلينا حديثاً في فريي 🕊️</p>
+                <h3 class="font-bold text-emerald-100 text-sm">مجتمع المربين</h3>
+                <p class="text-xs text-emerald-400/80">تواصل وتبادل الخبرات.</p>
             </div>
         </section>
 
-        <!-- Screen 4: Marketplace -->
+        <!-- Market Screen -->
         <section id="screen-market" class="space-y-3 hidden">
-            <div class="bg-olive-card p-4 rounded-2xl glowing-card flex justify-between items-center">
-                <div>
-                    <h3 class="font-bold text-emerald-100 text-sm">سوق الطيور</h3>
-                    <p class="text-[11px] text-emerald-400/80">بيع، تبادل، أو مبادلة الطيور والمستلزمات</p>
-                </div>
-                <button class="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-xl">+ إعلان جديد</button>
-            </div>
-            <!-- Market Item Card -->
-            <div class="bg-olive-card p-3 rounded-2xl border border-emerald-900/40 flex gap-3 items-center">
-                <div class="w-16 h-16 rounded-xl bg-emerald-900/50 flex items-center justify-center text-2xl">🕊️</div>
-                <div class="flex-grow">
-                    <h4 class="text-xs font-bold text-emerald-100">بجاجه ال أني المياحي او الياسمين</h4>
-                    <p class="text-[11px] text-emerald-400 font-semibold mt-1">السعر: للبدل</p>
-                    <span class="text-[10px] text-emerald-500/80">📍 بابل - الحلة</span>
-                </div>
+            <div class="bg-olive-card p-4 rounded-2xl glowing-card">
+                <h3 class="font-bold text-emerald-100 text-sm">سوق الطيور</h3>
             </div>
         </section>
 
-        <!-- Screen 5: Settings -->
+        <!-- Settings Screen -->
         <section id="screen-settings" class="space-y-3 hidden">
-            <div class="bg-olive-card p-4 rounded-2xl glowing-card flex items-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-emerald-600/30 border border-emerald-500 flex items-center justify-center text-emerald-300 font-bold text-lg">م</div>
-                <div>
-                    <h3 class="text-sm font-bold text-emerald-100">مهدي الشمري</h3>
-                    <p class="text-[11px] text-emerald-400">mahdyalshamry7@gmail.com</p>
-                </div>
-            </div>
-            <div class="bg-olive-card p-3 rounded-2xl border border-emerald-900/40 space-y-2 text-xs">
-                <div class="flex justify-between items-center p-2 border-b border-emerald-900/30">
-                    <span>اللغة</span>
-                    <span class="text-emerald-400 font-bold">العربية</span>
-                </div>
-                <div class="flex justify-between items-center p-2">
-                    <span>العملة المفضلة</span>
-                    <span class="text-emerald-400 font-bold">د.ع</span>
-                </div>
+            <div class="bg-olive-card p-4 rounded-2xl glowing-card">
+                <h3 class="font-bold text-emerald-100 text-sm">الإعدادات</h3>
             </div>
         </section>
     </main>
 
-    <!-- Fixed Bottom Navigation Bar (4 Icons without Barcode) -->
-    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-olive-base/95 backdrop-blur border-t border-emerald-900/50 px-6 py-2.5 flex justify-between items-center z-50 text-xs">
-        <button onclick="switchScreen('home')" id="nav-home" class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
-            <i class="fa-solid fa-house text-base"></i>
-            <span>الرئيسية</span>
-        </button>
-        <button onclick="switchScreen('birds')" id="nav-birds" class="flex flex-col items-center gap-1 text-emerald-400/60">
-            <i class="fa-solid fa-feather text-base"></i>
-            <span>الطيور</span>
-        </button>
-        <button onclick="switchScreen('community')" id="nav-community" class="flex flex-col items-center gap-1 text-emerald-400/60">
-            <i class="fa-solid fa-users text-base"></i>
-            <span>المجتمع</span>
-        </button>
-        <button onclick="switchScreen('market')" id="nav-market" class="flex flex-col items-center gap-1 text-emerald-400/60">
-            <i class="fa-solid fa-store text-base"></i>
-            <span>السوق</span>
-        </button>
+    <!-- Floating Action Button (+) at Bottom Left (Matching Images 4, 5, 6) -->
+    <button onclick="openModal('add-modal')" class="fixed bottom-16 left-4 w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-olive-base rounded-full shadow-2xl flex items-center justify-center text-xl font-black z-40 border-2 border-emerald-300">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <!-- Fixed Bottom Navigation (4 Icons without Barcode) -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-olive-base/95 backdrop-blur border-t border-emerald-900/50 px-6 py-2.5 flex justify-between items-center z-30 text-xs">
+        <button onclick="switchScreen('home')" id="nav-home" class="flex flex-col items-center gap-1 text-emerald-400 font-bold"><i class="fa-solid fa-house text-base"></i><span>الرئيسية</span></button>
+        <button onclick="switchScreen('birds')" id="nav-birds" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-feather text-base"></i><span>الطيور</span></button>
+        <button onclick="switchScreen('community')" id="nav-community" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-users text-base"></i><span>المجتمع</span></button>
+        <button onclick="switchScreen('market')" id="nav-market" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-store text-base"></i><span>السوق</span></button>
     </nav>
 
-    <!-- Modals & Scripts -->
+    <!-- Genetics Calculator Modal (Matching Image 2) -->
     <div id="genetics-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-olive-card p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-3">
-            <h3 class="font-bold text-sm text-emerald-100">حاسبة الجينات والألوان</h3>
-            <p class="text-xs text-emerald-400/80">اختر نوع الطائر والصفات لتوقع الفروخ.</p>
-            <button onclick="closeModal('genetics-modal')" class="w-full py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold">إغلاق</button>
+        <div class="bg-olive-card p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm text-emerald-100"><i class="fa-solid fa-dna"></i> متنبي الجينات</h3>
+                <button onclick="closeModal('genetics-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">نوع الطائر</label>
+                    <select class="w-full p-2.5 rounded-xl bg-olive-base border border-emerald-900/50 text-white mt-1">
+                        <option>بادجي (Budgie)</option>
+                        <option>كناري (Canary)</option>
+                        <option>كوكتيل (Cockatiel)</option>
+                    </select>
+                </div>
+                <div class="bg-olive-base p-3 rounded-xl border border-emerald-900/40 space-y-1">
+                    <span class="font-bold text-emerald-200">طفرات الأب (ذكر)</span>
+                    <button class="w-full py-1.5 bg-emerald-950 text-emerald-400 rounded-lg border border-emerald-800/40">+ إضافة طفرة</button>
+                </div>
+                <div class="bg-olive-base p-3 rounded-xl border border-emerald-900/40 space-y-1">
+                    <span class="font-bold text-emerald-200">طفرات الأم (أنثى)</span>
+                    <button class="w-full py-1.5 bg-emerald-950 text-emerald-400 rounded-lg border border-emerald-800/40">+ إضافة طفرة</button>
+                </div>
+            </div>
+            <button onclick="alert('جاري حساب النتائج الوراثية...')" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-md">احسب النتائج</button>
         </div>
     </div>
 
-    <div id="add-bird-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <!-- Hatching Calculator Modal (Matching Image 1) -->
+    <div id="hatch-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-olive-card p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm text-emerald-100"><i class="fa-solid fa-egg"></i> حاسبة حضانة البيض والفقس</h3>
+                <button onclick="closeModal('hatch-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">نوع الطائر:</label>
+                    <select class="w-full p-2.5 rounded-xl bg-olive-base border border-emerald-900/50 text-white mt-1">
+                        <option>بادجي (Budgie)</option>
+                        <option>كناري (Canary)</option>
+                        <option>كوكتيل (Cockatiel)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">تاريخ وضع البيضة:</label>
+                    <input type="date" value="2026-11-01" class="w-full p-2.5 rounded-xl bg-olive-base border border-emerald-900/50 text-white mt-1">
+                </div>
+                <div class="bg-olive-base p-3 rounded-xl border border-emerald-900/40 space-y-2 text-[11px]">
+                    <div class="flex justify-between items-center text-emerald-300"><span>تاريخ الفقس المتوقع (18 يوم)</span><span class="font-bold">2026/11/19</span></div>
+                    <div class="flex justify-between items-center text-emerald-300"><span>موعد وضع الدبلة / الخاتم</span><span class="font-bold">2026/11/27</span></div>
+                    <div class="flex justify-between items-center text-emerald-300"><span>تاريخ الفطام المتوقع (+35 يوم)</span><span class="font-bold">2026/12/24</span></div>
+                </div>
+            </div>
+            <button onclick="closeModal('hatch-modal')" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- General Add Modal (triggered by floating + button) -->
+    <div id="add-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-olive-card p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-3">
-            <h3 class="font-bold text-sm text-emerald-100">إضافة طائر جديد</h3>
-            <input type="text" placeholder="الاسم أو رقم الحلقة" class="w-full p-2.5 rounded-xl bg-olive-base border border-emerald-900/50 text-xs text-white">
-            <button onclick="closeModal('add-bird-modal')" class="w-full py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold">حفظ</button>
+            <h3 class="font-bold text-sm text-emerald-100">إضافة جديدة</h3>
+            <select id="add-type" class="w-full p-2.5 rounded-xl bg-olive-base border border-emerald-900/50 text-xs text-white">
+                <option value="bird">طائر جديد</option>
+                <option value="cage">قفص جديد</option>
+                <option value="pair">زوج تزاوج</option>
+            </select>
+            <input type="text" id="add-name" placeholder="الاسم أو رقم الحلقة أو القفص" class="w-full p-2.5 rounded-xl bg-olive-base border border-emerald-900/50 text-xs text-white">
+            <button onclick="saveItem()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold">حفظ</button>
+            <button onclick="closeModal('add-modal')" class="w-full py-2 bg-olive-base text-emerald-300 rounded-xl text-xs font-bold">إلغاء</button>
         </div>
     </div>
 
     <script>
-        function switchScreen(screenName) {
-            document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
-            document.getElementById('screen-' + screenName).classList.remove('hidden');
-            
-            ['home', 'birds', 'community', 'market'].forEach(name => {
-                let btn = document.getElementById('nav-' + name);
-                if(btn) {
-                    btn.classList.remove('text-emerald-400', 'font-bold');
-                    btn.classList.add('text-emerald-400/60');
-                }
-            });
-            let activeBtn = document.getElementById('nav-' + screenName);
-            if(activeBtn) {
-                activeBtn.classList.remove('text-emerald-400/60');
-                activeBtn.classList.add('text-emerald-400', 'font-bold');
+        let isLoginMode = true;
+        let data = { birds: [], cages: [], pairs: [] };
+
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? 'تسجيل الدخول لحسابك' : 'إنشاء حساب جديد';
+            document.getElementById('auth-btn').innerText = isLoginMode ? 'دخول' : 'تسجيل';
+            document.getElementById('auth-switch').innerText = isLoginMode ? 'ليس لديك حساب؟ سجل حساب جديد' : 'لديك حساب بالفعل؟ سجل دخولك';
+            document.getElementById('register-fields').classList.toggle('hidden', isLoginMode);
+        }
+
+        function handleAuth() {
+            let email = document.getElementById('auth-email').value;
+            let pass = document.getElementById('auth-pass').value;
+            if(!email || !pass) { alert('يرجى ملء الحقول المطلوبة'); return; }
+            if(!isLoginMode) {
+                let name = document.getElementById('reg-name').value || 'مربي طيور';
+                document.getElementById('sidebar-username').innerText = name;
+                document.getElementById('sidebar-initial').innerText = name.charAt(0);
             }
+            document.getElementById('auth-screen').classList.add('hidden');
+        }
+
+        function logout() {
+            document.getElementById('auth-screen').classList.remove('hidden');
+            toggleSidebar();
+        }
+
+        function toggleSidebar() { document.getElementById('sidebar-menu').classList.toggle('hidden'); }
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function switchScreen(name) {
+            ['home', 'birds', 'community', 'market', 'settings'].forEach(s => {
+                let el = document.getElementById('screen-' + s);
+                if(el) el.classList.add('hidden');
+            });
+            let target = document.getElementById('screen-' + name);
+            if(target) target.classList.remove('hidden');
+
+            ['home', 'birds', 'community', 'market'].forEach(n => {
+                let b = document.getElementById('nav-' + n);
+                if(b) { b.classList.remove('text-emerald-400', 'font-bold'); b.classList.add('text-emerald-400/60'); }
+            });
+            let active = document.getElementById('nav-' + name);
+            if(active) { active.classList.remove('text-emerald-400/60'); active.classList.add('text-emerald-400', 'font-bold'); }
             window.scrollTo(0, 0);
         }
 
         function switchBirdTab(tabId) {
-            ['tab-birds-list', 'tab-cages-list', 'tab-pairs-list'].forEach(id => {
+            ['tab-birds', 'tab-cages', 'tab-breeding'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
             document.getElementById(tabId).classList.remove('hidden');
-            
-            ['btn-tab-birds-list', 'btn-tab-cages-list', 'btn-tab-pairs-list'].forEach(id => {
+
+            ['btntab-birds', 'btntab-cages', 'btntab-breeding'].forEach(id => {
                 let b = document.getElementById(id);
                 b.classList.remove('bg-emerald-700', 'text-white');
                 b.classList.add('text-emerald-400');
             });
-            let activeB = document.getElementById('btn-' + tabId);
+            let activeB = document.getElementById('btn' + tabId);
             activeB.classList.remove('text-emerald-400');
             activeB.classList.add('bg-emerald-700', 'text-white');
         }
 
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
+        function saveItem() {
+            let type = document.getElementById('add-type').value;
+            let name = document.getElementById('add-name').value || 'عنصر جديد';
+            if(type === 'bird') data.birds.push(name);
+            else if(type === 'cage') data.cages.push(name);
+            else if(type === 'pair') data.pairs.push(name);
+
+            updateUI();
+            closeModal('add-modal');
+            document.getElementById('add-name').value = '';
         }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
+        function updateUI() {
+            document.getElementById('stat-birds').innerText = data.birds.length;
+            document.getElementById('count-birds').innerText = data.birds.length;
+            document.getElementById('count-cages').innerText = data.cages.length;
+            document.getElementById('count-pairs').innerText = data.pairs.length;
+
+            document.getElementById('birds-count-text').innerText = data.birds.length + ' الطيور';
+            document.getElementById('cages-count-text').innerText = data.cages.length + ' الأقفاص';
+
+            let bList = document.getElementById('user-birds-list');
+            bList.innerHTML = data.birds.length === 0 ? '<p class="text-xs text-emerald-400/60 text-center py-6">لا توجد طيور مضافة حالياً.</p>' :
+                data.birds.map(b => `<div class="bg-olive-card p-3 rounded-2xl border border-emerald-900/40 flex justify-between items-center"><span class="text-sm font-bold text-white">${b}</span><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded">نشط</span></div>`).join('');
+
+            let cList = document.getElementById('user-cages-list');
+            cList.innerHTML = data.cages.length === 0 ? '<p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أقفاص مضافة حالياً.</p>' :
+                data.cages.map(c => `<div class="bg-olive-card p-3 rounded-2xl border border-emerald-900/40 flex justify-between items-center"><span class="text-sm font-bold text-white">${c}</span><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded">إنتاج</span></div>`).join('');
+
+            let pList = document.getElementById('user-breeding-list');
+            pList.innerHTML = data.pairs.length === 0 ? '<p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أزواج تزاوج مضافة.</p>' :
+                data.pairs.map(p => `<div class="bg-olive-card p-3 rounded-2xl border border-emerald-900/40 flex justify-between items-center"><span class="text-sm font-bold text-white">${p}</span><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded">نشط</span></div>`).join('');
         }
     </script>
 </body>
