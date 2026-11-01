@@ -1,53 +1,43 @@
 :root {
-    --bg-base: #23181a;
-    --bg-card: #332225;
-    --text-color: #111111;
-    --accent-color: #b67283;
-    --body-bg: #181112;
+    --bg-base: #2a151b;
+    --bg-card: #3d2028;
+    --text-color: #000000;
+    --font-weight: 700;
+    --body-bg: #1f0f13;
 }
 
-/* 10 Color Palettes */
-body.theme-burgundy { --bg-base: #23181a; --bg-card: #332225; --accent-color: #b67283; --body-bg: #181112; --text-color: #fce7ec; }
-body.theme-yellow { --bg-base: #fdeb71; --bg-card: #fffbeb; --accent-color: #d97706; --body-bg: #fef3c7; --text-color: #1f2937; }
-body.theme-blue { --bg-base: #abdcfd; --bg-card: #eff6ff; --accent-color: #0396ff; --body-bg: #dbeafe; --text-color: #1e3a8a; }
-body.theme-coral { --bg-base: #feb692; --bg-card: #fff7ed; --accent-color: #ea5455; --body-bg: #ffedd5; --text-color: #7c2d12; }
-body.theme-purple { --bg-base: #ce9ffc; --bg-card: #faf5ff; --accent-color: #7367f0; --body-bg: #f3e8ff; --text-color: #3b0764; }
-body.theme-mint { --bg-base: #90f7ec; --bg-card: #f0fdf4; --accent-color: #32ccbc; --body-bg: #dcfce7; --text-color: #064e3b; }
-body.theme-pink { --bg-base: #fff6b7; --bg-card: #fff1f2; --accent-color: #f6416c; --body-bg: #ffe4e6; --text-color: #881337; }
-body.theme-green { --bg-base: #81fbb8; --bg-card: #f7fee7; --accent-color: #28c76f; --body-bg: #ecfccb; --text-color: #1e293b; }
-body.theme-lavender { --bg-base: #e2b0ff; --bg-card: #fdf4ff; --accent-color: #9f44d3; --body-bg: #fae8ff; --text-color: #4a044e; }
-body.theme-sunset { --bg-base: #fccf31; --bg-card: #fffbeb; --accent-color: #f55555; --body-bg: #fef08a; --text-color: #451a03; }
+/* Dark Mode Palettes (Dark backgrounds with bold black text) */
+body.theme-burgundy-dark { --bg-base: #2a151b; --bg-card: #3d2028; --body-bg: #1f0f13; --text-color: #000000; }
+body.theme-blue-dark { --bg-base: #102a43; --bg-card: #243b53; --body-bg: #0b1e33; --text-color: #000000; }
+body.theme-green-dark { --bg-base: #0f2e22; --bg-card: #1b4332; --body-bg: #081c15; --text-color: #000000; }
+body.theme-orange-dark { --bg-base: #331a00; --bg-card: #4d2600; --body-bg: #1a0d00; --text-color: #000000; }
+body.theme-purple-dark { --bg-base: #22103b; --bg-card: #38185c; --body-bg: #150a26; --text-color: #000000; }
+body.theme-olive-dark { --bg-base: #2b2e1a; --bg-card: #3f4426; --body-bg: #1a1c0f; --text-color: #000000; }
 
-/* Light Mode Overrides */
-body.light-mode {
-    --bg-base: #ffffff !important;
-    --bg-card: #f9fafb !important;
-    --text-color: #111827 !important;
-    --body-bg: #f3f4f6 !important;
-}
+/* Light Mode Palettes (Light backgrounds with bold black text) */
+body.theme-pink-light { --bg-base: #fce7f3; --bg-card: #fbcfe8; --body-bg: #fdf2f8; --text-color: #000000; }
+body.theme-yellow-light { --bg-base: #fef9c3; --bg-card: #fef08a; --body-bg: #fefce8; --text-color: #000000; }
+body.theme-purple-light { --bg-base: #f3e8ff; --bg-card: #e9d5ff; --body-bg: #faf5ff; --text-color: #000000; }
+body.theme-orange-light { --bg-base: #ffedd5; --bg-card: #fed7aa; --body-bg: #fff7ed; --text-color: #000000; }
+body.theme-olive-light { --bg-base: #ecfccb; --bg-card: #d9f99d; --body-bg: #f7fee7; --text-color: #000000; }
 
 body {
     font-family: 'Tajawal', sans-serif;
     background-color: var(--body-bg);
     color: var(--text-color);
+    font-weight: 700;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 .custom-card {
     background-color: var(--bg-card);
-    border: 1px solid rgba(182, 114, 131, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.bold-text {
+    font-weight: 800 !important;
+    color: #000000 !important;
 }
 .app-header-title {
-    background: linear-gradient(135deg, #fbcfe8 0%, #b67283 50%, #fb7185 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.logo-line-art {
-    font-size: 28px;
     font-weight: 900;
-    letter-spacing: 1px;
-    background: linear-gradient(135deg, #b67283, #ea5455, #7367f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+    color: #000000;
 }
