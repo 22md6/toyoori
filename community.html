@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طيوري - مجتمع طيوري</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
+        .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.15); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="pb-28 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between">
+
+    <main class="space-y-3 flex-grow">
+        
+        <!-- كارت ترويسة المجتمع (Header Card) -->
+        <div class="bg-gradient-to-r from-[#2a4d38] via-[#233d2c] to-[#473e28] p-4 rounded-3xl relative overflow-hidden shadow-lg flex items-center justify-between border border-emerald-500/20">
+            <div class="space-y-1 z-10">
+                <span class="px-2.5 py-0.5 bg-emerald-950/80 text-emerald-300 text-[10px] font-bold rounded-full border border-emerald-800/50 inline-flex items-center gap-1">
+                    <i class="fa-solid fa-users-line"></i> جديد المربين
+                </span>
+                <h1 class="text-xl font-black text-white">مجتمع طيوري</h1>
+                <p class="text-[10px] text-emerald-200/80">تواصل، ناقش، وتبادل الخبرات الطبية والوراثية</p>
+            </div>
+            <div class="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl shadow-inner">
+                <i class="fa-regular fa-comments"></i>
+            </div>
+        </div>
+
+        <!-- شريط البحث وخيارات الفلترة -->
+        <div class="space-y-2.5">
+            <div class="flex items-center gap-2">
+                <div class="relative flex-grow">
+                    <input type="text" placeholder="البحث عن منشورات..." class="w-full py-2.5 px-9 rounded-2xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-gray-400 text-xs"></i>
+                </div>
+                <button class="w-9 h-9 rounded-2xl custom-card flex items-center justify-center text-gray-300 text-xs">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <button class="w-9 h-9 rounded-2xl custom-card flex items-center justify-center text-gray-300 text-xs">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+            </div>
+
+            <!-- الفلاتر الأفقية قابل للتمرير -->
+            <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1 text-xs">
+                <button class="px-3.5 py-1.5 rounded-full bg-emerald-600 text-white font-bold flex items-center gap-1.5 whitespace-nowrap shadow">
+                    <i class="fa-solid fa-globe text-[10px]"></i> الكل
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full custom-card text-gray-300 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-comments text-emerald-400 text-[10px]"></i> عام
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full custom-card text-gray-300 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-dna text-purple-400 text-[10px]"></i> جينات وطفرات
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full custom-card text-gray-300 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-[#e63946] fa-heart-pulse text-red-400 text-[10px]"></i> صحة وأمراض
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full custom-card text-gray-300 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-utensils text-amber-400 text-[10px]"></i> تغذية
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full custom-card text-gray-300 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-bag-shopping text-emerald-400 text-[10px]"></i> إنتاج للبيع
+                </button>
+            </div>
+        </div>
+
+        <!-- قائمة المنشورات (Post Card) -->
+        <div class="space-y-3 pt-1">
+            <div class="custom-card p-4 rounded-3xl space-y-3 shadow-xl">
+                <!-- رأس المنشور: معلومات الناشر -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="الناشر" class="w-10 h-10 rounded-full object-cover border border-emerald-500/40">
+                        <div>
+                            <div class="flex items-center gap-1.5">
+                                <h4 class="font-bold text-xs text-white">مهدي الشمري</h4>
+                                <span class="bg-red-950/80 text-red-400 text-[9px] font-bold px-1.5 py-0.2 rounded border border-red-800/40">أدمن</span>
+                                <i class="fa-solid fa-thumbtack text-emerald-400 text-[10px]" title="منشور مثبت"></i>
+                            </div>
+                            <span class="text-[10px] text-gray-400">16 أكتوبر 2026</span>
+                        </div>
+                    </div>
+                    <button class="text-gray-400 text-xs px-1"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+
+                <!-- تصنيف المنشور -->
+                <div>
+                    <span class="px-2.5 py-0.5 bg-emerald-950/60 text-emerald-300 text-[9px] font-bold rounded-lg border border-emerald-800/30 inline-flex items-center gap-1">
+                        <i class="fa-solid fa-comments text-[9px]"></i> عام
+                    </span>
+                </div>
+
+                <!-- نص المنشور -->
+                <div class="space-y-1 text-xs text-gray-200 leading-relaxed">
+                    <p class="font-bold text-white">أهلاً بكل المربين اللي انضموا لينا جديد في مجتمع طيوري 🦜❤️</p>
+                    <p class="text-gray-300 text-[11px]">لو لسه محمل التطبيق، فإنت مش مجرد مستخدم جديد، إنت بقيت جزء من عائلتنا...</p>
+                    <button class="text-emerald-400 text-[10px] font-bold hover:underline">عرض المزيد</button>
+                </div>
+
+                <!-- صورة المنشور -->
+                <div class="rounded-2xl overflow-hidden border border-emerald-900/30">
+                    <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=600&auto=format&fit=crop&q=80" alt="صورة المنشور" class="w-full h-48 object-cover">
+                </div>
+
+                <!-- التفاعل: الإعجابات والتعليقات -->
+                <div class="flex items-center justify-end gap-5 pt-1 text-xs text-gray-400 border-t border-gray-800/40">
+                    <button class="flex items-center gap-1.5 hover:text-red-400">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="text-[11px]">53</span>
+                    </button>
+                    <button class="flex items-center gap-1.5 hover:text-emerald-400">
+                        <i class="fa-regular fa-comment"></i>
+                        <span class="text-[11px]">37</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- زر إضافة منشور جديد عائم (مطابق للون والشكل في الصورة) -->
+    <div class="fixed bottom-16 right-4 z-40">
+        <button onclick="alert('فتح نافذة إضافة منشور جديد')" class="px-4 py-3 bg-[#8ecae6]/90 hover:bg-[#a8dadc] text-black font-bold rounded-2xl shadow-2xl flex items-center gap-2 text-xs backdrop-blur-md">
+            <i class="fa-solid fa-bars-staggered"></i>
+            <span>منشور جديد</span>
+        </button>
+    </div>
+
+    <!-- شريط التنقل السفلي (Bottom Navigation) -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto custom-card border-t border-emerald-900/30 px-6 py-2 flex justify-between items-center z-30 text-[10px]">
+        <button onclick="window.location.href='market-add.html'" class="flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-store text-sm"></i><span>السوق</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
+            <i class="fa-solid fa-users text-sm"></i><span>المجتمع</span>
+        </button>
+        <!-- زر QR السفلي العائم -->
+        <div class="relative -top-3">
+            <button class="w-12 h-12 bg-emerald-500 text-black rounded-full shadow-xl flex items-center justify-center text-lg font-black border-4 border-[#121811]">
+                <i class="fa-solid fa-qrcode"></i>
+            </button>
+        </div>
+        <button onclick="window.location.href='modals.html'" class="flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-feather text-sm"></i><span>الطيور</span>
+        </button>
+        <button onclick="window.location.href='main.html'" class="flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-house text-sm"></i><span>الرئيسية</span>
+        </button>
+    </nav>
+
+</body>
+</html>
