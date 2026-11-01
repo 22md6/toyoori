@@ -1,11 +1,10 @@
-let appData = JSON.parse(localStorage.getItem('toyoori_final_v4')) || {
+let appData = JSON.parse(localStorage.getItem('toyoori_final_v5')) || {
     currentUser: null,
     usersList: [{name: "مهدي الشمري", email: "22md6", pass: "22md61997", phone: "07700000000", exp: "5", fb: "", gender: "ذكر"}],
     birds: [],
     cages: [],
     pairs: [],
-    theme: 'burgundy',
-    lightMode: false,
+    theme: 'burgundy-dark',
     setupCompleted: false,
     onboardingDone: false
 };
@@ -15,11 +14,8 @@ const totalSlides = 4;
 let isLoginMode = true;
 
 window.onload = function() {
-    setAppTheme(appData.theme || 'burgundy');
-    let darkModeToggle = document.getElementById('dark-mode-toggle');
-    if(darkModeToggle) darkModeToggle.checked = !appData.lightMode;
-    if(appData.lightMode) document.body.classList.add('light-mode');
-
+    setAppTheme(appData.theme || 'burgundy-dark');
+    
     if(appData.currentUser) {
         hideAllIntroScreens();
         initUserSession(appData.currentUser);
@@ -81,18 +77,6 @@ function setAppTheme(themeName) {
     saveToStorage();
     document.body.className = document.body.className.replace(/theme-\S+/g, '');
     document.body.classList.add('theme-' + themeName);
-    if(appData.lightMode) document.body.classList.add('light-mode');
-}
-
-function toggleDarkMode(el) {
-    // If checked -> Dark Mode, If unchecked -> Light Mode (White background)
-    appData.lightMode = !el.checked;
-    saveToStorage();
-    if(appData.lightMode) {
-        document.body.classList.add('light-mode');
-    } else {
-        document.body.classList.remove('light-mode');
-    }
 }
 
 function toggleAuthMode() {
@@ -145,7 +129,8 @@ function initUserSession(user) {
     document.getElementById('edit-fb').value = user.fb || '';
     document.getElementById('edit-gender').value = user.gender || 'ذكر';
     
-    if(user.email === '22md6' || user.pass === '22md61997') {
+    // Admin check for مهدي
+    if(user.email === '22md6' || user.pass === '22md61997' || user.name.includes('مهدي')) {
         document.getElementById('admin-menu-item').classList.remove('hidden');
     } else {
         document.getElementById('admin-menu-item').classList.add('hidden');
@@ -173,7 +158,12 @@ function saveProfileChanges() {
 
 function openAdminPanel() {
     let listEl = document.getElementById('admin-users-list');
-    listEl.innerHTML = appData.usersList.map(u => `<div class="p-2 border-b border-rose-900/40 text-[11px]">👤 <b>${u.name}</b> (${u.email}) - خبرة: ${u.exp || 0} سنوات</div>`).join('');
+    listEl.innerHTML = appData.usersList.map(u => `
+        <div class="p-2 border-b border-black/20 text-xs flex justify-between items-center bold-text">
+            <span>👤 <b>${u.name}</b> (${u.email})</span>
+            <span class="text-[10px] bg-black/10 px-2 py-0.5 rounded">خبرة: ${u.exp || 0} سنوات</span>
+        </div>
+    `).join('');
     openModal('admin-modal');
 }
 
@@ -186,7 +176,7 @@ function logout() {
 }
 
 function saveToStorage() {
-    localStorage.setItem('toyoori_final_v4', JSON.stringify(appData));
+    localStorage.setItem('toyoori_final_v5', JSON.stringify(appData));
 }
 
 function toggleSidebar() { document.getElementById('sidebar-menu').classList.toggle('hidden'); }
@@ -253,10 +243,10 @@ function switchScreen(name) {
 
     ['home', 'birds', 'community', 'market'].forEach(n => {
         let b = document.getElementById('nav-' + n);
-        if(b) { b.classList.remove('text-rose-500', 'font-bold'); b.classList.add('text-rose-400/60'); }
+        if(b) { b.classList.remove('font-black'); b.classList.add('opacity-70'); }
     });
     let active = document.getElementById('nav-' + name);
-    if(active) { active.classList.remove('text-rose-400/60'); active.classList.add('text-rose-500', 'font-bold'); }
+    if(active) { active.classList.remove('opacity-70'); active.classList.add('font-black'); }
     window.scrollTo(0, 0);
 }
 
@@ -272,10 +262,10 @@ function switchBirdTab(tabId) {
 
     ['btntab-birds', 'btntab-cages', 'btntab-breeding'].forEach(id => {
         let b = document.getElementById(id);
-        if(b) { b.classList.remove('bg-rose-700', 'text-white'); b.classList.add('text-rose-300'); }
+        if(b) { b.classList.remove('font-black', 'underline'); }
     });
     let activeB = document.getElementById('btn' + tabId);
-    if(activeB) { activeB.classList.remove('text-rose-300'); activeB.classList.add('bg-rose-700', 'text-white'); }
+    if(activeB) { activeB.classList.add('font-black', 'underline'); }
 }
 
 function updateUI() {
@@ -294,6 +284,24 @@ function updateUI() {
     if(cagesCountText) cagesCountText.innerText = appData.cages.length + ' الأقفاص';
     let pairsCountText = document.getElementById('pairs-count-text');
     if(pairsCountText) pairsCountText.innerText = 'الأزواج النشطة: ' + appData.pairs.length;
+
+    let bList = document.getElementById('user-birds-list');
+    if(bList) {
+        bList.innerHTML = appData.birds.length === 0 ? '<p class="text-xs text-center py-6 bold-text">لا توجد طيور مضافة حالياً.</p>' :
+            appData.birds.map(b => `<div class="p-3 rounded-2xl custom-card flex justify-between items-center bold-text"><span>${b}</span><span class="text-[10px] px-2 py-0.5 rounded">نشط</span></div>`).join('');
+    }
+
+    let cList = document.getElementById('user-cages-list');
+    if(cList) {
+        cList.innerHTML = appData.cages.length === 0 ? '<p class="text-xs text-center py-6 bold-text">لا توجد أقفاص مضافة حالياً.</p>' :
+            appData.cages.map(c => `<div class="p-3 rounded-2xl custom-card flex justify-between items-center bold-text"><span>${c}</span><span class="text-[10px] px-2 py-0.5 rounded">إنتاج</span></div>`).join('');
+    }
+
+    let pList = document.getElementById('user-breeding-list');
+    if(pList) {
+        pList.innerHTML = appData.pairs.length === 0 ? '<p class="text-xs text-center py-6 bold-text">لا توجد أزواج تزاوج مضافة.</p>' :
+            appData.pairs.map(p => `<div class="p-3 rounded-2xl custom-card flex justify-between items-center bold-text"><span>${p}</span><span class="text-[10px] px-2 py-0.5 rounded">زوج منتج</span></div>`).join('');
+    }
 }
 
 function calculateHatching() {
@@ -341,7 +349,7 @@ function calculateGenetics() {
 
 function clearAllData() {
     if(confirm('هل أنت متأكد من مسح كافة البيانات؟')) {
-        localStorage.removeItem('toyoori_final_v4');
+        localStorage.removeItem('toyoori_final_v5');
         location.reload();
     }
 }
