@@ -3,174 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طيوري - الشاشة الرئيسية</title>
+    <title>طيوري - الرئيسية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
-        .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.15); }
+        .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="pb-24 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between">
+<body class="p-4 max-w-md mx-auto space-y-4 pb-24">
 
-    <!-- الشريط العلوي (Profile Header) -->
-    <header class="flex justify-between items-center mb-3 px-1">
+    <!-- رأس الصفحة العلوي -->
+    <div class="flex items-center justify-between">
+        <!-- زر القائمة الجانبية المنفصلة -->
         <div class="flex items-center gap-2">
-            <button class="w-9 h-9 rounded-xl custom-card flex items-center justify-center text-sm"><i class="fa-solid fa-bell text-gray-300"></i></button>
-            <button onclick="window.location.href='settings.html'" class="w-9 h-9 rounded-xl custom-card flex items-center justify-center text-sm"><i class="fa-solid fa-gear text-gray-300"></i></button>
+            <button onclick="openSideMenu()" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-emerald-400 text-sm shadow">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <button class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-gray-300 text-sm shadow">
+                <i class="fa-regular fa-bell"></i>
+            </button>
         </div>
-        <div class="flex items-center gap-2 text-right">
-            <div>
-                <h3 class="font-bold text-[10px] text-gray-400">طاب يومك</h3>
-                <h2 class="font-black text-xs text-white" id="user-display-name">مهدي الشمري</h2>
-            </div>
-            <div class="w-9 h-9 rounded-full bg-emerald-500 text-black flex items-center justify-center font-black text-sm shadow" id="user-initial">م</div>
-        </div>
-    </header>
-
-    <!-- المحتوى الرئيسي (Main Content) -->
-    <main class="space-y-3 flex-grow">
         
-        <!-- الأربع كروت الرئيسية الإحصائية -->
-        <div class="grid grid-cols-2 gap-2.5">
-            <!-- أفرخ -->
-            <div class="bg-[#3b2b56] p-3.5 rounded-3xl relative overflow-hidden shadow-lg h-28 flex flex-col justify-between border border-purple-500/20">
-                <div class="flex justify-between items-start">
-                    <span class="w-6 h-6 rounded-full bg-purple-950/60 flex items-center justify-center text-[10px] text-purple-300"><i class="fa-solid fa-dove"></i></span>
-                </div>
-                <div>
-                    <div class="text-2xl font-black text-white">0</div>
-                    <div class="text-[10px] text-purple-200 font-bold">أفرخ</div>
-                </div>
-            </div>
-            <!-- إجمالي الطيور النشطة -->
-            <div class="bg-[#2d4734] p-3.5 rounded-3xl relative overflow-hidden shadow-lg h-28 flex flex-col justify-between border border-emerald-500/20">
-                <div class="flex justify-between items-start">
-                    <span class="w-6 h-6 rounded-full bg-emerald-950/60 flex items-center justify-center text-[10px] text-emerald-300"><i class="fa-solid fa-feather"></i></span>
-                </div>
-                <div>
-                    <div class="text-2xl font-black text-white" id="active-birds-count">0</div>
-                    <div class="text-[10px] text-emerald-200 font-bold">إجمالي الطيور النشطة</div>
-                </div>
-            </div>
-            <!-- صافي الربح -->
-            <div class="bg-[#1b4332] p-3.5 rounded-3xl relative overflow-hidden shadow-lg h-28 flex flex-col justify-between border border-emerald-600/30">
-                <div class="flex justify-between items-start">
-                    <span class="w-6 h-6 rounded-full bg-emerald-950/60 flex items-center justify-center text-[10px] text-emerald-300"><i class="fa-solid fa-chart-line"></i></span>
-                </div>
-                <div>
-                    <div class="text-2xl font-black text-white">0 <span class="text-xs font-normal">د.ع</span></div>
-                    <div class="text-[10px] text-emerald-200 font-bold">صافي الربح</div>
-                </div>
-            </div>
-            <!-- بيض نشط -->
-            <div class="bg-[#563b2b] p-3.5 rounded-3xl relative overflow-hidden shadow-lg h-28 flex flex-col justify-between border border-amber-500/20">
-                <div class="flex justify-between items-start">
-                    <span class="w-6 h-6 rounded-full bg-amber-950/60 flex items-center justify-center text-[10px] text-amber-300"><i class="fa-solid fa-egg"></i></span>
-                </div>
-                <div>
-                    <div class="text-2xl font-black text-white">0</div>
-                    <div class="text-[10px] text-amber-200 font-bold">بيض نشط</div>
-                </div>
-            </div>
+        <div class="text-left">
+            <span class="text-[10px] text-gray-400 block">طاب يومك</span>
+            <span class="font-bold text-xs text-white" id="user-display-name">مهدي مرهون الشمري</span>
         </div>
-
-        <!-- مهام اليوم -->
-        <div class="space-y-2 pt-1">
-            <div class="flex justify-between items-center px-1">
-                <h3 class="font-bold text-xs text-white">مهام اليوم</h3>
-                <button class="w-5 h-5 rounded-full custom-card flex items-center justify-center text-[10px] text-emerald-400"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="custom-card p-4 rounded-3xl text-center space-y-1.5 shadow-lg">
-                <div class="w-8 h-8 mx-auto rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm"><i class="fa-solid fa-circle-check"></i></div>
-                <p class="text-[11px] text-gray-400 font-medium">لا توجد مهام اليوم. استمتع بيومك!</p>
-            </div>
+        <div class="w-10 h-10 rounded-full bg-emerald-600 text-black flex items-center justify-center font-black text-sm shadow">
+            م
         </div>
+    </div>
 
-        <!-- شركاء النجاح -->
-        <div class="bg-gradient-to-r from-orange-600 to-amber-600 p-3.5 rounded-3xl text-white shadow-lg flex items-center justify-between cursor-pointer">
+    <!-- بطاقات الإحصائيات -->
+    <div class="grid grid-cols-2 gap-3">
+        <div class="custom-card p-4 rounded-3xl space-y-2">
+            <div class="flex justify-between items-center text-emerald-400">
+                <i class="fa-solid fa-feather text-base"></i>
+                <span class="text-[10px] bg-emerald-950 px-2 py-0.5 rounded-full">نشط</span>
+            </div>
             <div>
-                <h3 class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-trophy text-amber-200"></i> شركاء النجاح</h3>
-                <p class="text-[10px] text-orange-100 mt-0.5">تعرف على شركاء النجاح المساهمين في دعم واستمرار التطبيق</p>
-            </div>
-            <i class="fa-solid fa-chevron-left text-orange-200 text-[10px]"></i>
-        </div>
-
-        <!-- الأقسام البطاقية (الكروت العريضة) -->
-        <div class="space-y-2.5">
-            <!-- متنبئ الجينات -->
-            <div class="custom-card p-3.5 rounded-3xl relative overflow-hidden shadow-lg space-y-2 cursor-pointer">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg"><i class="fa-solid fa-dna"></i></div>
-                    <div>
-                        <span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 text-[9px] font-bold rounded-full border border-emerald-800">متنبئ الجينات</span>
-                        <h4 class="font-bold text-xs mt-0.5">بناءً على قوانين مندل الجينية</h4>
-                        <p class="text-[10px] text-gray-400">احسب النتائج بدقة</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- تعلم أساسيات التربية -->
-            <div class="custom-card p-3.5 rounded-3xl relative overflow-hidden shadow-lg space-y-2 cursor-pointer">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg"><i class="fa-solid fa-book-open"></i></div>
-                    <div>
-                        <span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 text-[9px] font-bold rounded-full border border-emerald-800">معلومات</span>
-                        <h4 class="font-bold text-xs mt-0.5">تعلم أساسيات التربية الصحيحة</h4>
-                        <p class="text-[10px] text-gray-400">دليل المربي</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- علاج وجداول التأكيل -->
-            <div class="custom-card p-3.5 rounded-3xl relative overflow-hidden shadow-lg space-y-2 cursor-pointer">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg"><i class="fa-solid fa-kit-medical"></i></div>
-                    <div>
-                        <span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 text-[9px] font-bold rounded-full border border-emerald-800">صحة</span>
-                        <h4 class="font-bold text-xs mt-0.5">علاجات وجداول تأكيل وزغاليل الحضانة</h4>
-                        <p class="text-[10px] text-gray-400">استكشف مركز الصحة</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- دليل المحلات والشركات -->
-            <div class="custom-card p-3.5 rounded-3xl relative overflow-hidden shadow-lg space-y-2 cursor-pointer">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-400 text-lg"><i class="fa-solid fa-store"></i></div>
-                    <div>
-                        <span class="px-2 py-0.5 bg-amber-950 text-amber-300 text-[9px] font-bold rounded-full border border-amber-800">دليل المحلات والشركات</span>
-                        <h4 class="font-bold text-xs mt-0.5">تصفح أفضل الموردين والمحلات التجارية</h4>
-                        <p class="text-[10px] text-gray-400">تصفح الدليل الآن</p>
-                    </div>
-                </div>
+                <span class="block text-2xl font-black text-white" id="active-birds-count">0</span>
+                <span class="text-[11px] text-gray-400">إجمالي الطيور النشطة</span>
             </div>
         </div>
-    </main>
 
-    <!-- شريط التنقل السفلي (Bottom Navigation) -->
-    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto custom-card border-t border-emerald-900/30 px-6 py-2 flex justify-between items-center z-30 text-[10px]">
-        <button class="flex flex-col items-center gap-1 text-gray-400">
+        <div class="custom-card p-4 rounded-3xl space-y-2">
+            <div class="flex justify-between items-center text-purple-400">
+                <i class="fa-solid fa-egg text-base"></i>
+                <span class="text-[10px] bg-purple-950 px-2 py-0.5 rounded-full">الإنتاج</span>
+            </div>
+            <div>
+                <span class="block text-2xl font-black text-white">0</span>
+                <span class="text-[11px] text-gray-400">أفرخ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- شريط التنقل السفلي -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto custom-card border-t border-emerald-900/30 px-6 py-2.5 flex justify-between items-center z-30 text-[10px] bg-[#121811]">
+        <button onclick="window.location.href='market-add.html'" class="flex flex-col items-center gap-1 text-gray-400">
             <i class="fa-solid fa-store text-sm"></i><span>السوق</span>
         </button>
-        <button class="flex flex-col items-center gap-1 text-gray-400">
+        <button onclick="window.location.href='community.html'" class="flex flex-col items-center gap-1 text-gray-400">
             <i class="fa-solid fa-users text-sm"></i><span>المجتمع</span>
         </button>
-        <!-- زر QR السفلي العائم -->
         <div class="relative -top-3">
-            <button class="w-12 h-12 bg-emerald-500 text-black rounded-full shadow-xl flex items-center justify-center text-lg font-black border-4 border-[#121811]">
+            <button onclick="window.location.href='modals.html'" class="w-12 h-12 bg-emerald-500 text-black rounded-full shadow-xl flex items-center justify-center text-lg font-black border-4 border-[#121811]">
                 <i class="fa-solid fa-qrcode"></i>
             </button>
         </div>
-        <button class="flex flex-col items-center gap-1 text-gray-400">
-            <i class="fa-solid fa-feather text-sm"></i><span>الطيور</span>
+        <button onclick="window.location.href='info.html'" class="flex flex-col items-center gap-1 text-gray-400">
+            <i class="fa-solid fa-book text-sm"></i><span>الدليل</span>
         </button>
         <button class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
             <i class="fa-solid fa-house text-sm"></i><span>الرئيسية</span>
         </button>
     </nav>
-<script src="app.js"></script>
 
-</body>
-</html>
+    <!-- القائمة الجانبية المنفصلة (Drawer) -->
+    <div id="side-menu-drawer" class="fixed inset-0 bg-black/85 z-50 hidden flex justify-end transition-all">
+        <div class="w-4/5 max-w-xs bg-[#121811] h-full p-4 space-y-4 text-xs overflow-y-auto hide-scrollbar border-l border-emerald-900/40 shadow-2xl">
+            
+            <!-- الهيدر ومعلومات المستخدم -->
+            <div class="flex items-center justify-between border-b border-emerald-900/40 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-11 h-11 rounded-full bg-emerald-900/40 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-sm">
+                        2
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-xs">Md6 22</h3>
+                        <p class="text-[10px] text-emerald-400">عضو مجتمع طيوري</p>
+                    </div>
+                </div>
+                <button onclick="closeSideMenu()" class="text-gray-400 text-lg hover:text-white p-1"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- إحصائيات مصغرة -->
+            <div class="grid grid-cols-3 gap-1.5 bg-[#1a2318] p-2.5 rounded-2xl border border-emerald-900/40 text-center">
+                <div>
+                    <span class="block font-black text-xs text-white">0</span>
+                    <span class="text-[8px] text-amber-400"><i class="fa-solid fa-egg"></i> أزواج</span>
+                </div>
+                <div class="border-x border-emerald-900/40">
+                    <span class="block font-black text-xs text-white">0</span>
+                    <span class="text-[8px] text-blue-400"><i class="fa-solid fa-snowflake"></i> أقفاص</span>
+                </div>
+                <div>
+                    <span class="block font-black text-xs text-white">0</span>
+                    <span class="text-[8px] text-emerald-400"><i class="fa-solid fa-feather"></i> طيور</span>
+                </div>
+            </div>
+
+            <!-- الأقسام والخيارات -->
+            <div class="space-y-1.5">
+                <span class="text-[9px] text-gray-400 font-bold block px-1">أدوات الإنتاج والجينات</span>
+                <button onclick="alert('حاسبة الجينات')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-400"></i> حاسبة الجينات والألوان</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="alert('حاسبة الفقس')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-amber-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-egg text-amber-400"></i> حاسبة حضانة البيض والفقس</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="alert('دليل الأمراض
