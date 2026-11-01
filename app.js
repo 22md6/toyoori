@@ -1,6 +1,6 @@
 /**
  * تطبيق طيوري - الملف البرمجي المركزي (Core Logic)
- * إدارة مهدي مرهون الشمري
+ * بإدارة مهدي مرهون الشمري
  */
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -14,7 +14,6 @@ function initializeAppState() {
     let activeBirds = localStorage.getItem("toyoori_birds_count") || "0";
     let activeProfit = localStorage.getItem("toyoori_profit") || "0";
 
-    // تحديث العرض في حال وجد في الصفحة
     let nameElement = document.getElementById("user-display-name");
     if (nameElement) {
         nameElement.innerText = currentUser;
@@ -26,11 +25,20 @@ function initializeAppState() {
     }
 }
 
-// دالة تسجيل الدخول وربط الحسابات الجديدة
+// دالة تسجيل الدخول المباشر عبر Google
+function loginWithGoogle() {
+    localStorage.setItem("toyoori_user", "مهدي مرهون الشمري (Google)");
+    localStorage.setItem("toyoori_birds_count", "0");
+    localStorage.setItem("toyoori_profit", "0");
+    
+    alert("تم الاتصال بحساب Google بنجاح! جاري تحويلك إلى لوحة التحكم...");
+    window.location.href = "main.html";
+}
+
+// دالة تسجيل الدخول التقليدية وربط الحسابات الجديدة
 function handleUserLogin(username, email) {
     localStorage.setItem("toyoori_user", username);
     localStorage.setItem("toyoori_email", email);
-    // تصفير العدادات للمستخدمين الجدد تلقائياً
     localStorage.setItem("toyoori_birds_count", "0");
     localStorage.setItem("toyoori_profit", "0");
     
@@ -46,7 +54,7 @@ function checkAdminAccess(username) {
     return false;
 }
 
-// دالة إضافة معلومات جديدة لقسم الدليل (تحديث تראكمي دون حذف)
+// دالة إضافة معلومات جديدة لقسم الدليل (تحديث تراكمي دون حذف)
 function appendNewInfoData(title, description) {
     let container = document.getElementById("dynamic-info-container");
     if (container) {
@@ -62,7 +70,7 @@ function appendNewInfoData(title, description) {
                 <p class="text-[10px] text-gray-300">${description}</p>
             </div>
         `;
-        container.prepend(newItem); // الإضافة في الأعلى دائماً دون حذف القديم
+        container.prepend(newItem);
     }
 }
 
