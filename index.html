@@ -3,68 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طيوري - تسجيل الدخول</title>
+    <title>طيوري - منصة إدارة الطيور</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
-        .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.2); }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="p-6 max-w-md mx-auto min-h-screen flex flex-col justify-center">
+<body class="max-w-md mx-auto min-h-screen flex flex-col justify-between p-6 relative">
 
-    <!-- شاشة تسجيل الدخول / إنشاء حساب -->
-    <div id="auth-screen" class="space-y-6">
-        <div class="text-center space-y-3">
-            <!-- الشعار الملون بدون خلفية بيضاء -->
-            <div class="w-32 h-32 mx-auto rounded-3xl bg-[#1a2318] border-2 border-emerald-500/40 flex items-center justify-center shadow-2xl p-2">
-                <img src="https://i.ibb.co/68v432n/logo.png" alt="شعار طيوري" class="w-full h-full object-contain drop-shadow-md" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069186.png'">
+    <!-- 1. شاشة تهيئة اللغة والعملة (Setup Screen) -->
+    <div id="setup-screen" class="fixed inset-0 bg-[#121811] z-50 flex flex-col justify-between p-6">
+        <div class="flex justify-between items-center">
+            <button onclick="skipSetup()" class="text-xs text-emerald-400 font-bold">تخطي</button>
+            <button class="text-xs text-emerald-400 font-bold">English <i class="fa-solid fa-globe"></i></button>
+        </div>
+        <div class="space-y-6 text-center my-auto">
+            <div class="w-28 h-28 mx-auto rounded-full bg-[#1a2318] border-2 border-emerald-500/40 flex items-center justify-center p-2 shadow-xl">
+                <img src="https://i.ibb.co/68v432n/logo.png" alt="طيوري" class="w-full h-full object-contain">
             </div>
-            <h1 class="text-2xl font-black">أهلاً بك في طيوري</h1>
-            <p id="auth-subtitle" class="text-xs text-emerald-400 font-medium">بإدارة مهدي مرهون الشمري</p>
+            <h2 class="text-xl font-black">تخصيص تطبيق طيوري</h2>
+            <p class="text-xs text-emerald-400">اختر اللغة المفضلة والعملة لبدء استخدام التطبيق.</p>
+            
+            <div class="custom-card p-4 rounded-3xl space-y-3 text-xs text-right">
+                <label class="font-bold text-emerald-300 block">اللغة</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="py-2.5 rounded-xl border border-emerald-900 bg-[#121811]">English</button>
+                    <button class="py-2.5 rounded-xl bg-emerald-600 text-white font-bold">العربية</button>
+                </div>
+                <label class="font-bold text-emerald-300 block pt-2">العملة المفضلة</label>
+                <select class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white">
+                    <option>IQD (دينار عراقي)</option>
+                    <option>SAR (ريال سعودي)</option>
+                </select>
+            </div>
+        </div>
+        <button onclick="goToOnboarding()" class="w-full py-3.5 bg-emerald-600 text-white rounded-2xl font-bold shadow-xl">متابعة</button>
+    </div>
+
+    <!-- 2. شاشات الترحيب الأربعة (Onboarding Slides مطابقة لصور مربي) -->
+    <div id="onboarding-screen" class="fixed inset-0 bg-[#121811] z-40 hidden flex flex-col justify-between p-6">
+        <div class="flex justify-between items-center">
+            <button onclick="skipToAuth()" class="text-xs text-emerald-400 font-bold">تخطي</button>
+            <span class="text-xs text-emerald-400 font-bold">العربية</span>
         </div>
 
-        <div class="custom-card p-5 rounded-3xl space-y-4 shadow-xl">
-            <h2 id="auth-title" class="text-sm font-bold text-center text-emerald-300">تسجيل الدخول</h2>
-            
-            <div id="register-fields" class="space-y-3 hidden">
-                <input type="text" id="reg-name" placeholder="الاسم الكامل" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-xs text-white">
+        <!-- Slide 1 -->
+        <div id="slide-0" class="flex flex-col items-center text-center space-y-6 my-auto">
+            <div class="w-36 h-36 rounded-full logo-container flex items-center justify-center border-4 border-emerald-900/40 p-4 shadow-2xl">
+                <img src="https://i.ibb.co/68v432n/logo.png" alt="طيوري" class="w-full h-full object-contain">
             </div>
-            
+            <div class="space-y-2">
+                <span class="px-3 py-1 bg-emerald-950 text-emerald-300 text-[11px] font-bold rounded-full border border-emerald-800/40">إدارة شاملة وذكية</span>
+                <h1 class="text-2xl font-black">مرحباً بك في طيوري</h1>
+                <p class="text-xs text-gray-400 max-w-xs leading-relaxed">منصتك الذكية الشاملة لإدارة طيورك، أقفاصك وسجلاتك باحترافية وسهولة فائقة.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2">
+                <span class="px-3 py-1 bg-[#1a2318] text-[10px] text-emerald-300 rounded-full border border-emerald-900">سجلات الطيور والأقفاص</span>
+                <span class="px-3 py-1 bg-[#1a2318] text-[10px] text-emerald-300 rounded-full border border-emerald-900">توليد ومسح رموز QR</span>
+            </div>
+        </div>
+
+        <!-- أزرار ونقاط التنقل للـ Onboarding -->
+        <div class="space-y-4 text-center">
+            <div class="flex justify-center gap-1.5" id="dots-container">
+                <span class="w-6 h-1.5 bg-emerald-500 rounded-full" id="dot-0"></span>
+                <span class="w-1.5 h-1.5 bg-emerald-900 rounded-full" id="dot-1"></span>
+                <span class="w-1.5 h-1.5 bg-emerald-900 rounded-full" id="dot-2"></span>
+                <span class="w-1.5 h-1.5 bg-emerald-900 rounded-full" id="dot-3"></span>
+            </div>
+            <button onclick="nextSlide()" id="next-slide-btn" class="w-full py-3.5 bg-emerald-600 text-white rounded-2xl font-bold shadow-xl flex items-center justify-center gap-2">
+                <span>التالي</span> <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button onclick="skipToAuth()" class="text-xs text-gray-400 hover:underline">لديك حساب بالفعل؟ تسجيل الدخول</button>
+        </div>
+    </div>
+
+    <!-- 3. شاشة تسجيل الدخول (مطابقة لصورة مربي تماماً باللوجو الشفاف) -->
+    <div id="auth-screen" class="fixed inset-0 bg-[#121811] z-30 hidden flex flex-col justify-center p-6 space-y-6">
+        <div class="text-center space-y-3">
+            <div class="w-28 h-28 mx-auto rounded-3xl bg-[#1a2318] border-2 border-emerald-500/30 flex items-center justify-center p-2 shadow-2xl">
+                <img src="https://i.ibb.co/68v432n/logo.png" alt="طيوري" class="w-full h-full object-contain">
+            </div>
+            <h2 class="text-xl font-black">أهلاً بعودتك</h2>
+            <p class="text-xs text-gray-400">سجل دخولك للمتابعة</p>
+        </div>
+
+        <div class="custom-card p-5 rounded-3xl space-y-4 text-xs">
             <div class="space-y-1">
-                <label class="text-[10px] text-emerald-400">البريد الإلكتروني أو اسم المستخدم</label>
-                <input type="text" id="auth-email" placeholder="mahdialshmary7@gmail.com" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-xs text-white">
+                <label class="text-[10px] text-emerald-400">البريد الإلكتروني</label>
+                <input type="email" placeholder="ahmed@example.com" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white">
             </div>
-            
             <div class="space-y-1">
                 <label class="text-[10px] text-emerald-400">كلمة المرور</label>
-                <input type="password" id="auth-pass" placeholder="••••••••" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-xs text-white">
+                <input type="password" placeholder="••••••••" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white">
             </div>
-            
-            <button onclick="handleAuthSubmit()" id="auth-btn" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-lg">تسجيل الدخول</button>
-            
-            <div class="flex justify-between items-center text-[11px] pt-1">
-                <button onclick="toggleAuthMode()" id="auth-switch" class="text-emerald-400 hover:underline">ليس لديك حساب؟ سجل حساب جديد</button>
+            <button onclick="loginSuccess()" class="w-full py-3.5 bg-emerald-600 text-white rounded-xl font-bold shadow-lg">تسجيل الدخول</button>
+            <div class="text-center pt-2">
+                <span class="text-gray-400 cursor-pointer hover:underline">نسيت كلمة المرور؟</span>
             </div>
         </div>
     </div>
 
     <script>
-        let isLoginMode = true;
-        function toggleAuthMode() {
-            isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ? 'تسجيل الدخول' : 'إنشاء حساب جديد';
-            document.getElementById('auth-btn').innerText = isLoginMode ? 'تسجيل الدخول' : 'تسجيل';
-            document.getElementById('auth-switch').innerText = isLoginMode ? 'ليس لديك حساب؟ سجل حساب جديد' : 'لديك حساب بالفعل؟ سجل دخولك';
-            document.getElementById('register-fields').classList.toggle('hidden', isLoginMode);
+        let currentSlide = 0;
+        function skipSetup() {
+            document.getElementById('setup-screen').classList.add('hidden');
+            document.getElementById('onboarding-screen').classList.remove('hidden');
         }
-
-        function handleAuthSubmit() {
-            let email = document.getElementById('auth-email').value.trim();
-            let pass = document.getElementById('auth-pass').value.trim();
-            if(!email || !pass) { alert('يرجى ملء الحقول المطلوبة'); return; }
-            alert('تم تسجيل الدخول بنجاح!');
+        function goToOnboarding() { skipSetup(); }
+        function nextSlide() {
+            currentSlide++;
+            if(currentSlide > 3) { skipToAuth(); return; }
+            // تحديث محتوى الـ slides هنا تباعاً
+        }
+        function skipToAuth() {
+            document.getElementById('setup-screen').classList.add('hidden');
+            document.getElementById('onboarding-screen').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+        }
+        function loginSuccess() {
+            alert('تم تسجيل الدخول بنجاح في تطبيق طيوري!');
         }
     </script>
 </body>
