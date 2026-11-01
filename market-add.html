@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طيوري - إضافة إعلان في السوق</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
+        .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.2); }
+    </style>
+</head>
+<body class="p-4 max-w-md mx-auto space-y-4 pb-12">
+
+    <!-- رأس الصفحة -->
+    <div class="flex items-center justify-between px-1">
+        <h2 class="font-black text-base text-white"><i class="fa-solid fa-store text-emerald-400"></i> نشر إعلان جديد في السوق</h2>
+        <button onclick="window.location.href='main.html'" class="w-8 h-8 rounded-xl custom-card flex items-center justify-center text-xs text-emerald-400"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    <!-- نموذج إضافة الإعلان -->
+    <div class="custom-card p-5 rounded-3xl space-y-4 text-xs shadow-2xl">
+        
+        <!-- رفع الصور -->
+        <div class="space-y-1">
+            <label class="font-bold text-emerald-300 block">صور الطائر أو المستلزمات</label>
+            <div class="border-2 border-dashed border-emerald-900/60 rounded-2xl p-6 text-center bg-[#121811] cursor-pointer hover:border-emerald-500 transition-all">
+                <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
+                <p class="text-gray-400 text-[11px]">اضغط هنا لرفع الصور أو اسحبها إلى هنا</p>
+                <span class="text-[9px] text-gray-500 block mt-1">PNG, JPG (حد أقصى 5 صور)</span>
+            </div>
+        </div>
+
+        <!-- عنوان الإعلان -->
+        <div class="space-y-1">
+            <label class="font-bold text-emerald-300 block">عنوان الإعلان</label>
+            <input type="text" placeholder="مثال: زوج بادجي أسترالي منتج مع قفص" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white font-bold">
+        </div>
+
+        <!-- تصنيف الإعلان ونوع الطائر -->
+        <div class="grid grid-cols-2 gap-2">
+            <div class="space-y-1">
+                <label class="font-bold text-emerald-300 block">القسم</label>
+                <select class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white font-bold">
+                    <option>طيور للبيع</option>
+                    <option>طيور للبدل</option>
+                    <option>أقفاص ومستلزمات</option>
+                    <option>أغذية وفيتامينات</option>
+                </select>
+            </div>
+            <div class="space-y-1">
+                <label class="font-bold text-emerald-300 block">نوع الطائر</label>
+                <select class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white font-bold">
+                    <option>بادجي</option>
+                    <option>كناري</option>
+                    <option>كوكتيل</option>
+                    <option>فنجر / حبار</option>
+                    <option>أخرى</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- العمر والسعر -->
+        <div class="grid grid-cols-2 gap-2">
+            <div class="space-y-1">
+                <label class="font-bold text-emerald-300 block">العمر / المرحلة</label>
+                <input type="text" placeholder="مثال: جاهز للتزاوج (سنة ونصف)" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white">
+            </div>
+            <div class="space-y-1">
+                <label class="font-bold text-emerald-300 block">السعر (د.ع)</label>
+                <input type="number" placeholder="مثال: 25000" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white">
+            </div>
+        </div>
+
+        <!-- موقع التواجد -->
+        <div class="space-y-1">
+            <label class="font-bold text-emerald-300 block">المدينة / الموقع</label>
+            <input type="text" placeholder="مثال: العراق، بغداد" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white">
+        </div>
+
+        <!-- الوصف التفصيلي -->
+        <div class="space-y-1">
+            <label class="font-bold text-emerald-300 block">التفاصيل والوصف الكامل</label>
+            <textarea rows="3" placeholder="اكتب تفاصيل الصحة، الإنتاج، المميزات، ورقم التواصل..." class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-white resize-none"></textarea>
+        </div>
+
+        <!-- زر النشر -->
+        <button onclick="publishAd()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold shadow-lg transition-all text-sm">
+            <i class="fa-solid fa-paper-plane"></i> نشر الإعلان في السوق
+        </button>
+    </div>
+
+    <script>
+        function publishAd() {
+            alert('تم نشر إعلانك بنجاح في سوق طيوري!');
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>
