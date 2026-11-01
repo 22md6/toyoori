@@ -128,4 +128,66 @@
                     <span class="flex items-center gap-2"><i class="fa-solid fa-egg text-amber-400"></i> حاسبة حضانة البيض والفقس</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="alert('دليل الأمراض
+                <button onclick="alert('دليل الأمراض')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-purple-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-book-medical text-purple-400"></i> دليل الأمراض والأدوية</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="alert('خريطة العيادات')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-emerald-400"></i> خريطة عيادات الطيور</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="alert('تصدير Excel')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-file-excel text-emerald-400"></i> تصدير بيانات المزرعة (Excel)</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+            </div>
+
+            <div class="space-y-1.5 pt-1">
+                <span class="text-[9px] text-gray-400 font-bold block px-1">خدماتي وإعلاناتي</span>
+                <button onclick="alert('الطيور المفقودة')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-crow text-emerald-400"></i> الطيور المفقودة</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="window.location.href='market-add.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-store text-emerald-400"></i> إعلاناتي في سوق الطيور</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="alert('طلباتي')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-cart-shopping text-emerald-400"></i> طلباتي</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+            </div>
+
+            <div class="space-y-1.5 pt-1">
+                <span class="text-[9px] text-gray-400 font-bold block px-1">الإعدادات والدعم</span>
+                <button onclick="window.location.href='settings.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-gear text-emerald-400"></i> إعدادات التطبيق</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="alert('الدعم الفني')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-headset text-emerald-400"></i> اتصل بنا للدعم الفني</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+                <button onclick="window.location.href='info.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-circle-info text-emerald-400"></i> عن التطبيق (من نحن)</span>
+                    <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
+                </button>
+            </div>
+
+            <button onclick="alert('ترقية الحساب')" class="w-full py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 text-xs">
+                <i class="fa-solid fa-award"></i> ترقية الحساب إلى بريميوم
+            </button>
+            <button onclick="window.location.href='auth.html'" class="w-full py-2.5 bg-[#1a2318] text-red-400 border border-red-900/30 rounded-xl font-bold flex items-center justify-center gap-2 text-xs">
+                <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+            </button>
+
+        </div>
+    </div>
+
+    <script>
+        function openSideMenu() { document.getElementById('side-menu-drawer').classList.remove('hidden'); }
+        function closeSideMenu() { document.getElementById('side-menu-drawer').classList.add('hidden'); }
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
