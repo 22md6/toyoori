@@ -10,17 +10,17 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
         .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .info-hero-bg { background: linear-gradient(135deg, #0d2818 0%, #121811 100%); }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="p-4 max-w-md mx-auto space-y-4 pb-24">
+<body class="p-4 max-w-md mx-auto space-y-4 pb-28">
 
     <!-- رأس الصفحة العلوي -->
     <div class="flex items-center justify-between">
-        <!-- زر القائمة الجانبية المنفصلة -->
         <div class="flex items-center gap-2">
-            <button onclick="openSideMenu()" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-emerald-400 text-sm shadow">
+            <button onclick="openSideMenu()" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-emerald-400 text-sm shadow hover:bg-emerald-950/50">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
             <button class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-gray-300 text-sm shadow">
@@ -37,12 +37,12 @@
         </div>
     </div>
 
-    <!-- بطاقات الإحصائيات -->
+    <!-- بطاقات الإحصائيات الفاخرة -->
     <div class="grid grid-cols-2 gap-3">
         <div class="custom-card p-4 rounded-3xl space-y-2">
             <div class="flex justify-between items-center text-emerald-400">
                 <i class="fa-solid fa-feather text-base"></i>
-                <span class="text-[10px] bg-emerald-950 px-2 py-0.5 rounded-full">نشط</span>
+                <span class="text-[10px] bg-emerald-950 px-2.5 py-0.5 rounded-full text-emerald-300 font-bold">نشط</span>
             </div>
             <div>
                 <span class="block text-2xl font-black text-white" id="active-birds-count">0</span>
@@ -53,7 +53,7 @@
         <div class="custom-card p-4 rounded-3xl space-y-2">
             <div class="flex justify-between items-center text-purple-400">
                 <i class="fa-solid fa-egg text-base"></i>
-                <span class="text-[10px] bg-purple-950 px-2 py-0.5 rounded-full">الإنتاج</span>
+                <span class="text-[10px] bg-purple-950 px-2.5 py-0.5 rounded-full text-purple-300 font-bold">الإنتاج</span>
             </div>
             <div>
                 <span class="block text-2xl font-black text-white">0</span>
@@ -62,12 +62,37 @@
         </div>
     </div>
 
+    <!-- قسم مهام اليوم والتصاميم السابقة -->
+    <div class="custom-card p-4 rounded-3xl space-y-2">
+        <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-gray-300">مهام اليوم</span>
+            <span class="text-emerald-400"><i class="fa-solid fa-plus"></i></span>
+        </div>
+        <div class="bg-[#121811] p-3 rounded-2xl border border-emerald-900/30 text-center text-gray-400 text-xs">
+            لا توجد مهام اليوم. استمتع بيومك!
+        </div>
+    </div>
+
+    <!-- بطاقة شركاء النجاح -->
+    <div class="info-hero-bg p-4 rounded-3xl border border-amber-500/30 shadow-xl flex items-center justify-between text-xs">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h3 class="font-bold text-white">شركاء النجاح</h3>
+                <p class="text-[10px] text-gray-300">تعرف على شركاء النجاح المساهمين في دعم التطبيق</p>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-left text-gray-400"></i>
+    </div>
+
     <!-- شريط التنقل السفلي -->
     <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto custom-card border-t border-emerald-900/30 px-6 py-2.5 flex justify-between items-center z-30 text-[10px] bg-[#121811]">
-        <button onclick="window.location.href='market-add.html'" class="flex flex-col items-center gap-1 text-gray-400">
+        <button onclick="window.location.href='market-add.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
             <i class="fa-solid fa-store text-sm"></i><span>السوق</span>
         </button>
-        <button onclick="window.location.href='community.html'" class="flex flex-col items-center gap-1 text-gray-400">
+        <button onclick="window.location.href='community.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
             <i class="fa-solid fa-users text-sm"></i><span>المجتمع</span>
         </button>
         <div class="relative -top-3">
@@ -75,7 +100,7 @@
                 <i class="fa-solid fa-qrcode"></i>
             </button>
         </div>
-        <button onclick="window.location.href='info.html'" class="flex flex-col items-center gap-1 text-gray-400">
+        <button onclick="window.location.href='info.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
             <i class="fa-solid fa-book text-sm"></i><span>الدليل</span>
         </button>
         <button class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
@@ -83,18 +108,18 @@
         </button>
     </nav>
 
-    <!-- القائمة الجانبية المنفصلة (Drawer) -->
+    <!-- القائمة الجانبية المنفصلة (Sidebar Drawer) -->
     <div id="side-menu-drawer" class="fixed inset-0 bg-black/85 z-50 hidden flex justify-end transition-all">
         <div class="w-4/5 max-w-xs bg-[#121811] h-full p-4 space-y-4 text-xs overflow-y-auto hide-scrollbar border-l border-emerald-900/40 shadow-2xl">
             
-            <!-- الهيدر ومعلومات المستخدم -->
+            <!-- الهيدر ومعلومات المستخدم الديناميكية (يأخذ اسمك تلقائياً) -->
             <div class="flex items-center justify-between border-b border-emerald-900/40 pb-3">
                 <div class="flex items-center gap-2.5">
                     <div class="w-11 h-11 rounded-full bg-emerald-900/40 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-sm">
-                        2
+                        م
                     </div>
                     <div>
-                        <h3 class="font-bold text-white text-xs">Md6 22</h3>
+                        <h3 class="font-bold text-white text-xs" id="drawer-username">مهدي مرهون الشمري</h3>
                         <p class="text-[10px] text-emerald-400">عضو مجتمع طيوري</p>
                     </div>
                 </div>
@@ -185,9 +210,19 @@
     </div>
 
     <script>
-        function openSideMenu() { document.getElementById('side-menu-drawer').classList.remove('hidden'); }
-        function closeSideMenu() { document.getElementById('side-menu-drawer').classList.add('hidden'); }
+        function openSideMenu() { 
+            // تحديث اسم المستخدم تلقائياً عند فتح القائمة من الذاكرة
+            let savedUser = localStorage.getItem("toyoori_user") || "مهدي مرهون الشمري";
+            let drawerUser = document.getElementById("drawer-username");
+            if (drawerUser) drawerUser.innerText = savedUser;
+            
+            document.getElementById('side-menu-drawer').classList.remove('hidden'); 
+        }
+        function closeSideMenu() { 
+            document.getElementById('side-menu-drawer').classList.add('hidden'); 
+        }
     </script>
+    <!-- سطر الربط المركزي -->
     <script src="app.js"></script>
 </body>
 </html>
