@@ -267,4 +267,247 @@
     </main>
 
     <button onclick="openAddModalSelection()" class="fixed bottom-16 left-4 w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-[#1a2318] rounded-full shadow-2xl flex items-center justify-center text-xl font-black z-40 border-2 border-emerald-300">
-        <i class="fa
+        <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-[#1a2318]/95 backdrop-blur border-t border-emerald-900/50 px-6 py-2.5 flex justify-between items-center z-30 text-xs text-white">
+        <button onclick="switchScreen('home')" id="nav-home" class="flex flex-col items-center gap-1 text-emerald-400 font-bold"><i class="fa-solid fa-house text-base"></i><span>الرئيسية</span></button>
+        <button onclick="switchScreen('birds')" id="nav-birds" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-feather text-base"></i><span>الطيور</span></button>
+        <button onclick="switchScreen('community')" id="nav-community" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-users text-base"></i><span>المجتمع</span></button>
+        <button onclick="switchScreen('market')" id="nav-market" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-store text-base"></i><span>السوق</span></button>
+    </nav>
+
+    <!-- Modals -->
+    <div id="profile-edit-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">تعديل الملف الشخصي</h3>
+                <button onclick="closeModal('profile-edit-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">الاسم الكامل</label>
+                    <input type="text" id="edit-name" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">البريد الإلكتروني</label>
+                    <input type="email" id="edit-email" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">رقم الهاتف</label>
+                    <input type="text" id="edit-phone" placeholder="07xxxxxxxxx" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">سنوات الخبرة</label>
+                    <input type="number" id="edit-exp" value="0" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">رابط حساب فيسبوك (لزيادة الثقة)</label>
+                    <input type="text" id="edit-fb" placeholder="رابط الفيسبوك" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">الجنس</label>
+                    <select id="edit-gender" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="ذكر">ذكر</option>
+                        <option value="أنثى">أنثى</option>
+                    </select>
+                </div>
+                <button onclick="saveProfileChanges()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-add-bird" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">إضافة طائر</h3>
+                <button onclick="closeModal('modal-add-bird')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">الاسم أو رقم الحلقة</label>
+                    <input type="text" id="bird-ring" placeholder="مثل: زغلول 1" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر النوع</label>
+                    <select id="bird-species" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="كناري">كناري (Canary)</option>
+                        <option value="بادجي">بادجي (Budgie)</option>
+                        <option value="كوكتيل">كوكتيل (Cockatiel)</option>
+                        <option value="روز">روز (Rosey)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">الطفرة</label>
+                    <input type="text" id="bird-mutation" placeholder="مثل: فاهل، لوتينو، عادي" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-[10px] text-emerald-400">تاريخ الميلاد</label>
+                        <input type="date" id="bird-dob" class="w-full p-2 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1 text-[11px]">
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-emerald-400">الجنس</label>
+                        <select id="bird-gender" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                            <option value="غير معروف">غير معروف</option>
+                            <option value="ذكر">ذكر</option>
+                            <option value="أنثى">أنثى</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر القفص</label>
+                    <select id="bird-cage-select" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="بدون قفص">بدون قفص</option>
+                    </select>
+                </div>
+                <button onclick="submitNewBird()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-add-cage" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">إضافة قفص جديد</h3>
+                <button onclick="closeModal('modal-add-cage')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">وصف أو اسم القفص</label>
+                    <input type="text" id="cage-desc" placeholder="مثل: قفص خشب أرضي كبير" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <button onclick="submitNewCage()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ القفص</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-add-pair" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">إضافة زوج تزاوج</h3>
+                <button onclick="closeModal('modal-add-pair')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر الذكر (من طيورك)</label>
+                    <select id="pair-male" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="غير محدد">اختر الذكر</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر الأنثى (من طيورك)</label>
+                    <select id="pair-female" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="غير محدد">اختر الأنثى</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر القفص</label>
+                    <select id="pair-cage" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="بدون قفص">بدون قفص</option>
+                    </select>
+                </div>
+                <button onclick="submitNewPair()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ الزوج</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="genetics-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">متنبئ الجينات والطفرات</h3>
+                <button onclick="closeModal('genetics-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">اختر نوع الطائر:</label>
+                    <select id="gen-bird-type" onchange="updateMutationsList()" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="budgie">بادجي (Budgie)</option>
+                        <option value="canary">كناري (Canary)</option>
+                        <option value="cockatiel">كوكتيل (Cockatiel)</option>
+                    </select>
+                </div>
+                <div class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2">
+                    <span class="font-bold">طفرة الأب (ذكر):</span>
+                    <select id="father-mutation" class="w-full p-2 rounded-lg bg-[#253322] border border-emerald-900 text-white text-xs"></select>
+                </div>
+                <div class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2">
+                    <span class="font-bold">طفرة الأم (أنثى):</span>
+                    <select id="mother-mutation" class="w-full p-2 rounded-lg bg-[#253322] border border-emerald-900 text-white text-xs"></select>
+                </div>
+                <div id="genetics-result" class="bg-emerald-950/60 p-3 rounded-xl border border-emerald-800/40 text-center hidden">
+                    <p class="font-bold">النتائج الوراثية المتوقعة:</p>
+                    <p id="gen-output-text" class="text-[11px] mt-1 text-emerald-300"></p>
+                </div>
+            </div>
+            <button onclick="calculateGenetics()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-md">احسب طفرات الفروخ</button>
+        </div>
+    </div>
+
+    <div id="hatch-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">حاسبة حضانة البيض والفقس</h3>
+                <button onclick="closeModal('hatch-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="text-[10px] text-emerald-400">نوع الطائر:</label>
+                    <select id="hatch-species" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <option value="18">بادجي (Budgie) - 18 يوم</option>
+                        <option value="14">كناري (Canary) - 14 يوم</option>
+                        <option value="21">كوكتيل (Cockatiel) - 21 يوم</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-400">تاريخ وضع البيضة:</label>
+                    <input type="date" id="hatch-date" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                </div>
+                <button onclick="calculateHatching()" class="w-full py-2 bg-emerald-600 text-white rounded-xl font-bold">احسب المواعيد</button>
+                <div id="hatch-results" class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2 text-[11px] hidden">
+                    <div class="flex justify-between items-center text-emerald-300"><span>تاريخ الفقس المتوقع:</span><span class="font-bold" id="res-hatch">---</span></div>
+                    <div class="flex justify-between items-center text-emerald-300"><span>موعد وضع الدبلة (الخاتم):</span><span class="font-bold" id="res-ring">---</span></div>
+                    <div class="flex justify-between items-center text-emerald-300"><span>تاريخ الفطام المتوقع:</span><span class="font-bold" id="res-wean">---</span></div>
+                </div>
+            </div>
+            <button onclick="closeModal('hatch-modal')" class="w-full py-2.5 bg-[#1a2318] text-emerald-300 rounded-xl text-xs font-bold border border-emerald-900">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="diseases-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-3 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+                <h3 class="font-bold text-sm">دليل الأمراض والأدوية</h3>
+                <button onclick="closeModal('diseases-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div class="p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
+                    <h4 class="font-bold text-emerald-300">1. الكوكسيديا (Coccidiosis)</h4>
+                    <p class="text-[11px] text-emerald-400/80 mt-1">الأعراض: خمول، إسهال مدمم أو أخضر، نفش ريش.<br>العلاج: استخدام مضاد كوكسيديا مع تعقيم المشارب يومياً.</p>
+                </div>
+                <div class="p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
+                    <h4 class="font-bold text-emerald-300">2. فاش الريش (Mites)</h4>
+                    <p class="text-[11px] text-emerald-400/80 mt-1">الأعراض: حكة مستمرة، قلة النوم ليلاً.<br>العلاج: رش الأقفاص بمبيد آمن وتطهير الزوايا.</p>
+                </div>
+            </div>
+            <button onclick="closeModal('diseases-modal')" class="w-full py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold">إغلاق الدليل</button>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-md border border-amber-600/50 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-amber-900/40 pb-2">
+                <h3 class="font-bold text-sm text-amber-200">لوحة تحكم المالك (Admin Panel)</h3>
+                <button onclick="closeModal('admin-modal')" class="text-amber-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <p class="text-[11px] text-amber-300">مرحباً بك يا مهدي (المالك). يمكنك هنا متابعة المشتركين المسجلين في التطبيق والتحكم بالبيانات:</p>
+                <div id="admin-users-list" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-[#1a2318] rounded-xl border border-emerald-900"></div>
+            </div>
+            <button onclick="closeModal('admin-modal')" class="w-full py-2 bg-amber-600 text-white rounded-xl font-bold">إغلاق لوحة المالك</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
