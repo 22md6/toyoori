@@ -9,29 +9,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="pb-24 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between theme-olive">
+<body class="pb-24 pt-3 px-3 max-w-md mx-auto min-h-screen relative flex flex-col justify-between theme-burgundy">
 
     <!-- Step 1: App Setup (Language & Currency Selection) -->
-    <div id="setup-screen" class="fixed inset-0 bg-[#121811] z-50 flex flex-col justify-between p-6">
+    <div id="setup-screen" class="fixed inset-0 bg-[#181112] z-50 flex flex-col justify-between p-6">
         <div class="space-y-6 my-auto">
-            <div class="text-center space-y-2">
-                <div class="w-20 h-20 mx-auto rounded-3xl bg-emerald-700/30 border-2 border-emerald-500 flex items-center justify-center text-3xl shadow-xl">🦜</div>
+            <div class="text-center space-y-3">
+                <div class="w-24 h-24 mx-auto rounded-3xl bg-[#332225] border-2 border-[#b67283]/40 flex items-center justify-center shadow-xl p-2">
+                    <img src="https://i.ibb.co/68v432n/logo.png" alt="شعار طيوري" class="w-full h-full object-contain drop-shadow-md" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069186.png'">
+                </div>
                 <h2 class="text-xl font-black text-white">تخصيص تطبيق طيوري</h2>
-                <p class="text-xs text-emerald-400">اختر اللغة المفضلة والعملة لبدء استخدام التطبيق.</p>
+                <p class="text-xs text-rose-300">اختر اللغة المفضلة والعملة لبدء استخدام التطبيق.</p>
             </div>
             
             <div class="custom-card p-4 rounded-3xl space-y-4 text-xs">
                 <div>
-                    <label class="font-bold text-emerald-300 block mb-2">اللغة</label>
+                    <label class="font-bold text-rose-300 block mb-2">اللغة</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <button type="button" class="py-2.5 bg-[#1a2318] border border-emerald-900 rounded-xl font-bold text-emerald-300">English</button>
-                        <button type="button" class="py-2.5 bg-emerald-700 border border-emerald-500 rounded-xl font-bold text-white">العربية</button>
+                        <button type="button" class="py-2.5 bg-[#23181a] border border-rose-900 rounded-xl font-bold text-rose-300">English</button>
+                        <button type="button" class="py-2.5 bg-[#b67283] border border-rose-400 rounded-xl font-bold text-white">العربية</button>
                     </div>
                 </div>
 
                 <div>
-                    <label class="font-bold text-emerald-300 block mb-2">العملة المفضلة</label>
-                    <select class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900 text-white text-xs">
+                    <label class="font-bold text-rose-300 block mb-2">العملة المفضلة</label>
+                    <select class="w-full p-3 rounded-xl bg-[#23181a] border border-rose-900 text-white text-xs">
                         <option value="IQD">🇮🇶 IQD (دينار عراقي)</option>
                         <option value="SAR">🇸🇦 SAR (ريال سعودي)</option>
                         <option value="USD">💵 USD (دولار أمريكي)</option>
@@ -41,37 +43,37 @@
             </div>
         </div>
 
-        <button onclick="completeSetup()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl text-sm font-bold shadow-xl">متابعة</button>
+        <button onclick="completeSetup()" class="w-full py-3.5 bg-rose-700 hover:bg-rose-600 text-white rounded-2xl text-sm font-bold shadow-xl">متابعة</button>
     </div>
 
     <!-- Step 2: Onboarding Intro Slides (Skippable) -->
-    <div id="onboarding-screen" class="fixed inset-0 bg-[#121811] z-50 hidden flex flex-col justify-between p-6">
+    <div id="onboarding-screen" class="fixed inset-0 bg-[#181112] z-50 hidden flex flex-col justify-between p-6">
         <div class="flex justify-between items-center">
-            <button onclick="skipOnboarding()" class="px-4 py-1.5 rounded-full bg-[#253322] border border-emerald-900 text-xs font-bold text-emerald-300">تخطي</button>
-            <button class="px-4 py-1.5 rounded-full bg-[#253322] border border-emerald-900 text-xs font-bold text-emerald-300 flex items-center gap-2">
+            <button onclick="skipOnboarding()" class="px-4 py-1.5 rounded-full bg-[#332225] border border-rose-900 text-xs font-bold text-rose-300">تخطي</button>
+            <button class="px-4 py-1.5 rounded-full bg-[#332225] border border-rose-900 text-xs font-bold text-rose-300 flex items-center gap-2">
                 <span>English</span> <i class="fa-solid fa-globe text-[10px]"></i>
             </button>
         </div>
 
         <!-- Slide 0 -->
         <div id="slide-0" class="flex flex-col items-center text-center space-y-6 my-auto">
-            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-emerald-700 to-teal-500 shadow-2xl flex items-center justify-center border-4 border-emerald-900/60">
-                <i class="fa-solid fa-feather text-4xl text-white"></i>
+            <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-rose-900 to-pink-700 shadow-2xl flex items-center justify-center border-4 border-rose-950/80 p-3">
+                <img src="https://i.ibb.co/68v432n/logo.png" alt="شعار طيوري" class="w-full h-full object-contain drop-shadow-lg" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069186.png'">
             </div>
             <div class="space-y-2">
-                <span class="inline-block px-3 py-1 bg-emerald-950/80 border border-emerald-600/40 text-emerald-300 text-[11px] font-bold rounded-full">إدارة شاملة وذكية</span>
+                <span class="inline-block px-3 py-1 bg-rose-950/80 border border-rose-600/40 text-rose-300 text-[11px] font-bold rounded-full">إدارة شاملة وذكية</span>
                 <h1 class="text-2xl font-black text-white tracking-wide">مرحباً بك في طيوري</h1>
-                <p class="text-xs text-emerald-200/80 max-w-xs leading-relaxed">منصتك الذكية الشاملة لإدارة طيورك، أقفاصك وسجلاتك باحترافية وسهولة فائقة.</p>
+                <p class="text-xs text-rose-200/80 max-w-xs leading-relaxed">منصتك الذكية الشاملة لإدارة طيورك، أقفاصك وسجلاتك باحترافية وسهولة فائقة.</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 pt-2">
-                <span class="px-3 py-1 bg-[#253322] border border-emerald-900/60 text-[10px] text-emerald-300 rounded-full">سجلات الطيور والأقفاص</span>
-                <span class="px-3 py-1 bg-[#253322] border border-emerald-900/60 text-[10px] text-emerald-300 rounded-full">توليد ومسح رموز QR</span>
+                <span class="px-3 py-1 bg-[#332225] border border-rose-900/60 text-[10px] text-rose-300 rounded-full">سجلات الطيور والأقفاص</span>
+                <span class="px-3 py-1 bg-[#332225] border border-rose-900/60 text-[10px] text-rose-300 rounded-full">توليد ومسح رموز QR</span>
             </div>
         </div>
 
         <!-- Slide 1 -->
         <div id="slide-1" class="flex flex-col items-center text-center space-y-6 my-auto hidden">
-            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-amber-600 to-orange-500 shadow-2xl flex items-center justify-center border-4 border-amber-900/60">
+            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-amber-700 to-orange-600 shadow-2xl flex items-center justify-center border-4 border-amber-900/60">
                 <i class="fa-solid fa-egg text-4xl text-white"></i>
             </div>
             <div class="space-y-2">
@@ -80,14 +82,14 @@
                 <p class="text-xs text-amber-200/80 max-w-xs leading-relaxed">مراقبة البيض، مواعيد الفقس، شجرة العائلة وحاسبة الجينات والطفرات بدقة علمية.</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 pt-2">
-                <span class="px-3 py-1 bg-[#332222] border border-amber-900/60 text-[10px] text-amber-300 rounded-full">متابعة البيض والأعشاش</span>
-                <span class="px-3 py-1 bg-[#332222] border border-amber-900/60 text-[10px] text-amber-300 rounded-full">حاسبة الطفرات الوراثية</span>
+                <span class="px-3 py-1 bg-[#332225] border border-amber-900/60 text-[10px] text-amber-300 rounded-full">متابعة البيض والأعشاش</span>
+                <span class="px-3 py-1 bg-[#332225] border border-amber-900/60 text-[10px] text-amber-300 rounded-full">حاسبة الطفرات الوراثية</span>
             </div>
         </div>
 
         <!-- Slide 2 -->
         <div id="slide-2" class="flex flex-col items-center text-center space-y-6 my-auto hidden">
-            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-purple-700 to-indigo-500 shadow-2xl flex items-center justify-center border-4 border-purple-900/60">
+            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-purple-800 to-indigo-600 shadow-2xl flex items-center justify-center border-4 border-purple-900/60">
                 <i class="fa-solid fa-kit-medical text-4xl text-white"></i>
             </div>
             <div class="space-y-2">
@@ -96,112 +98,113 @@
                 <p class="text-xs text-purple-200/80 max-w-xs leading-relaxed">جداول الفيتامينات، خطط العلاج، وحضانة الزغاليل مع تنبيهات ذكية لا تفوتك.</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 pt-2">
-                <span class="px-3 py-1 bg-[#2b2233] border border-purple-900/60 text-[10px] text-purple-300 rounded-full">جداول الفيتامينات الذكية</span>
-                <span class="px-3 py-1 bg-[#2b2233] border border-purple-900/60 text-[10px] text-purple-300 rounded-full">تتبع زغاليل الحضانة</span>
+                <span class="px-3 py-1 bg-[#332225] border border-purple-900/60 text-[10px] text-purple-300 rounded-full">جداول الفيتامينات الذكية</span>
+                <span class="px-3 py-1 bg-[#332225] border border-purple-900/60 text-[10px] text-purple-300 rounded-full">تتبع زغاليل الحضانة</span>
             </div>
         </div>
 
         <!-- Slide 3 -->
         <div id="slide-3" class="flex flex-col items-center text-center space-y-6 my-auto hidden">
-            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-emerald-700 to-teal-500 shadow-2xl flex items-center justify-center border-4 border-emerald-900/60">
+            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-rose-800 to-teal-600 shadow-2xl flex items-center justify-center border-4 border-rose-900/60">
                 <i class="fa-solid fa-store text-4xl text-white"></i>
             </div>
             <div class="space-y-2">
-                <span class="inline-block px-3 py-1 bg-emerald-950/80 border border-emerald-600/40 text-emerald-300 text-[11px] font-bold rounded-full">مجتمع وسوق إعلانات</span>
+                <span class="inline-block px-3 py-1 bg-rose-950/80 border border-rose-600/40 text-rose-300 text-[11px] font-bold rounded-full">مجتمع وسوق إعلانات</span>
                 <h1 class="text-2xl font-black text-white tracking-wide">مجتمع وسوق إعلانات متكامل</h1>
-                <p class="text-xs text-emerald-200/80 max-w-xs leading-relaxed">شارك خبراتك في مجتمع المربين، واعرض واشترِ الطيور ومستلزماتها بأمان وسهولة.</p>
+                <p class="text-xs text-rose-200/80 max-w-xs leading-relaxed">شارك خبراتك في مجتمع المربين، واعرض واشترِ الطيور ومستلزماتها بأمان وسهولة.</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 pt-2">
-                <span class="px-3 py-1 bg-[#253322] border border-emerald-900/60 text-[10px] text-emerald-300 rounded-full">منشورات وفيديوهات المربين</span>
-                <span class="px-3 py-1 bg-[#253322] border border-emerald-900/60 text-[10px] text-emerald-300 rounded-full">سوق إعلانات الطيور والمستلزمات</span>
+                <span class="px-3 py-1 bg-[#332225] border border-rose-900/60 text-[10px] text-rose-300 rounded-full">منشورات وفيديوهات المربين</span>
+                <span class="px-3 py-1 bg-[#332225] border border-rose-900/60 text-[10px] text-rose-300 rounded-full">سوق إعلانات الطيور والمستلزمات</span>
             </div>
         </div>
 
         <!-- Dots & Next Button -->
         <div class="space-y-4 text-center">
             <div class="flex items-center justify-center gap-1.5 pb-2">
-                <span id="dot-0" class="w-6 h-1.5 bg-emerald-500 rounded-full"></span>
-                <span id="dot-1" class="w-1.5 h-1.5 bg-emerald-800 rounded-full"></span>
-                <span id="dot-2" class="w-1.5 h-1.5 bg-emerald-800 rounded-full"></span>
-                <span id="dot-3" class="w-1.5 h-1.5 bg-emerald-800 rounded-full"></span>
+                <span id="dot-0" class="w-6 h-1.5 bg-rose-500 rounded-full"></span>
+                <span id="dot-1" class="w-1.5 h-1.5 bg-rose-900 rounded-full"></span>
+                <span id="dot-2" class="w-1.5 h-1.5 bg-rose-900 rounded-full"></span>
+                <span id="dot-3" class="w-1.5 h-1.5 bg-rose-900 rounded-full"></span>
             </div>
-            <button onclick="nextSlide()" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl text-sm font-bold shadow-xl flex items-center justify-center gap-2">
+            <button onclick="nextSlide()" class="w-full py-3.5 bg-gradient-to-r from-rose-700 to-pink-600 text-white rounded-2xl text-sm font-bold shadow-xl flex items-center justify-center gap-2">
                 <span>التالي</span> <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <button onclick="finishOnboarding()" class="text-xs text-emerald-400 hover:underline">
+            <button onclick="finishOnboarding()" class="text-xs text-rose-300 hover:underline">
                 لديك حساب بالفعل؟ تسجيل الدخول
             </button>
         </div>
     </div>
 
-    <!-- Step 3: Auth Screen (Login / Register - No Master Credentials Exposed) -->
-    <div id="auth-screen" class="fixed inset-0 bg-[#121811] z-50 hidden flex flex-col justify-center p-6 space-y-6">
+    <!-- Step 3: Auth Screen (Login / Register - Logo without white background) -->
+    <div id="auth-screen" class="fixed inset-0 bg-[#181112] z-50 hidden flex flex-col justify-center p-6 space-y-6">
         <div class="text-center space-y-2">
-            <div class="w-20 h-20 mx-auto rounded-3xl bg-white border border-emerald-500 flex items-center justify-center shadow-xl p-2">
-                <span class="text-2xl font-black text-emerald-800">طيوري</span>
+            <!-- Logo without white background -->
+            <div class="w-28 h-28 mx-auto rounded-3xl bg-[#332225]/80 border-2 border-rose-500/40 flex items-center justify-center shadow-2xl p-2.5 backdrop-blur-sm">
+                <img src="https://i.ibb.co/68v432n/logo.png" alt="شعار طيوري" class="w-full h-full object-contain drop-shadow-md" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069186.png'">
             </div>
-            <h1 class="text-xl font-black text-white">أهلاً بعودتك</h1>
-            <p id="auth-subtitle" class="text-xs text-emerald-400 font-medium">سجل دخولك للمتابعة</p>
+            <h1 class="text-xl font-black text-white mt-1">أهلاً بعودتك</h1>
+            <p id="auth-subtitle" class="text-xs text-rose-300 font-medium">سجل دخولك لمتابعة طيورك</p>
         </div>
         <div class="custom-card p-5 rounded-3xl space-y-4">
-            <h2 id="auth-title" class="text-sm font-bold text-center text-emerald-200">تسجيل الدخول</h2>
+            <h2 id="auth-title" class="text-sm font-bold text-center text-rose-200">تسجيل الدخول</h2>
             <div id="register-fields" class="space-y-3 hidden">
-                <input type="text" id="reg-name" placeholder="الاسم الكامل" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
+                <input type="text" id="reg-name" placeholder="الاسم الكامل" class="w-full p-3 rounded-xl bg-[#23181a] border border-rose-900/50 text-xs text-white">
             </div>
             <div class="space-y-1">
-                <label class="text-[10px] text-emerald-400">البريد الإلكتروني</label>
-                <input type="text" id="auth-email" placeholder="ahmed@example.com" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
+                <label class="text-[10px] text-rose-300">البريد الإلكتروني أو اسم المستخدم</label>
+                <input type="text" id="auth-email" placeholder="ahmed@example.com" class="w-full p-3 rounded-xl bg-[#23181a] border border-rose-900/50 text-xs text-white">
             </div>
             <div class="space-y-1">
-                <label class="text-[10px] text-emerald-400">كلمة المرور</label>
-                <input type="password" id="auth-pass" placeholder="••••••••" class="w-full p-3 rounded-xl bg-[#1a2318] border border-emerald-900/50 text-xs text-white">
+                <label class="text-[10px] text-rose-300">كلمة المرور</label>
+                <input type="password" id="auth-pass" placeholder="••••••••" class="w-full p-3 rounded-xl bg-[#23181a] border border-rose-900/50 text-xs text-white">
             </div>
             
-            <button onclick="handleAuthSubmit()" id="auth-btn" class="w-full py-3.5 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-lg hover:bg-emerald-500">تسجيل الدخول</button>
+            <button onclick="handleAuthSubmit()" id="auth-btn" class="w-full py-3.5 bg-rose-700 text-white rounded-xl text-xs font-bold shadow-lg hover:bg-rose-600">تسجيل الدخول</button>
             
             <div class="flex justify-between items-center text-[11px] pt-1">
-                <button onclick="toggleAuthMode()" id="auth-switch" class="text-emerald-400 hover:underline">ليس لديك حساب؟ سجل حساب جديد</button>
-                <span class="text-emerald-500/80 cursor-pointer">نسيت كلمة المرور؟</span>
+                <button onclick="toggleAuthMode()" id="auth-switch" class="text-rose-300 hover:underline">ليس لديك حساب؟ سجل حساب جديد</button>
+                <span class="text-rose-400/80 cursor-pointer">نسيت كلمة المرور؟</span>
             </div>
         </div>
     </div>
 
     <!-- Sidebar Menu -->
     <div id="sidebar-menu" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex justify-end">
-        <div class="w-72 custom-card h-full p-5 space-y-6 flex flex-col justify-between border-r border-emerald-900/50 overflow-y-auto">
+        <div class="w-72 custom-card h-full p-5 space-y-6 flex flex-col justify-between border-r border-rose-900/50 overflow-y-auto">
             <div class="space-y-6">
-                <div class="flex items-center justify-between border-b border-emerald-900/40 pb-4">
+                <div class="flex items-center justify-between border-b border-rose-900/40 pb-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-emerald-600/30 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 text-lg" id="sidebar-initial">م</div>
+                        <div class="w-12 h-12 rounded-full bg-rose-700/30 border-2 border-rose-500 flex items-center justify-center font-bold text-rose-300 text-lg" id="sidebar-initial">م</div>
                         <div>
                             <h3 id="sidebar-username" class="font-bold text-sm">مهدي الشمري</h3>
-                            <span class="text-[10px] text-emerald-400/80 block">عضو مجتمع طيوري</span>
+                            <span class="text-[10px] text-rose-300/80 block">عضو مجتمع طيوري</span>
                         </div>
                     </div>
-                    <button onclick="toggleSidebar()" class="text-emerald-400 text-lg"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="toggleSidebar()" class="text-rose-300 text-lg"><i class="fa-solid fa-xmark"></i></button>
                 </div>
 
-                <div class="bg-[#1a2318] p-3 rounded-2xl grid grid-cols-3 text-center text-xs border border-emerald-900/30">
-                    <div><span class="block font-black text-white" id="count-birds">0</span><span class="text-[10px] text-emerald-400">طيور</span></div>
-                    <div class="border-x border-emerald-900/40"><span class="block font-black text-white" id="count-cages">0</span><span class="text-[10px] text-emerald-400">أقفاص</span></div>
-                    <div><span class="block font-black text-white" id="count-pairs">0</span><span class="text-[10px] text-emerald-400">أزواج</span></div>
+                <div class="bg-[#23181a] p-3 rounded-2xl grid grid-cols-3 text-center text-xs border border-rose-900/30">
+                    <div><span class="block font-black text-white" id="count-birds">0</span><span class="text-[10px] text-rose-300">طيور</span></div>
+                    <div class="border-x border-rose-900/40"><span class="block font-black text-white" id="count-cages">0</span><span class="text-[10px] text-rose-300">أقفاص</span></div>
+                    <div><span class="block font-black text-white" id="count-pairs">0</span><span class="text-[10px] text-rose-300">أزواج</span></div>
                 </div>
 
                 <div class="space-y-2 text-xs">
-                    <div class="text-[10px] text-emerald-500 font-bold px-1">أدوات الإنتاج والجينات</div>
-                    <button onclick="toggleSidebar(); openModal('genetics-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40">
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-400"></i> حاسبة الجينات والألوان</span>
-                        <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
+                    <div class="text-[10px] text-rose-400 font-bold px-1">أدوات الإنتاج والجينات</div>
+                    <button onclick="toggleSidebar(); openModal('genetics-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#23181a] hover:bg-rose-950/40">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-rose-400"></i> حاسبة الجينات والألوان</span>
+                        <i class="fa-solid fa-chevron-left text-[10px] text-rose-500"></i>
                     </button>
-                    <button onclick="toggleSidebar(); openModal('hatch-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40">
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-egg text-emerald-400"></i> حاسبة حضانة البيض والفقس</span>
-                        <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
+                    <button onclick="toggleSidebar(); openModal('hatch-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#23181a] hover:bg-rose-950/40">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-egg text-rose-400"></i> حاسبة حضانة البيض والفقس</span>
+                        <i class="fa-solid fa-chevron-left text-[10px] text-rose-500"></i>
                     </button>
-                    <button onclick="toggleSidebar(); openModal('diseases-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40">
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-book-medical text-emerald-400"></i> دليل الأمراض والأدوية</span>
-                        <i class="fa-solid fa-chevron-left text-[10px] text-emerald-500"></i>
+                    <button onclick="toggleSidebar(); openModal('diseases-modal')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#23181a] hover:bg-rose-950/40">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-book-medical text-rose-400"></i> دليل الأمراض والأدوية</span>
+                        <i class="fa-solid fa-chevron-left text-[10px] text-rose-500"></i>
                     </button>
-                    <div id="admin-menu-item" class="hidden pt-2 border-t border-emerald-900/40">
+                    <div id="admin-menu-item" class="hidden pt-2 border-t border-rose-900/40">
                         <button onclick="toggleSidebar(); openAdminPanel()" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-amber-950/60 border border-amber-600/40 text-amber-200 font-bold">
                             <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400"></i> لوحة تحكم المالك (Admin)</span>
                             <i class="fa-solid fa-chevron-left text-[10px]"></i>
@@ -220,26 +223,26 @@
 
     <!-- App Header -->
     <header class="flex justify-between items-center my-2 px-1">
-        <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl custom-card border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
+        <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl custom-card border border-rose-900/40 text-rose-300 flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
         
-        <div class="border-2 border-emerald-500 custom-card px-5 py-1.5 rounded-2xl text-center">
+        <div class="border-2 border-rose-500 custom-card px-5 py-1.5 rounded-2xl text-center">
             <h1 class="text-xl font-black app-header-title">تطبيق طيوري</h1>
-            <p class="text-[9px] text-emerald-400/90 font-medium">بإدارة مهدي مرهون الشمري</p>
+            <p class="text-[9px] text-rose-300/90 font-medium">بإدارة مهدي مرهون الشمري</p>
         </div>
 
-        <button onclick="switchScreen('settings')" class="w-9 h-9 rounded-xl custom-card border border-emerald-900/40 text-emerald-400 flex items-center justify-center"><i class="fa-solid fa-gear"></i></button>
+        <button onclick="switchScreen('settings')" class="w-9 h-9 rounded-xl custom-card border border-rose-900/40 text-rose-300 flex items-center justify-center"><i class="fa-solid fa-gear"></i></button>
     </header>
 
     <!-- Main Screens -->
     <main id="app-content" class="space-y-4 flex-grow mt-2">
         <section id="screen-home" class="space-y-4">
             <div class="grid grid-cols-2 gap-2.5">
-                <div onclick="switchScreen('birds')" class="bg-gradient-to-br from-emerald-950/90 to-teal-900/70 p-3.5 rounded-2xl border border-emerald-500/30 shadow-lg cursor-pointer">
-                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-emerald-200">الطيور النشطة</span><i class="fa-solid fa-feather text-emerald-400"></i></div>
+                <div onclick="switchScreen('birds')" class="bg-gradient-to-br from-rose-950/90 to-pink-900/70 p-3.5 rounded-2xl border border-rose-500/30 shadow-lg cursor-pointer">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-rose-200">الطيور النشطة</span><i class="fa-solid fa-feather text-rose-400"></i></div>
                     <div class="mt-2 text-2xl font-black text-white" id="stat-birds">0</div>
                 </div>
-                <div onclick="openModal('diseases-modal')" class="bg-gradient-to-br from-indigo-950/90 to-purple-900/70 p-3.5 rounded-2xl border border-indigo-500/30 shadow-lg cursor-pointer">
-                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-indigo-200">أمراض مسجلة</span><i class="fa-solid fa-shield-virus text-indigo-400"></i></div>
+                <div onclick="openModal('diseases-modal')" class="bg-gradient-to-br from-purple-950/90 to-indigo-900/70 p-3.5 rounded-2xl border border-purple-500/30 shadow-lg cursor-pointer">
+                    <div class="flex justify-between items-start"><span class="text-xs font-semibold text-purple-200">أمراض مسجلة</span><i class="fa-solid fa-shield-virus text-purple-400"></i></div>
                     <div class="mt-2 text-2xl font-black text-white">2</div>
                 </div>
                 <div onclick="openModal('hatch-modal')" class="bg-gradient-to-br from-amber-950/90 to-orange-900/70 p-3.5 rounded-2xl border border-amber-500/30 shadow-lg cursor-pointer col-span-2">
@@ -248,12 +251,12 @@
                 </div>
             </div>
 
-            <div onclick="switchScreen('health')" class="bg-gradient-to-r from-emerald-900/80 to-teal-900/80 p-4 rounded-2xl border border-emerald-500/40 flex items-center justify-between cursor-pointer shadow-lg">
+            <div onclick="switchScreen('health')" class="bg-gradient-to-r from-rose-900/80 to-pink-900/80 p-4 rounded-2xl border border-rose-500/40 flex items-center justify-between cursor-pointer shadow-lg">
                 <div class="space-y-1">
-                    <h3 class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-kit-medical text-emerald-300"></i> الصحة والرعاية</h3>
-                    <p class="text-[11px] text-emerald-200">التأكيل، السجلات الصحية، الجرعات والفيتامينات</p>
+                    <h3 class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-kit-medical text-rose-300"></i> الصحة والرعاية</h3>
+                    <p class="text-[11px] text-rose-200">التأكيل، السجلات الصحية، الجرعات والفيتامينات</p>
                 </div>
-                <i class="fa-solid fa-chevron-left text-emerald-300"></i>
+                <i class="fa-solid fa-chevron-left text-rose-300"></i>
             </div>
 
             <div class="bg-gradient-to-r from-amber-600 to-orange-600 p-4 rounded-2xl text-white shadow-lg flex items-center justify-between">
@@ -266,9 +269,9 @@
         </section>
 
         <section id="screen-health" class="space-y-3 hidden">
-            <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+            <div class="custom-card p-3 rounded-2xl border border-rose-900/40 flex items-center justify-between">
                 <h3 class="font-bold text-sm">الصحة والرعاية</h3>
-                <button onclick="switchScreen('home')" class="text-xs text-emerald-400"><i class="fa-solid fa-arrow-right"></i> الرئيسية</button>
+                <button onclick="switchScreen('home')" class="text-xs text-rose-300"><i class="fa-solid fa-arrow-right"></i> الرئيسية</button>
             </div>
             <div class="grid grid-cols-2 gap-3">
                 <div onclick="openHealthSection('feeding')" class="bg-orange-950/80 border border-orange-500/40 p-4 rounded-2xl text-center space-y-2 cursor-pointer shadow">
@@ -295,48 +298,48 @@
         </section>
 
         <section id="screen-birds" class="space-y-3 hidden">
-            <div class="flex custom-card p-1 rounded-xl border border-emerald-900/50 text-xs font-bold">
-                <button onclick="switchBirdTab('tab-birds')" id="btntab-birds" class="flex-1 py-2 text-center rounded-lg bg-emerald-700 text-white">الطيور</button>
-                <button onclick="switchBirdTab('tab-cages')" id="btntab-cages" class="flex-1 py-2 text-center rounded-lg text-emerald-400">الأقفاص</button>
-                <button onclick="switchBirdTab('tab-breeding')" id="btntab-breeding" class="flex-1 py-2 text-center rounded-lg text-emerald-400">تكاثر</button>
+            <div class="flex custom-card p-1 rounded-xl border border-rose-900/50 text-xs font-bold">
+                <button onclick="switchBirdTab('tab-birds')" id="btntab-birds" class="flex-1 py-2 text-center rounded-lg bg-rose-700 text-white">الطيور</button>
+                <button onclick="switchBirdTab('tab-cages')" id="btntab-cages" class="flex-1 py-2 text-center rounded-lg text-rose-300">الأقفاص</button>
+                <button onclick="switchBirdTab('tab-breeding')" id="btntab-breeding" class="flex-1 py-2 text-center rounded-lg text-rose-300">تكاثر</button>
             </div>
 
             <div id="tab-birds" class="space-y-3">
-                <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                <div class="custom-card p-3 rounded-2xl border border-rose-900/40 flex items-center justify-between">
                     <div>
                         <h3 class="font-bold text-sm">طيوري</h3>
-                        <p class="text-[11px] text-emerald-400/80" id="birds-count-text">0 الطيور</p>
+                        <p class="text-[11px] text-rose-300/80" id="birds-count-text">0 الطيور</p>
                     </div>
                     <span class="text-xl">🦜</span>
                 </div>
                 <div id="user-birds-list" class="space-y-2">
-                    <p class="text-xs text-emerald-400/60 text-center py-6">لا توجد طيور مضافة حالياً. اضغط على زر (+) لإضافة طائر.</p>
+                    <p class="text-xs text-rose-300/60 text-center py-6">لا توجد طيور مضافة حالياً. اضغط على زر (+) لإضافة طائر.</p>
                 </div>
             </div>
 
             <div id="tab-cages" class="space-y-3 hidden">
-                <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                <div class="custom-card p-3 rounded-2xl border border-rose-900/40 flex items-center justify-between">
                     <div>
                         <h3 class="font-bold text-sm">الأقفاص</h3>
-                        <p class="text-[11px] text-emerald-400/80" id="cages-count-text">0 الأقفاص</p>
+                        <p class="text-[11px] text-rose-300/80" id="cages-count-text">0 الأقفاص</p>
                     </div>
                     <span class="text-xl">🪺</span>
                 </div>
                 <div id="user-cages-list" class="space-y-2">
-                    <p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أقفاص مضافة حالياً.</p>
+                    <p class="text-xs text-rose-300/60 text-center py-6">لا توجد أقفاص مضافة حالياً.</p>
                 </div>
             </div>
 
             <div id="tab-breeding" class="space-y-3 hidden">
-                <div class="custom-card p-3 rounded-2xl border border-emerald-900/40 flex items-center justify-between">
+                <div class="custom-card p-3 rounded-2xl border border-rose-900/40 flex items-center justify-between">
                     <div>
                         <h3 class="font-bold text-sm">إدارة ومتابعة أزواج الإنتاج</h3>
-                        <p class="text-[11px] text-emerald-400/80" id="pairs-count-text">الأزواج النشطة: 0</p>
+                        <p class="text-[11px] text-rose-300/80" id="pairs-count-text">الأزواج النشطة: 0</p>
                     </div>
                     <span class="text-xl">🕊️</span>
                 </div>
                 <div id="user-breeding-list" class="space-y-2">
-                    <p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أزواج تزاوج مضافة.</p>
+                    <p class="text-xs text-rose-300/60 text-center py-6">لا توجد أزواج تزاوج مضافة.</p>
                 </div>
             </div>
         </section>
@@ -344,126 +347,125 @@
         <section id="screen-community" class="space-y-3 hidden">
             <div class="custom-card p-4 rounded-2xl space-y-2">
                 <h3 class="font-bold text-sm">مجتمع المربين</h3>
-                <p class="text-xs text-emerald-400/80">تواصل وتبادل الخبرات مع المربين في العراق والعالم العربي.</p>
+                <p class="text-xs text-rose-300/80">تواصل وتبادل الخبرات مع المربين في العراق والعالم العربي.</p>
             </div>
         </section>
 
         <section id="screen-market" class="space-y-3 hidden">
             <div class="custom-card p-4 rounded-2xl space-y-2">
                 <h3 class="font-bold text-sm">سوق الطيور والمستلزمات</h3>
-                <p class="text-xs text-emerald-400/80">عرض الطيور للبيع أو البدل.</p>
+                <p class="text-xs text-rose-300/80">عرض الطيور للبيع أو البدل.</p>
             </div>
         </section>
 
         <section id="screen-settings" class="space-y-3 hidden">
             <div class="custom-card p-4 rounded-2xl space-y-4">
-                <div class="bg-[#1a2318] p-3.5 rounded-xl border border-emerald-900/40 flex items-center justify-between">
+                <div class="bg-[#23181a] p-3.5 rounded-xl border border-rose-900/40 flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-emerald-600/30 border border-emerald-500 flex items-center justify-center font-bold text-emerald-400" id="settings-avatar">م</div>
+                        <div class="w-10 h-10 rounded-full bg-rose-700/30 border border-rose-500 flex items-center justify-center font-bold text-rose-300" id="settings-avatar">م</div>
                         <div>
                             <h4 class="font-bold text-xs" id="settings-profile-name">مهدي الشمري</h4>
-                            <p class="text-[10px] text-emerald-400" id="settings-profile-email">mahdialshmary7@gmail.com</p>
+                            <p class="text-[10px] text-rose-300" id="settings-profile-email">mahdialshmary7@gmail.com</p>
                         </div>
                     </div>
-                    <button onclick="openModal('profile-edit-modal')" class="px-3 py-1.5 bg-emerald-700 text-white rounded-lg text-[11px] font-bold">تعديل الملف</button>
+                    <button onclick="openModal('profile-edit-modal')" class="px-3 py-1.5 bg-rose-700 text-white rounded-lg text-[11px] font-bold">تعديل الملف</button>
                 </div>
 
                 <h3 class="font-bold text-sm flex items-center gap-2"><i class="fa-solid fa-gear"></i> إعدادات التطبيق (مجاني بالكامل)</h3>
                 <div class="space-y-3 text-xs">
-                    <div class="space-y-1.5 p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
-                        <span class="block font-bold">اختر لون الخلفية والواجهة الراقي:</span>
-                        <div class="grid grid-cols-4 gap-2 pt-1">
-                            <button onclick="setAppTheme('olive')" class="py-1.5 bg-[#253322] border border-emerald-500 rounded-lg text-[10px] font-bold text-emerald-200">زيتوني</button>
-                            <button onclick="setAppTheme('burgundy')" class="py-1.5 bg-[#332225] border border-rose-500 rounded-lg text-[10px] font-bold text-rose-200">برغندي</button>
-                            <button onclick="setAppTheme('navy')" class="py-1.5 bg-[#222833] border border-blue-500 rounded-lg text-[10px] font-bold text-blue-200">حبري</button>
-                            <button onclick="setAppTheme('light')" class="py-1.5 bg-[#ffffff] border border-gray-400 rounded-lg text-[10px] font-bold text-gray-800">نهاري فاتح</button>
+                    <div class="space-y-1.5 p-2.5 bg-[#23181a] rounded-xl border border-rose-900/40">
+                        <span class="block font-bold">اختر طابع الألوان الراقي:</span>
+                        <div class="grid grid-cols-3 gap-2 pt-1">
+                            <button onclick="setAppTheme('burgundy')" class="py-1.5 bg-[#332225] border border-rose-500 rounded-lg text-[10px] font-bold text-rose-200">برغندي ملكي</button>
+                            <button onclick="setAppTheme('navy')" class="py-1.5 bg-[#222833] border border-blue-500 rounded-lg text-[10px] font-bold text-blue-200">حبري فخم</button>
+                            <button onclick="setAppTheme('sunset')" class="py-1.5 bg-[#452b22] border border-orange-500 rounded-lg text-[10px] font-bold text-orange-200">غروب دافئ</button>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
+                    <div class="flex items-center justify-between p-2.5 bg-[#23181a] rounded-xl border border-rose-900/40">
                         <span>الوضع الداكن (Dark Mode)</span>
-                        <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode(this)" class="accent-emerald-500 w-4 h-4">
+                        <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode(this)" class="accent-rose-500 w-4 h-4">
                     </div>
-                    <div class="flex items-center justify-between p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
+                    <div class="flex items-center justify-between p-2.5 bg-[#23181a] rounded-xl border border-rose-900/40">
                         <span>إشعارات المواعيد والتفقيس</span>
-                        <input type="checkbox" checked class="accent-emerald-500 w-4 h-4">
+                        <input type="checkbox" checked class="accent-rose-500 w-4 h-4">
                     </div>
-                    <div class="flex items-center justify-between p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
+                    <div class="flex items-center justify-between p-2.5 bg-[#23181a] rounded-xl border border-rose-900/40">
                         <span>العملة المفضلة</span>
-                        <span class="text-emerald-400 font-bold">دينار عراقي (د.ع)</span>
+                        <span class="text-rose-300 font-bold">دينار عراقي (د.ع)</span>
                     </div>
-                    <button onclick="exportData()" class="w-full py-2.5 bg-emerald-700 text-white rounded-xl font-bold">تصدير نسخة احتياطية للبيانات</button>
+                    <button onclick="exportData()" class="w-full py-2.5 bg-rose-700 text-white rounded-xl font-bold">تصدير نسخة احتياطية للبيانات</button>
                     <button onclick="clearAllData()" class="w-full py-2.5 bg-red-950/80 text-red-300 border border-red-800/40 rounded-xl font-bold">حذف وتصفير كافة البيانات</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <button onclick="openAddModalSelection()" class="fixed bottom-16 left-4 w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-[#1a2318] rounded-full shadow-2xl flex items-center justify-center text-xl font-black z-40 border-2 border-emerald-300">
+    <button onclick="openAddModalSelection()" class="fixed bottom-16 left-4 w-12 h-12 bg-rose-500 hover:bg-rose-400 text-[#23181a] rounded-full shadow-2xl flex items-center justify-center text-xl font-black z-40 border-2 border-rose-300">
         <i class="fa-solid fa-plus"></i>
     </button>
 
-    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-[#1a2318]/95 backdrop-blur border-t border-emerald-900/50 px-6 py-2.5 flex justify-between items-center z-30 text-xs text-white">
-        <button onclick="switchScreen('home')" id="nav-home" class="flex flex-col items-center gap-1 text-emerald-400 font-bold"><i class="fa-solid fa-house text-base"></i><span>الرئيسية</span></button>
-        <button onclick="switchScreen('birds')" id="nav-birds" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-feather text-base"></i><span>الطيور</span></button>
-        <button onclick="switchScreen('community')" id="nav-community" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-users text-base"></i><span>المجتمع</span></button>
-        <button onclick="switchScreen('market')" id="nav-market" class="flex flex-col items-center gap-1 text-emerald-400/60"><i class="fa-solid fa-store text-base"></i><span>السوق</span></button>
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-[#23181a]/95 backdrop-blur border-t border-rose-900/50 px-6 py-2.5 flex justify-between items-center z-30 text-xs text-white">
+        <button onclick="switchScreen('home')" id="nav-home" class="flex flex-col items-center gap-1 text-rose-400 font-bold"><i class="fa-solid fa-house text-base"></i><span>الرئيسية</span></button>
+        <button onclick="switchScreen('birds')" id="nav-birds" class="flex flex-col items-center gap-1 text-rose-400/60"><i class="fa-solid fa-feather text-base"></i><span>الطيور</span></button>
+        <button onclick="switchScreen('community')" id="nav-community" class="flex flex-col items-center gap-1 text-rose-400/60"><i class="fa-solid fa-users text-base"></i><span>المجتمع</span></button>
+        <button onclick="switchScreen('market')" id="nav-market" class="flex flex-col items-center gap-1 text-rose-400/60"><i class="fa-solid fa-store text-base"></i><span>السوق</span></button>
     </nav>
 
     <!-- Modals -->
     <div id="profile-edit-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+            <div class="flex justify-between items-center border-b border-rose-900/40 pb-2">
                 <h3 class="font-bold text-sm">تعديل الملف الشخصي</h3>
-                <button onclick="closeModal('profile-edit-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('profile-edit-modal')" class="text-rose-300"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="text-[10px] text-emerald-400">الاسم الكامل</label>
-                    <input type="text" id="edit-name" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">الاسم الكامل</label>
+                    <input type="text" id="edit-name" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">البريد الإلكتروني</label>
-                    <input type="email" id="edit-email" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">البريد الإلكتروني</label>
+                    <input type="email" id="edit-email" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">رقم الهاتف</label>
-                    <input type="text" id="edit-phone" placeholder="07xxxxxxxxx" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">رقم الهاتف</label>
+                    <input type="text" id="edit-phone" placeholder="07xxxxxxxxx" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">سنوات الخبرة</label>
-                    <input type="number" id="edit-exp" value="0" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">سنوات الخبرة</label>
+                    <input type="number" id="edit-exp" value="0" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">رابط حساب فيسبوك (لزيادة الثقة)</label>
-                    <input type="text" id="edit-fb" placeholder="رابط الفيسبوك" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">رابط حساب فيسبوك (لزيادة الثقة)</label>
+                    <input type="text" id="edit-fb" placeholder="رابط الفيسبوك" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">الجنس</label>
-                    <select id="edit-gender" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">الجنس</label>
+                    <select id="edit-gender" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="ذكر">ذكر</option>
                         <option value="أنثى">أنثى</option>
                     </select>
                 </div>
-                <button onclick="saveProfileChanges()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
+                <button onclick="saveProfileChanges()" class="w-full py-2.5 bg-rose-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
             </div>
         </div>
     </div>
 
     <div id="modal-add-bird" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+            <div class="flex justify-between items-center border-b border-rose-900/40 pb-2">
                 <h3 class="font-bold text-sm">إضافة طائر</h3>
-                <button onclick="closeModal('modal-add-bird')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('modal-add-bird')" class="text-rose-300"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="text-[10px] text-emerald-400">الاسم أو رقم الحلقة</label>
-                    <input type="text" id="bird-ring" placeholder="مثل: زغلول 1" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">الاسم أو رقم الحلقة</label>
+                    <input type="text" id="bird-ring" placeholder="مثل: زغلول 1" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">اختر النوع</label>
-                    <select id="bird-species" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">اختر النوع</label>
+                    <select id="bird-species" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="كناري">كناري (Canary)</option>
                         <option value="بادجي">بادجي (Budgie)</option>
                         <option value="كوكتيل">كوكتيل (Cockatiel)</option>
@@ -471,17 +473,17 @@
                     </select>
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">الطفرة</label>
-                    <input type="text" id="bird-mutation" placeholder="مثل: فاهل، لوتينو، عادي" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">الطفرة</label>
+                    <input type="text" id="bird-mutation" placeholder="مثل: فاهل، لوتينو، عادي" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
-                        <label class="text-[10px] text-emerald-400">تاريخ الميلاد</label>
-                        <input type="date" id="bird-dob" class="w-full p-2 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1 text-[11px]">
+                        <label class="text-[10px] text-rose-300">تاريخ الميلاد</label>
+                        <input type="date" id="bird-dob" class="w-full p-2 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1 text-[11px]">
                     </div>
                     <div>
-                        <label class="text-[10px] text-emerald-400">الجنس</label>
-                        <select id="bird-gender" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                        <label class="text-[10px] text-rose-300">الجنس</label>
+                        <select id="bird-gender" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                             <option value="غير معروف">غير معروف</option>
                             <option value="ذكر">ذكر</option>
                             <option value="أنثى">أنثى</option>
@@ -489,141 +491,141 @@
                     </div>
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">اختر القفص</label>
-                    <select id="bird-cage-select" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">اختر القفص</label>
+                    <select id="bird-cage-select" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="بدون قفص">بدون قفص</option>
                     </select>
                 </div>
-                <button onclick="submitNewBird()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
+                <button onclick="submitNewBird()" class="w-full py-2.5 bg-rose-600 text-white rounded-xl font-bold">حفظ التغييرات</button>
             </div>
         </div>
     </div>
 
     <div id="modal-add-cage" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4">
-            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+            <div class="flex justify-between items-center border-b border-rose-900/40 pb-2">
                 <h3 class="font-bold text-sm">إضافة قفص جديد</h3>
-                <button onclick="closeModal('modal-add-cage')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('modal-add-cage')" class="text-rose-300"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="text-[10px] text-emerald-400">وصف أو اسم القفص</label>
-                    <input type="text" id="cage-desc" placeholder="مثل: قفص خشب أرضي كبير" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">وصف أو اسم القفص</label>
+                    <input type="text" id="cage-desc" placeholder="مثل: قفص خشب أرضي كبير" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
-                <button onclick="submitNewCage()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ القفص</button>
+                <button onclick="submitNewCage()" class="w-full py-2.5 bg-rose-600 text-white rounded-xl font-bold">حفظ القفص</button>
             </div>
         </div>
     </div>
 
     <div id="modal-add-pair" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="custom-card p-5 rounded-2xl w-full max-w-sm space-y-4">
-            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+            <div class="flex justify-between items-center border-b border-rose-900/40 pb-2">
                 <h3 class="font-bold text-sm">إضافة زوج تزاوج</h3>
-                <button onclick="closeModal('modal-add-pair')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('modal-add-pair')" class="text-rose-300"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="text-[10px] text-emerald-400">اختر الذكر (من طيورك)</label>
-                    <select id="pair-male" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">اختر الذكر (من طيورك)</label>
+                    <select id="pair-male" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="غير محدد">اختر الذكر</option>
                     </select>
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">اختر الأنثى (من طيورك)</label>
-                    <select id="pair-female" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">اختر الأنثى (من طيورك)</label>
+                    <select id="pair-female" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="غير محدد">اختر الأنثى</option>
                     </select>
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">اختر القفص</label>
-                    <select id="pair-cage" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">اختر القفص</label>
+                    <select id="pair-cage" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="بدون قفص">بدون قفص</option>
                     </select>
                 </div>
-                <button onclick="submitNewPair()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold">حفظ الزوج</button>
+                <button onclick="submitNewPair()" class="w-full py-2.5 bg-rose-600 text-white rounded-xl font-bold">حفظ الزوج</button>
             </div>
         </div>
     </div>
 
     <div id="genetics-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-rose-600/40 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-rose-900/40 pb-2">
                 <h3 class="font-bold text-sm">متنبئ الجينات والطفرات</h3>
-                <button onclick="closeModal('genetics-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('genetics-modal')" class="text-rose-300"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="text-[10px] text-emerald-400">اختر نوع الطائر:</label>
-                    <select id="gen-bird-type" onchange="updateMutationsList()" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">اختر نوع الطائر:</label>
+                    <select id="gen-bird-type" onchange="updateMutationsList()" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="budgie">بادجي (Budgie)</option>
                         <option value="canary">كناري (Canary)</option>
                         <option value="cockatiel">كوكتيل (Cockatiel)</option>
                     </select>
                 </div>
-                <div class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2">
+                <div class="bg-[#23181a] p-3 rounded-xl border border-rose-900/40 space-y-2">
                     <span class="font-bold">طفرة الأب (ذكر):</span>
-                    <select id="father-mutation" class="w-full p-2 rounded-lg bg-[#253322] border border-emerald-900 text-white text-xs"></select>
+                    <select id="father-mutation" class="w-full p-2 rounded-lg bg-[#332225] border border-rose-900 text-white text-xs"></select>
                 </div>
-                <div class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2">
+                <div class="bg-[#23181a] p-3 rounded-xl border border-rose-900/40 space-y-2">
                     <span class="font-bold">طفرة الأم (أنثى):</span>
-                    <select id="mother-mutation" class="w-full p-2 rounded-lg bg-[#253322] border border-emerald-900 text-white text-xs"></select>
+                    <select id="mother-mutation" class="w-full p-2 rounded-lg bg-[#332225] border border-rose-900 text-white text-xs"></select>
                 </div>
-                <div id="genetics-result" class="bg-emerald-950/60 p-3 rounded-xl border border-emerald-800/40 text-center hidden">
+                <div id="genetics-result" class="bg-rose-950/60 p-3 rounded-xl border border-rose-800/40 text-center hidden">
                     <p class="font-bold">النتائج الوراثية المتوقعة:</p>
-                    <p id="gen-output-text" class="text-[11px] mt-1 text-emerald-300"></p>
+                    <p id="gen-output-text" class="text-[11px] mt-1 text-rose-300"></p>
                 </div>
             </div>
-            <button onclick="calculateGenetics()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-md">احسب طفرات الفروخ</button>
+            <button onclick="calculateGenetics()" class="w-full py-2.5 bg-rose-600 text-white rounded-xl text-xs font-bold shadow-md">احسب طفرات الفروخ</button>
         </div>
     </div>
 
     <div id="hatch-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-4">
-            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-rose-600/40 space-y-4">
+            <div class="flex justify-between items-center border-b border-rose-900/40 pb-2">
                 <h3 class="font-bold text-sm">حاسبة حضانة البيض والفقس</h3>
-                <button onclick="closeModal('hatch-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('hatch-modal')" class="text-rose-300"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="text-[10px] text-emerald-400">نوع الطائر:</label>
-                    <select id="hatch-species" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">نوع الطائر:</label>
+                    <select id="hatch-species" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                         <option value="18">بادجي (Budgie) - 18 يوم</option>
                         <option value="14">كناري (Canary) - 14 يوم</option>
                         <option value="21">كوكتيل (Cockatiel) - 21 يوم</option>
                     </select>
                 </div>
                 <div>
-                    <label class="text-[10px] text-emerald-400">تاريخ وضع البيضة:</label>
-                    <input type="date" id="hatch-date" class="w-full p-2.5 rounded-xl bg-[#1a2318] border border-emerald-900 text-white mt-1">
+                    <label class="text-[10px] text-rose-300">تاريخ وضع البيضة:</label>
+                    <input type="date" id="hatch-date" class="w-full p-2.5 rounded-xl bg-[#23181a] border border-rose-900 text-white mt-1">
                 </div>
-                <button onclick="calculateHatching()" class="w-full py-2 bg-emerald-600 text-white rounded-xl font-bold">احسب المواعيد</button>
-                <div id="hatch-results" class="bg-[#1a2318] p-3 rounded-xl border border-emerald-900/40 space-y-2 text-[11px] hidden">
-                    <div class="flex justify-between items-center text-emerald-300"><span>تاريخ الفقس المتوقع:</span><span class="font-bold" id="res-hatch">---</span></div>
-                    <div class="flex justify-between items-center text-emerald-300"><span>موعد وضع الدبلة (الخاتم):</span><span class="font-bold" id="res-ring">---</span></div>
-                    <div class="flex justify-between items-center text-emerald-300"><span>تاريخ الفطام المتوقع:</span><span class="font-bold" id="res-wean">---</span></div>
+                <button onclick="calculateHatching()" class="w-full py-2 bg-rose-600 text-white rounded-xl font-bold">احسب المواعيد</button>
+                <div id="hatch-results" class="bg-[#23181a] p-3 rounded-xl border border-rose-900/40 space-y-2 text-[11px] hidden">
+                    <div class="flex justify-between items-center text-rose-300"><span>تاريخ الفقس المتوقع:</span><span class="font-bold" id="res-hatch">---</span></div>
+                    <div class="flex justify-between items-center text-rose-300"><span>موعد وضع الدبلة (الخاتم):</span><span class="font-bold" id="res-ring">---</span></div>
+                    <div class="flex justify-between items-center text-rose-300"><span>تاريخ الفطام المتوقع:</span><span class="font-bold" id="res-wean">---</span></div>
                 </div>
             </div>
-            <button onclick="closeModal('hatch-modal')" class="w-full py-2.5 bg-[#1a2318] text-emerald-300 rounded-xl text-xs font-bold border border-emerald-900">إغلاق</button>
+            <button onclick="closeModal('hatch-modal')" class="w-full py-2.5 bg-[#23181a] text-rose-300 rounded-xl text-xs font-bold border border-rose-900">إغلاق</button>
         </div>
     </div>
 
     <div id="diseases-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-emerald-600/40 space-y-3 max-h-[85vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-emerald-900/40 pb-2">
+        <div class="custom-card text-white p-5 rounded-2xl w-full max-w-sm border border-rose-600/40 space-y-3 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-rose-900/40 pb-2">
                 <h3 class="font-bold text-sm">دليل الأمراض والأدوية</h3>
-                <button onclick="closeModal('diseases-modal')" class="text-emerald-400"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('diseases-modal')" class="text-rose-300"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
-                <div class="p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
-                    <h4 class="font-bold text-emerald-300">1. الكوكسيديا (Coccidiosis)</h4>
-                    <p class="text-[11px] text-emerald-400/80 mt-1">الأعراض: خمول، إسهال مدمم أو أخضر، نفش ريش.<br>العلاج: استخدام مضاد كوكسيديا مع تعقيم المشارب يومياً.</p>
+                <div class="p-2.5 bg-[#23181a] rounded-xl border border-rose-900/40">
+                    <h4 class="font-bold text-rose-300">1. الكوكسيديا (Coccidiosis)</h4>
+                    <p class="text-[11px] text-rose-300/80 mt-1">الأعراض: خمول، إسهال مدمم أو أخضر، نفش ريش.<br>العلاج: استخدام مضاد كوكسيديا مع تعقيم المشارب يومياً.</p>
                 </div>
-                <div class="p-2.5 bg-[#1a2318] rounded-xl border border-emerald-900/40">
-                    <h4 class="font-bold text-emerald-300">2. فاش الريش (Mites)</h4>
-                    <p class="text-[11px] text-emerald-400/80 mt-1">الأعراض: حكة مستمرة، قلة النوم ليلاً.<br>العلاج: رش الأقفاص بمبيد آمن وتطهير الزوايا.</p>
+                <div class="p-2.5 bg-[#23181a] rounded-xl border border-rose-900/40">
+                    <h4 class="font-bold text-rose-300">2. فاش الريش (Mites)</h4>
+                    <p class="text-[11px] text-rose-300/80 mt-1">الأعراض: حكة مستمرة، قلة النوم ليلاً.<br>العلاج: رش الأقفاص بمبيد آمن وتطهير الزوايا.</p>
                 </div>
             </div>
-            <button onclick="closeModal('diseases-modal')" class="w-full py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold">إغلاق الدليل</button>
+            <button onclick="closeModal('diseases-modal')" class="w-full py-2 bg-rose-600 text-white rounded-xl text-xs font-bold">إغلاق الدليل</button>
         </div>
     </div>
 
@@ -634,8 +636,8 @@
                 <button onclick="closeModal('admin-modal')" class="text-amber-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-3 text-xs">
-                <p class="text-[11px] text-amber-300">مرحباً بك يا مهدي (المالك). يمكنك هنا متابعة المشتركين المسجلين في التطبيق والتحكم بالبيانات:</p>
-                <div id="admin-users-list" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-[#1a2318] rounded-xl border border-emerald-900"></div>
+                <p class="text-[11px] text-amber-300">مرحباً بك يا مهدي (المالك). يمكنك هنا متابعة المشتركين المسجلين في التطبيق والتحقّم بالبيانات:</p>
+                <div id="admin-users-list" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-[#23181a] rounded-xl border border-rose-900"></div>
             </div>
             <button onclick="closeModal('admin-modal')" class="w-full py-2 bg-amber-600 text-white rounded-xl font-bold">إغلاق لوحة المالك</button>
         </div>
