@@ -1,28 +1,28 @@
 :root {
-    --bg-base: #1b2218;
-    --bg-card: #253322;
+    --bg-base: #121811;
+    --bg-card: #1a2318;
     --text-color: #ffffff;
-    --body-bg: #121811;
 }
 
 body.light-mode {
     --bg-base: #f3f4f6;
     --bg-card: #ffffff;
     --text-color: #111827;
-    --body-bg: #e5e7eb;
 }
 
 body {
     font-family: 'Tajawal', sans-serif;
-    background-color: var(--body-bg);
+    background-color: var(--bg-base);
     color: var(--text-color);
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
+
 .custom-card {
     background-color: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
 }
-body.light-mode .custom-card {
-    border: 1px solid rgba(0, 0, 0, 0.08);
+
+.logo-container {
+    background: radial-gradient(circle, rgba(26,35,24,1) 0%, rgba(18,24,17,1) 100%);
 }
