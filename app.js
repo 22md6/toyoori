@@ -5,40 +5,90 @@ let appData = JSON.parse(localStorage.getItem('toyoori_final_v3')) || {
     cages: [],
     pairs: [],
     theme: 'olive',
-    darkMode: false
+    darkMode: false,
+    setupCompleted: false,
+    onboardingDone: false
 };
 
+let currentSlide = 0;
+const totalSlides = 4;
 let isLoginMode = true;
 
 window.onload = function() {
     setAppTheme(appData.theme || 'olive');
     if(appData.darkMode) document.body.classList.add('dark');
+    
     if(appData.currentUser) {
+        hideAllIntroScreens();
         initUserSession(appData.currentUser);
+    } else if(appData.onboardingDone) {
+        document.getElementById('setup-screen').classList.add('hidden');
+        document.getElementById('onboarding-screen').classList.add('hidden');
+        document.getElementById('auth-screen').classList.remove('hidden');
+    } else if(appData.setupCompleted) {
+        document.getElementById('setup-screen').classList.add('hidden');
+        document.getElementById('onboarding-screen').classList.remove('hidden');
+        showSlide(0);
+    } else {
+        document.getElementById('setup-screen').classList.remove('hidden');
+        document.getElementById('onboarding-screen').classList.add('hidden');
+        document.getElementById('auth-screen').classList.add('hidden');
     }
+    
     updateMutationsList();
     let hatchDateEl = document.getElementById('hatch-date');
     if(hatchDateEl) hatchDateEl.valueAsDate = new Date();
 }
 
-function setAppTheme(themeName) {
-    appData.theme = themeName;
+function completeSetup() {
+    appData.setupCompleted = true;
     saveToStorage();
-    document.body.classList.remove('theme-olive', 'theme-burgundy', 'theme-navy', 'theme-light');
-    document.body.classList.add('theme-' + themeName);
+    document.getElementById('setup-screen').classList.add('hidden');
+    document.getElementById('onboarding-screen').classList.remove('hidden');
+    showSlide(0);
 }
 
-function toggleDarkMode(el) {
-    appData.darkMode = el.checked;
+function showSlide(index) {
+    currentSlide = index;
+    for(let i = 0; i < totalSlides; i++) {
+        let slide = document.getElementById('slide-' + i);
+        if(slide) slide.classList.toggle('hidden', i !== index);
+    }
+}
+
+function nextSlide() {
+    if(currentSlide < totalSlides - 1) {
+        showSlide(currentSlide + 1);
+    } else {
+        finishOnboarding();
+    }
+}
+
+function skipOnboarding() {
+    finishOnboarding();
+}
+
+function finishOnboarding() {
+    appData.onboardingDone = true;
     saveToStorage();
-    if(el.checked) document.body.classList.add('dark');
-    else document.body.classList.remove('dark');
+    document.getElementById('onboarding-screen').classList.add('hidden');
+    document.getElementById('auth-screen').classList.remove('hidden');
+}
+
+function hideAllIntroScreens() {
+    let setup = document.getElementById('setup-screen');
+    let onboarding = document.getElementById('onboarding-screen');
+    let auth = document.getElementById('auth-screen');
+    if(setup) setup.classList.add('hidden');
+    if(onboarding) onboarding.classList.add('hidden');
+    if(auth) auth.classList.add('hidden');
 }
 
 function toggleAuthMode() {
     isLoginMode = !isLoginMode;
-    document.getElementById('auth-title').innerText = isLoginMode ? 'تسجيل الدخول لحسابك' : 'إنشاء حساب جديد';
-    document.getElementById('auth-btn').innerText = isLoginMode ? 'دخول' : 'تسجيل';
+    document.getElementById('auth-title').innerText = isLoginMode ? 'أهلاً بعودتك' : 'إنشاء حساب جديد';
+    document.getElementById('auth-subtitle').innerText = isLoginMode ? 'سجل دخولك للمتابعة' : 'أدخل بياناتك لإنشاء حساب جديد';
+    document.getElementById('auth-btn').innerText = isLoginMode ? 'تسجيل الدخول' : 'تسجيل حساب';
     document.getElementById('auth-switch').innerText = isLoginMode ? 'ليس لديك حساب؟ سجل حساب جديد' : 'لديك حساب بالفعل؟ سجل دخولك';
     document.getElementById('register-fields').classList.toggle('hidden', isLoginMode);
 }
@@ -71,6 +121,7 @@ function handleAuthSubmit() {
 }
 
 function initUserSession(user) {
+    hideAllIntroScreens();
     document.getElementById('sidebar-username').innerText = user.name;
     document.getElementById('sidebar-initial').innerText = user.name.charAt(0);
     document.getElementById('settings-profile-name').innerText = user.name;
@@ -83,10 +134,7 @@ function initUserSession(user) {
     document.getElementById('edit-exp').value = user.exp || 0;
     document.getElementById('edit-fb').value = user.fb || '';
     document.getElementById('edit-gender').value = user.gender || 'ذكر';
-
-    document.getElementById('auth-screen').classList.add('hidden');
     
-    // Check Admin 22md6 secretly
     if(user.email === '22md6' || user.pass === '22md61997') {
         document.getElementById('admin-menu-item').classList.remove('hidden');
     } else {
@@ -121,13 +169,28 @@ function openAdminPanel() {
 
 function logout() {
     appData.currentUser = null;
+    appData.setupCompleted = false;
+    appData.onboardingDone = false;
     saveToStorage();
-    document.getElementById('auth-screen').classList.remove('hidden');
-    toggleSidebar();
+    location.reload();
 }
 
 function saveToStorage() {
     localStorage.setItem('toyoori_final_v3', JSON.stringify(appData));
+}
+
+function setAppTheme(themeName) {
+    appData.theme = themeName;
+    saveToStorage();
+    document.body.classList.remove('theme-olive', 'theme-burgundy', 'theme-navy', 'theme-light');
+    document.body.classList.add('theme-' + themeName);
+}
+
+function toggleDarkMode(el) {
+    appData.darkMode = el.checked;
+    saveToStorage();
+    if(el.checked) document.body.classList.add('dark');
+    else document.body.classList.remove('dark');
 }
 
 function toggleSidebar() { document.getElementById('sidebar-menu').classList.toggle('hidden'); }
