@@ -1,11 +1,11 @@
-let appData = JSON.parse(localStorage.getItem('toyoori_final_v3')) || {
+let appData = JSON.parse(localStorage.getItem('toyoori_final_v4')) || {
     currentUser: null,
     usersList: [{name: "مهدي الشمري", email: "22md6", pass: "22md61997", phone: "07700000000", exp: "5", fb: "", gender: "ذكر"}],
     birds: [],
     cages: [],
     pairs: [],
-    theme: 'olive',
-    darkMode: false,
+    theme: 'burgundy',
+    lightMode: false,
     setupCompleted: false,
     onboardingDone: false
 };
@@ -15,9 +15,11 @@ const totalSlides = 4;
 let isLoginMode = true;
 
 window.onload = function() {
-    setAppTheme(appData.theme || 'olive');
-    if(appData.darkMode) document.body.classList.add('dark');
-    
+    setAppTheme(appData.theme || 'burgundy');
+    let darkModeToggle = document.getElementById('dark-mode-toggle');
+    if(darkModeToggle) darkModeToggle.checked = !appData.lightMode;
+    if(appData.lightMode) document.body.classList.add('light-mode');
+
     if(appData.currentUser) {
         hideAllIntroScreens();
         initUserSession(appData.currentUser);
@@ -34,10 +36,7 @@ window.onload = function() {
         document.getElementById('onboarding-screen').classList.add('hidden');
         document.getElementById('auth-screen').classList.add('hidden');
     }
-    
     updateMutationsList();
-    let hatchDateEl = document.getElementById('hatch-date');
-    if(hatchDateEl) hatchDateEl.valueAsDate = new Date();
 }
 
 function completeSetup() {
@@ -57,16 +56,11 @@ function showSlide(index) {
 }
 
 function nextSlide() {
-    if(currentSlide < totalSlides - 1) {
-        showSlide(currentSlide + 1);
-    } else {
-        finishOnboarding();
-    }
+    if(currentSlide < totalSlides - 1) { showSlide(currentSlide + 1); }
+    else { finishOnboarding(); }
 }
 
-function skipOnboarding() {
-    finishOnboarding();
-}
+function skipOnboarding() { finishOnboarding(); }
 
 function finishOnboarding() {
     appData.onboardingDone = true;
@@ -76,19 +70,36 @@ function finishOnboarding() {
 }
 
 function hideAllIntroScreens() {
-    let setup = document.getElementById('setup-screen');
-    let onboarding = document.getElementById('onboarding-screen');
-    let auth = document.getElementById('auth-screen');
-    if(setup) setup.classList.add('hidden');
-    if(onboarding) onboarding.classList.add('hidden');
-    if(auth) auth.classList.add('hidden');
+    ['setup-screen', 'onboarding-screen', 'auth-screen'].forEach(id => {
+        let el = document.getElementById(id);
+        if(el) el.classList.add('hidden');
+    });
+}
+
+function setAppTheme(themeName) {
+    appData.theme = themeName;
+    saveToStorage();
+    document.body.className = document.body.className.replace(/theme-\S+/g, '');
+    document.body.classList.add('theme-' + themeName);
+    if(appData.lightMode) document.body.classList.add('light-mode');
+}
+
+function toggleDarkMode(el) {
+    // If checked -> Dark Mode, If unchecked -> Light Mode (White background)
+    appData.lightMode = !el.checked;
+    saveToStorage();
+    if(appData.lightMode) {
+        document.body.classList.add('light-mode');
+    } else {
+        document.body.classList.remove('light-mode');
+    }
 }
 
 function toggleAuthMode() {
     isLoginMode = !isLoginMode;
-    document.getElementById('auth-title').innerText = isLoginMode ? 'أهلاً بعودتك' : 'إنشاء حساب جديد';
-    document.getElementById('auth-subtitle').innerText = isLoginMode ? 'سجل دخولك للمتابعة' : 'أدخل بياناتك لإنشاء حساب جديد';
-    document.getElementById('auth-btn').innerText = isLoginMode ? 'تسجيل الدخول' : 'تسجيل حساب';
+    document.getElementById('auth-title').innerText = isLoginMode ? 'تسجيل الدخول' : 'إنشاء حساب جديد';
+    document.getElementById('auth-subtitle').innerText = isLoginMode ? 'سجل دخولك لمتابعة طيورك' : 'أدخل بياناتك لتسجيل حساب جديد';
+    document.getElementById('auth-btn').innerText = isLoginMode ? 'تسجيل الدخول' : 'تسجيل';
     document.getElementById('auth-switch').innerText = isLoginMode ? 'ليس لديك حساب؟ سجل حساب جديد' : 'لديك حساب بالفعل؟ سجل دخولك';
     document.getElementById('register-fields').classList.toggle('hidden', isLoginMode);
 }
@@ -96,7 +107,6 @@ function toggleAuthMode() {
 function handleAuthSubmit() {
     let email = document.getElementById('auth-email').value.trim();
     let pass = document.getElementById('auth-pass').value.trim();
-    
     if(!email || !pass) { alert('يرجى ملء الحقول المطلوبة بدقة'); return; }
 
     if(!isLoginMode) {
@@ -163,7 +173,7 @@ function saveProfileChanges() {
 
 function openAdminPanel() {
     let listEl = document.getElementById('admin-users-list');
-    listEl.innerHTML = appData.usersList.map(u => `<div class="p-2 border-b border-emerald-900/40 text-[11px]">👤 <b>${u.name}</b> (${u.email}) - خبرة: ${u.exp || 0} سنوات</div>`).join('');
+    listEl.innerHTML = appData.usersList.map(u => `<div class="p-2 border-b border-rose-900/40 text-[11px]">👤 <b>${u.name}</b> (${u.email}) - خبرة: ${u.exp || 0} سنوات</div>`).join('');
     openModal('admin-modal');
 }
 
@@ -176,21 +186,7 @@ function logout() {
 }
 
 function saveToStorage() {
-    localStorage.setItem('toyoori_final_v3', JSON.stringify(appData));
-}
-
-function setAppTheme(themeName) {
-    appData.theme = themeName;
-    saveToStorage();
-    document.body.classList.remove('theme-olive', 'theme-burgundy', 'theme-navy', 'theme-light');
-    document.body.classList.add('theme-' + themeName);
-}
-
-function toggleDarkMode(el) {
-    appData.darkMode = el.checked;
-    saveToStorage();
-    if(el.checked) document.body.classList.add('dark');
-    else document.body.classList.remove('dark');
+    localStorage.setItem('toyoori_final_v4', JSON.stringify(appData));
 }
 
 function toggleSidebar() { document.getElementById('sidebar-menu').classList.toggle('hidden'); }
@@ -213,7 +209,6 @@ function updatePairDropdowns() {
     let maleSel = document.getElementById('pair-male');
     let femaleSel = document.getElementById('pair-female');
     let cageSel = document.getElementById('pair-cage');
-
     let birdOptions = appData.birds.length === 0 ? `<option value="لا توجد طيور">لا توجد طيور مضافة</option>` : appData.birds.map(b => `<option value="${b}">${b}</option>`).join('');
     maleSel.innerHTML = birdOptions;
     femaleSel.innerHTML = birdOptions;
@@ -258,16 +253,14 @@ function switchScreen(name) {
 
     ['home', 'birds', 'community', 'market'].forEach(n => {
         let b = document.getElementById('nav-' + n);
-        if(b) { b.classList.remove('text-emerald-400', 'font-bold'); b.classList.add('text-emerald-400/60'); }
+        if(b) { b.classList.remove('text-rose-500', 'font-bold'); b.classList.add('text-rose-400/60'); }
     });
     let active = document.getElementById('nav-' + name);
-    if(active) { active.classList.remove('text-emerald-400/60'); active.classList.add('text-emerald-400', 'font-bold'); }
+    if(active) { active.classList.remove('text-rose-400/60'); active.classList.add('text-rose-500', 'font-bold'); }
     window.scrollTo(0, 0);
 }
 
-function openHealthSection(section) {
-    alert('تم الانتقال الفعلي إلى قسم الصحة: ' + section);
-}
+function openHealthSection(section) { alert('تم الانتقال الفعلي إلى قسم الصحة: ' + section); }
 
 function switchBirdTab(tabId) {
     ['tab-birds', 'tab-cages', 'tab-breeding'].forEach(id => {
@@ -279,10 +272,10 @@ function switchBirdTab(tabId) {
 
     ['btntab-birds', 'btntab-cages', 'btntab-breeding'].forEach(id => {
         let b = document.getElementById(id);
-        if(b) { b.classList.remove('bg-emerald-700', 'text-white'); b.classList.add('text-emerald-400'); }
+        if(b) { b.classList.remove('bg-rose-700', 'text-white'); b.classList.add('text-rose-300'); }
     });
     let activeB = document.getElementById('btn' + tabId);
-    if(activeB) { activeB.classList.remove('text-emerald-400'); activeB.classList.add('bg-emerald-700', 'text-white'); }
+    if(activeB) { activeB.classList.remove('text-rose-300'); activeB.classList.add('bg-rose-700', 'text-white'); }
 }
 
 function updateUI() {
@@ -301,24 +294,6 @@ function updateUI() {
     if(cagesCountText) cagesCountText.innerText = appData.cages.length + ' الأقفاص';
     let pairsCountText = document.getElementById('pairs-count-text');
     if(pairsCountText) pairsCountText.innerText = 'الأزواج النشطة: ' + appData.pairs.length;
-
-    let bList = document.getElementById('user-birds-list');
-    if(bList) {
-        bList.innerHTML = appData.birds.length === 0 ? '<p class="text-xs text-emerald-400/60 text-center py-6">لا توجد طيور مضافة حالياً.</p>' :
-            appData.birds.map(b => `<div class="bg-[#1a2318] p-3 rounded-2xl border border-emerald-900/40 flex justify-between items-center"><span class="text-sm font-bold text-white">${b}</span><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded">نشط</span></div>`).join('');
-    }
-
-    let cList = document.getElementById('user-cages-list');
-    if(cList) {
-        cList.innerHTML = appData.cages.length === 0 ? '<p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أقفاص مضافة حالياً.</p>' :
-            appData.cages.map(c => `<div class="bg-[#1a2318] p-3 rounded-2xl border border-emerald-900/40 flex justify-between items-center"><span class="text-sm font-bold text-white">${c}</span><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded">إنتاج</span></div>`).join('');
-    }
-
-    let pList = document.getElementById('user-breeding-list');
-    if(pList) {
-        pList.innerHTML = appData.pairs.length === 0 ? '<p class="text-xs text-emerald-400/60 text-center py-6">لا توجد أزواج تزاوج مضافة.</p>' :
-            appData.pairs.map(p => `<div class="bg-[#1a2318] p-3 rounded-2xl border border-emerald-900/40 flex justify-between items-center"><span class="text-sm font-bold text-white">${p}</span><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded">زوج منتج</span></div>`).join('');
-    }
 }
 
 function calculateHatching() {
@@ -366,7 +341,7 @@ function calculateGenetics() {
 
 function clearAllData() {
     if(confirm('هل أنت متأكد من مسح كافة البيانات؟')) {
-        localStorage.removeItem('toyoori_final_v3');
+        localStorage.removeItem('toyoori_final_v4');
         location.reload();
     }
 }
