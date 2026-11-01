@@ -14,15 +14,15 @@
 </head>
 <body class="p-6 max-w-md mx-auto min-h-screen flex flex-col justify-center">
 
-    <!-- شاشة تسجيل الدخول / إنشاء حساب -->
+    <!-- شاشة تسجيل الدخول والترحيب -->
     <div id="auth-screen" class="space-y-6">
         <div class="text-center space-y-3">
-            <!-- الشعار الملون بدون خلفية بيضاء -->
+            <!-- اللوجو الاحترافي بدون خلفية بيضاء -->
             <div class="w-32 h-32 mx-auto rounded-3xl bg-[#1a2318] border-2 border-emerald-500/40 flex items-center justify-center shadow-2xl p-2">
                 <img src="https://i.ibb.co/68v432n/logo.png" alt="شعار طيوري" class="w-full h-full object-contain drop-shadow-md" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069186.png'">
             </div>
             <h1 class="text-2xl font-black">أهلاً بك في طيوري</h1>
-            <p id="auth-subtitle" class="text-xs text-emerald-400 font-medium">سجل دخولك لمتابعة طيورك وأقفاصك</p>
+            <p class="text-xs text-emerald-400 font-medium">بإدارة مهدي مرهون الشمري</p>
         </div>
 
         <div class="custom-card p-5 rounded-3xl space-y-4 shadow-xl">
@@ -55,7 +55,6 @@
         function toggleAuthMode() {
             isLoginMode = !isLoginMode;
             document.getElementById('auth-title').innerText = isLoginMode ? 'تسجيل الدخول' : 'إنشاء حساب جديد';
-            document.getElementById('auth-subtitle').innerText = isLoginMode ? 'سجل دخولك لمتابعة طيورك وأقفاصك' : 'أدخل بياناتك لتسجيل حساب جديد';
             document.getElementById('auth-btn').innerText = isLoginMode ? 'تسجيل الدخول' : 'تسجيل';
             document.getElementById('auth-switch').innerText = isLoginMode ? 'ليس لديك حساب؟ سجل حساب جديد' : 'لديك حساب بالفعل؟ سجل دخولك';
             document.getElementById('register-fields').classList.toggle('hidden', isLoginMode);
@@ -65,7 +64,7 @@
             let email = document.getElementById('auth-email').value.trim();
             let pass = document.getElementById('auth-pass').value.trim();
             if(!email || !pass) { alert('يرجى ملء الحقول المطلوبة'); return; }
-            alert('تم تسجيل الدخول بنجاح! (سننتقل للمرحلة التالية قريباً)');
+            alert('تم تسجيل الدخول بنجاح! سننتقل للمرحلة التالية.');
         }
     </script>
 </body>
