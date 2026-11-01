@@ -1,43 +1,28 @@
 :root {
-    --bg-base: #2a151b;
-    --bg-card: #3d2028;
-    --text-color: #000000;
-    --font-weight: 700;
-    --body-bg: #1f0f13;
+    --bg-base: #1b2218;
+    --bg-card: #253322;
+    --text-color: #ffffff;
+    --body-bg: #121811;
 }
 
-/* Dark Mode Palettes (Dark backgrounds with bold black text) */
-body.theme-burgundy-dark { --bg-base: #2a151b; --bg-card: #3d2028; --body-bg: #1f0f13; --text-color: #000000; }
-body.theme-blue-dark { --bg-base: #102a43; --bg-card: #243b53; --body-bg: #0b1e33; --text-color: #000000; }
-body.theme-green-dark { --bg-base: #0f2e22; --bg-card: #1b4332; --body-bg: #081c15; --text-color: #000000; }
-body.theme-orange-dark { --bg-base: #331a00; --bg-card: #4d2600; --body-bg: #1a0d00; --text-color: #000000; }
-body.theme-purple-dark { --bg-base: #22103b; --bg-card: #38185c; --body-bg: #150a26; --text-color: #000000; }
-body.theme-olive-dark { --bg-base: #2b2e1a; --bg-card: #3f4426; --body-bg: #1a1c0f; --text-color: #000000; }
-
-/* Light Mode Palettes (Light backgrounds with bold black text) */
-body.theme-pink-light { --bg-base: #fce7f3; --bg-card: #fbcfe8; --body-bg: #fdf2f8; --text-color: #000000; }
-body.theme-yellow-light { --bg-base: #fef9c3; --bg-card: #fef08a; --body-bg: #fefce8; --text-color: #000000; }
-body.theme-purple-light { --bg-base: #f3e8ff; --bg-card: #e9d5ff; --body-bg: #faf5ff; --text-color: #000000; }
-body.theme-orange-light { --bg-base: #ffedd5; --bg-card: #fed7aa; --body-bg: #fff7ed; --text-color: #000000; }
-body.theme-olive-light { --bg-base: #ecfccb; --bg-card: #d9f99d; --body-bg: #f7fee7; --text-color: #000000; }
+body.light-mode {
+    --bg-base: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-color: #111827;
+    --body-bg: #e5e7eb;
+}
 
 body {
     font-family: 'Tajawal', sans-serif;
     background-color: var(--body-bg);
     color: var(--text-color);
-    font-weight: 700;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 .custom-card {
     background-color: var(--bg-card);
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
-.bold-text {
-    font-weight: 800 !important;
-    color: #000000 !important;
-}
-.app-header-title {
-    font-weight: 900;
-    color: #000000;
+body.light-mode .custom-card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
