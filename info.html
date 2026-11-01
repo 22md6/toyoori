@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طيوري - دليل طيوري والمعلومات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
+        .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .info-hero-bg {
+            background: linear-gradient(180deg, rgba(18,24,17,0.3) 0%, rgba(18,24,17,0.9) 100%), url('https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="pb-24 pt-4 px-3 max-w-md mx-auto min-h-screen space-y-4">
+
+    <!-- رأس الصفحة (Header) -->
+    <div class="flex items-center justify-between px-1">
+        <h2 class="font-black text-base text-white tracking-wide">دليل طُـيُـورِي</h2>
+        <button onclick="window.location.href='main.html'" class="w-9 h-9 rounded-xl custom-card flex items-center justify-center text-xs text-emerald-400 shadow">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- بطاقات المعلومات المتجددة (Dynamic Info Cards مطابقة للصور) -->
+    <div class="space-y-3.5" id="dynamic-info-container">
+
+        <!-- 1. مقالات تعليمية -->
+        <div class="info-hero-bg h-40 rounded-3xl p-4 relative overflow-hidden shadow-2xl flex flex-col justify-end border border-emerald-500/30">
+            <div class="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-emerald-400 text-xs border border-emerald-500/20">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+            <div class="z-10 space-y-0.5">
+                <span class="text-[10px] text-emerald-300 font-bold bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-800/40">تحديث تلقائي مستمر</span>
+                <h3 class="font-black text-base text-white">مقالات تعليمية متقدمة</h3>
+                <p class="text-[10px] text-gray-300">أحدث المقالات المضافة حول تربية وسلوكيات الطيور (163 مقال)</p>
+            </div>
+        </div>
+
+        <!-- 2. مكتبة الكتيبات التعليمية -->
+        <div class="info-hero-bg h-40 rounded-3xl p-4 relative overflow-hidden shadow-2xl flex flex-col justify-end border border-purple-500/30" style="background-image: url('https://images.unsplash.com/photo-1606567595334-d39972c85dbe?w=800&auto=format&fit=crop&q=80')">
+            <div class="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-purple-400 text-xs border border-purple-500/20">
+                <i class="fa-solid fa-book-bookmark"></i>
+            </div>
+            <div class="z-10 space-y-0.5">
+                <span class="text-[10px] text-purple-300 font-bold bg-purple-950/80 px-2.5 py-0.5 rounded-full border border-purple-800/40">مكتبة رقمية</span>
+                <h3 class="font-black text-base text-white">مكتبة الكتيبات التعليمية</h3>
+                <p class="text-[10px] text-gray-300">كتيبات إرشادية شاملة بصيغة مرجعية (9 كتيبات)</p>
+            </div>
+        </div>
+
+        <!-- 3. معلومات مفيدة ونقاط سريعة -->
+        <div class="info-hero-bg h-40 rounded-3xl p-4 relative overflow-hidden shadow-2xl flex flex-col justify-end border border-amber-500/30" style="background-image: url('https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&auto=format&fit=crop&q=80')">
+            <div class="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-amber-400 text-xs border border-amber-500/20">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div class="z-10 space-y-0.5">
+                <span class="text-[10px] text-amber-300 font-bold bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-800/40">نصائح الذكاء الاصطناعي</span>
+                <h3 class="font-black text-base text-white">معلومات مفيدة ونصائح يومية</h3>
+                <p class="text-[10px] text-gray-300">معلومات وتجارب متجددة باستمرار لإثراء معلومات المربي (157 نصيحة)</p>
+            </div>
+        </div>
+
+        <!-- 4. موسوعة طيوري -->
+        <div class="info-hero-bg h-40 rounded-3xl p-4 relative overflow-hidden shadow-2xl flex flex-col justify-end border border-blue-500/30" style="background-image: url('https://images.unsplash.com/photo-1522836924256-65b3d64d39a3?w=800&auto=format&fit=crop&q=80')">
+            <div class="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-blue-400 text-xs border border-blue-500/20">
+                <i class="fa-solid fa-feather-pointed"></i>
+            </div>
+            <div class="z-10 space-y-0.5">
+                <span class="text-[10px] text-blue-300 font-bold bg-blue-950/80 px-2.5 py-0.5 rounded-full border border-blue-800/40">الموسوعة الشاملة</span>
+                <h3 class="font-black text-base text-white">موسوعة طيوري للأنواع</h3>
+                <p class="text-[10px] text-gray-300">قاعدة بيانات متكاملة لـ 117 نوع طائر مع تفاصيل التفريخ</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- زر إضافة معلومات جديدة (مخصص للتحديث المستمر دون حذف القديم) -->
+    <div class="pt-2">
+        <button onclick="addNewInfoItem()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-bold shadow-xl text-xs flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-plus-circle text-sm"></i>
+            <span>تحديث وجلب معلومات جديدة (AI Sync)</span>
+        </button>
+    </div>
+
+    <script>
+        // دالة لمحاكاة جلب معلومات جديدة وإضافتها دون حذف القديم أبداً
+        function addNewInfoItem() {
+            let container = document.getElementById('dynamic-info-container');
+            let newItem = document.createElement('div');
+            newItem.className = "info-hero-bg h-40 rounded-3xl p-4 relative overflow-hidden shadow-2xl flex flex-col justify-end border border-emerald-400/40 animate-pulse";
+            newItem.style.backgroundImage = "url('https://images.unsplash.com/photo-1544568100-847a948585b9?w=800&auto=format&fit=crop&q=80')";
+            newItem.innerHTML = `
+                <div class="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-emerald-400 text-xs border border-emerald-500/20">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="z-10 space-y-0.5">
+                    <span class="text-[10px] text-emerald-300 font-bold bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-800/40">إضافة جديدة عبر الذكاء الاصطناعي</span>
+                    <h3 class="font-black text-base text-white">دليل التعامل مع أمراض الفقص</h3>
+                    <p class="text-[10px] text-gray-300">تم جلب هذه المعلومة حديثاً وتضاف للأرشيف دون حذف البيانات السابقة</p>
+                </div>
+            `;
+            container.prepend(newItem); // إضافتها في الأعلى كأحدث إضافة دون مسح القديم
+            alert('تم جلب وتحديث معلومات جديدة بنجاح وإضافتها للأرشيف!');
+        }
+    </script>
+</body>
+</html>
