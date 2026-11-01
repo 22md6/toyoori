@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طيوري - تسجيل الدخول</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
+        .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.2); }
+    </style>
+</head>
+<body class="p-6 max-w-md mx-auto min-h-screen flex flex-col justify-center">
+
+    <!-- شاشة تسجيل الدخول / إنشاء حساب -->
+    <div id="auth-screen" class="space-y-6">
+        <div class="text-center space-y-3">
+            <!-- الشعار الملون بدون خلفية بيضاء -->
+            <div class="w-32 h-32 mx-auto rounded-3xl bg-[#1a2318] border-2 border-emerald-500/40 flex items-center justify-center shadow-2xl p-2">
+                <img src="https://i.ibb.co/68v432n/logo.png" alt="شعار طيوري" class="w-full h-full object-contain drop-shadow-md" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069186.png'">
+            </div>
+            <h1 class="text-2xl font-black">أهلاً بك في طيوري</h1>
+            <p id="auth-subtitle" class="text-xs text-emerald-400 font-medium">سجل دخولك لمتابعة طيورك وأقفاصك</p>
+        </div>
+
+        <div class="custom-card p-5 rounded-3xl space-y-4 shadow-xl">
+            <h2 id="auth-title" class="text-sm font-bold text-center text-emerald-300">تسجيل الدخول</h2>
+            
+            <div id="register-fields" class="space-y-3 hidden">
+                <input type="text" id="reg-name" placeholder="الاسم الكامل" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-xs text-white">
+            </div>
+            
+            <div class="space-y-1">
+                <label class="text-[10px] text-emerald-400">البريد الإلكتروني أو اسم المستخدم</label>
+                <input type="text" id="auth-email" placeholder="mahdialshmary7@gmail.com" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-xs text-white">
+            </div>
+            
+            <div class="space-y-1">
+                <label class="text-[10px] text-emerald-400">كلمة المرور</label>
+                <input type="password" id="auth-pass" placeholder="••••••••" class="w-full p-3 rounded-xl bg-[#121811] border border-emerald-900 text-xs text-white">
+            </div>
+            
+            <button onclick="handleAuthSubmit()" id="auth-btn" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-lg">تسجيل الدخول</button>
+            
+            <div class="flex justify-between items-center text-[11px] pt-1">
+                <button onclick="toggleAuthMode()" id="auth-switch" class="text-emerald-400 hover:underline">ليس لديك حساب؟ سجل حساب جديد</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isLoginMode = true;
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? 'تسجيل الدخول' : 'إنشاء حساب جديد';
+            document.getElementById('auth-subtitle').innerText = isLoginMode ? 'سجل دخولك لمتابعة طيورك وأقفاصك' : 'أدخل بياناتك لتسجيل حساب جديد';
+            document.getElementById('auth-btn').innerText = isLoginMode ? 'تسجيل الدخول' : 'تسجيل';
+            document.getElementById('auth-switch').innerText = isLoginMode ? 'ليس لديك حساب؟ سجل حساب جديد' : 'لديك حساب بالفعل؟ سجل دخولك';
+            document.getElementById('register-fields').classList.toggle('hidden', isLoginMode);
+        }
+
+        function handleAuthSubmit() {
+            let email = document.getElementById('auth-email').value.trim();
+            let pass = document.getElementById('auth-pass').value.trim();
+            if(!email || !pass) { alert('يرجى ملء الحقول المطلوبة'); return; }
+            alert('تم تسجيل الدخول بنجاح! (سننتقل للمرحلة التالية قريباً)');
+        }
+    </script>
+</body>
+</html>
