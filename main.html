@@ -17,32 +17,49 @@
 </head>
 <body class="p-4 max-w-md mx-auto space-y-4 pb-28">
 
-    <!-- رأس الصفحة العلوي -->
+    <!-- رأس الصفحة العلوي مع جلب اسم المستخدم المسجل -->
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <button onclick="openSideMenu()" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-emerald-400 text-sm shadow hover:bg-emerald-950/50">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
-            <button class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-gray-300 text-sm shadow">
+            <button onclick="alert('لا توجد إشعارات جديدة حالياً')" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-gray-300 text-sm shadow hover:text-white transition-all">
                 <i class="fa-regular fa-bell"></i>
+            </button>
+            <button onclick="window.location.href='settings.html'" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-emerald-400 text-sm shadow hover:bg-emerald-950/50 transition-all">
+                <i class="fa-solid fa-gear"></i>
             </button>
         </div>
         
-        <div class="text-left">
-            <span class="text-[10px] text-gray-400 block">طاب يومك</span>
+        <div class="text-center">
+            <span class="text-[10px] text-amber-400 flex items-center justify-center gap-1">مساء الخير <i class="fa-solid fa-feather text-[8px]"></i></span>
             <span class="font-bold text-xs text-white" id="user-display-name">مهدي مرهون الشمري</span>
         </div>
-        <div class="w-10 h-10 rounded-full bg-emerald-600 text-black flex items-center justify-center font-black text-sm shadow">
-            م
+
+        <div class="flex items-center gap-2">
+            <div id="user-avatar-initial" class="w-10 h-10 rounded-full bg-emerald-900/60 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-xs shadow">
+                م
+            </div>
+            <button onclick="openSideMenu()" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-emerald-400 text-sm shadow hover:bg-emerald-950/50 transition-all">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
         </div>
     </div>
 
-    <!-- بطاقات الإحصائيات الفاخرة -->
+    <!-- البطاقات الأربع الكبرى في الأعلى -->
     <div class="grid grid-cols-2 gap-3">
-        <div class="custom-card p-4 rounded-3xl space-y-2">
+        <div onclick="alert('إدارة الأفرخ والإنتاج')" class="custom-card p-4 rounded-3xl space-y-2 bg-[#1a2318] cursor-pointer hover:border-emerald-500 transition-all">
+            <div class="flex justify-between items-center text-purple-400">
+                <span class="text-[10px] bg-purple-950 px-2.5 py-0.5 rounded-full text-purple-300 font-bold">الإنتاج</span>
+                <i class="fa-solid fa-egg text-base"></i>
+            </div>
+            <div>
+                <span class="block text-2xl font-black text-white">0</span>
+                <span class="text-[11px] text-gray-400">أفرخ</span>
+            </div>
+        </div>
+
+        <div onclick="alert('إدارة الطيور النشطة والمزرعة')" class="custom-card p-4 rounded-3xl space-y-2 bg-[#1a2318] cursor-pointer hover:border-emerald-500 transition-all">
             <div class="flex justify-between items-center text-emerald-400">
-                <i class="fa-solid fa-feather text-base"></i>
                 <span class="text-[10px] bg-emerald-950 px-2.5 py-0.5 rounded-full text-emerald-300 font-bold">نشط</span>
+                <i class="fa-solid fa-feather text-base"></i>
             </div>
             <div>
                 <span class="block text-2xl font-black text-white" id="active-birds-count">0</span>
@@ -50,23 +67,34 @@
             </div>
         </div>
 
-        <div class="custom-card p-4 rounded-3xl space-y-2">
-            <div class="flex justify-between items-center text-purple-400">
+        <div onclick="alert('سجل المبيعات والأرباح')" class="custom-card p-4 rounded-3xl space-y-2 bg-[#1a2318] cursor-pointer hover:border-emerald-500 transition-all">
+            <div class="flex justify-between items-center text-emerald-400">
+                <span class="text-[10px] bg-emerald-950 px-2.5 py-0.5 rounded-full text-emerald-300 font-bold">مبيعات</span>
+                <i class="fa-solid fa-chart-line text-base"></i>
+            </div>
+            <div>
+                <span class="block text-xl font-black text-white">0 د.ع</span>
+                <span class="text-[11px] text-gray-400">صافي الربح</span>
+            </div>
+        </div>
+
+        <div onclick="alert('متابعة البيض النشط وحضانة الأقفاص')" class="custom-card p-4 rounded-3xl space-y-2 bg-[#1a2318] cursor-pointer hover:border-emerald-500 transition-all">
+            <div class="flex justify-between items-center text-amber-400">
+                <span class="text-[10px] bg-amber-950 px-2.5 py-0.5 rounded-full text-amber-300 font-bold">حضانة</span>
                 <i class="fa-solid fa-egg text-base"></i>
-                <span class="text-[10px] bg-purple-950 px-2.5 py-0.5 rounded-full text-purple-300 font-bold">الإنتاج</span>
             </div>
             <div>
                 <span class="block text-2xl font-black text-white">0</span>
-                <span class="text-[11px] text-gray-400">أفرخ</span>
+                <span class="text-[11px] text-gray-400">بيض نشط</span>
             </div>
         </div>
     </div>
 
-    <!-- قسم مهام اليوم والتصاميم السابقة -->
+    <!-- قسم مهام اليوم -->
     <div class="custom-card p-4 rounded-3xl space-y-2">
         <div class="flex justify-between items-center text-xs">
             <span class="font-bold text-gray-300">مهام اليوم</span>
-            <span class="text-emerald-400"><i class="fa-solid fa-plus"></i></span>
+            <button onclick="alert('إضافة مهمة جديدة للمربي')" class="text-emerald-400 hover:text-white transition-all"><i class="fa-solid fa-plus"></i></button>
         </div>
         <div class="bg-[#121811] p-3 rounded-2xl border border-emerald-900/30 text-center text-gray-400 text-xs">
             لا توجد مهام اليوم. استمتع بيومك!
@@ -74,7 +102,7 @@
     </div>
 
     <!-- بطاقة شركاء النجاح -->
-    <div class="info-hero-bg p-4 rounded-3xl border border-amber-500/30 shadow-xl flex items-center justify-between text-xs">
+    <div onclick="alert('صفحة شركاء النجاح والدعم المستمر')" class="info-hero-bg p-4 rounded-3xl border border-amber-500/30 shadow-xl flex items-center justify-between text-xs cursor-pointer hover:border-amber-400 transition-all">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm">
                 <i class="fa-solid fa-trophy"></i>
@@ -87,35 +115,129 @@
         <i class="fa-solid fa-chevron-left text-gray-400"></i>
     </div>
 
+    <!-- قسم الدليل (تحت المربعات الكبيرة مباشرة ومفعلة بالكامل) -->
+    <div class="space-y-3 pt-2">
+        <div onclick="window.location.href='modals.html'" class="relative h-32 rounded-3xl overflow-hidden custom-card p-4 flex flex-col justify-end shadow-xl border border-emerald-500/30 cursor-pointer hover:border-emerald-400 transition-all">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1548094878-84ced5f68972?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#121811] via-[#121811]/60 to-transparent"></div>
+            <div class="relative z-10 flex justify-between items-end">
+                <div class="space-y-1">
+                    <span class="text-[9px] bg-emerald-900/80 text-emerald-300 px-2.5 py-0.5 rounded-full font-bold">متنبئ الجينات</span>
+                    <h3 class="font-black text-sm text-white">بناءً على قوانين مندل الجينية</h3>
+                    <p class="text-[10px] text-gray-300">احسب النتائج بدقة</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xs">
+                    <i class="fa-solid fa-dna"></i>
+                </div>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='info.html'" class="relative h-32 rounded-3xl overflow-hidden custom-card p-4 flex flex-col justify-end shadow-xl border border-emerald-500/30 cursor-pointer hover:border-emerald-400 transition-all">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#121811] via-[#121811]/60 to-transparent"></div>
+            <div class="relative z-10 flex justify-between items-end">
+                <div class="space-y-1">
+                    <span class="text-[9px] bg-emerald-900/80 text-emerald-300 px-2.5 py-0.5 rounded-full font-bold">معلومات</span>
+                    <h3 class="font-black text-sm text-white">تعلم أساسيات التربية الصحيحة</h3>
+                    <p class="text-[10px] text-gray-300">دليل المربي</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xs">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+            </div>
+        </div>
+
+        <div onclick="alert('فتح مركز الصحة وعلاجات الحضانة')" class="relative h-32 rounded-3xl overflow-hidden custom-card p-4 flex flex-col justify-end shadow-xl border border-emerald-500/30 cursor-pointer hover:border-blue-400 transition-all">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#121811] via-[#121811]/60 to-transparent"></div>
+            <div class="relative z-10 flex justify-between items-end">
+                <div class="space-y-1">
+                    <span class="text-[9px] bg-blue-900/80 text-blue-300 px-2.5 py-0.5 rounded-full font-bold">صحة</span>
+                    <h3 class="font-black text-sm text-white">علاجات وجداول تأكيل وزغاليل الحضانة</h3>
+                    <p class="text-[10px] text-gray-300">استكشف مركز الصحة</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-xs">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </div>
+            </div>
+        </div>
+
+        <div onclick="alert('تصفح دليل المحلات والشركات ومستلزمات الطيور')" class="relative h-32 rounded-3xl overflow-hidden custom-card p-4 flex flex-col justify-end shadow-xl border border-emerald-500/30 cursor-pointer hover:border-amber-400 transition-all">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#121811] via-[#121811]/60 to-transparent"></div>
+            <div class="relative z-10 flex justify-between items-end">
+                <div class="space-y-1">
+                    <span class="text-[9px] bg-amber-900/80 text-amber-300 px-2.5 py-0.5 rounded-full font-bold">دليل المحلات والشركات</span>
+                    <h3 class="font-black text-sm text-white">تصفح أفضل الموردين والمحلات التجارية ومستلزمات الطيور</h3>
+                    <p class="text-[10px] text-gray-300">تصفح الدليل الآن</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xs">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم الملخص (الإيرادات والمصاريف) -->
+    <div class="space-y-3 pt-2">
+        <h3 class="font-bold text-sm text-emerald-400 px-1">الملخص</h3>
+        
+        <div onclick="alert('تفاصيل الإيرادات المالية')" class="custom-card p-4 rounded-3xl flex items-center justify-between cursor-pointer hover:border-emerald-500 transition-all">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm font-bold">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-white">الإيرادات</h4>
+                    <p class="text-[10px] text-gray-400">إجمالي الإيرادات</p>
+                </div>
+            </div>
+            <span class="font-black text-emerald-400 text-sm">0 د.ع</span>
+        </div>
+
+        <div onclick="alert('تفاصيل المصاريف المصروفة على المزرعة')" class="custom-card p-4 rounded-3xl flex items-center justify-between cursor-pointer hover:border-rose-500 transition-all">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-sm font-bold">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-white">المصاريف</h4>
+                    <p class="text-[10px] text-gray-400">إجمالي المصاريف</p>
+                </div>
+            </div>
+            <span class="font-black text-rose-400 text-sm">0 د.ع</span>
+        </div>
+    </div>
+
     <!-- شريط التنقل السفلي -->
     <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto custom-card border-t border-emerald-900/30 px-6 py-2.5 flex justify-between items-center z-30 text-[10px] bg-[#121811]">
-        <button onclick="window.location.href='market-add.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
+        <button onclick="window.location.href='market-add.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all">
             <i class="fa-solid fa-store text-sm"></i><span>السوق</span>
         </button>
-        <button onclick="window.location.href='community.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
+        <button onclick="window.location.href='community.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all">
             <i class="fa-solid fa-users text-sm"></i><span>المجتمع</span>
         </button>
         <div class="relative -top-3">
-            <button onclick="window.location.href='modals.html'" class="w-12 h-12 bg-emerald-500 text-black rounded-full shadow-xl flex items-center justify-center text-lg font-black border-4 border-[#121811]">
+            <button onclick="window.location.href='modals.html'" class="w-12 h-12 bg-emerald-500 text-black rounded-full shadow-xl flex items-center justify-center text-lg font-black border-4 border-[#121811] hover:scale-105 transition-all">
                 <i class="fa-solid fa-qrcode"></i>
             </button>
         </div>
-        <button onclick="window.location.href='info.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
-            <i class="fa-solid fa-book text-sm"></i><span>الدليل</span>
+        <button onclick="alert('فتح قائمة وطارد الطيور والطيور المفقودة')" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all">
+            <i class="fa-solid fa-crow text-sm"></i><span>الطيور</span>
         </button>
         <button class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
             <i class="fa-solid fa-house text-sm"></i><span>الرئيسية</span>
         </button>
     </nav>
 
-    <!-- القائمة الجانبية المنفصلة (Sidebar Drawer) -->
+    <!-- القائمة الجانبية المنفصلة (Drawer) -->
     <div id="side-menu-drawer" class="fixed inset-0 bg-black/85 z-50 hidden flex justify-end transition-all">
         <div class="w-4/5 max-w-xs bg-[#121811] h-full p-4 space-y-4 text-xs overflow-y-auto hide-scrollbar border-l border-emerald-900/40 shadow-2xl">
             
-            <!-- الهيدر ومعلومات المستخدم الديناميكية (يأخذ اسمك تلقائياً) -->
+            <!-- الهيدر ومعلومات المستخدم المسجل ديناميكياً -->
             <div class="flex items-center justify-between border-b border-emerald-900/40 pb-3">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-11 h-11 rounded-full bg-emerald-900/40 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-sm">
+                    <div id="drawer-user-avatar" class="w-11 h-11 rounded-full bg-emerald-900/40 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-sm">
                         م
                     </div>
                     <div>
@@ -142,26 +264,26 @@
                 </div>
             </div>
 
-            <!-- الأقسام والخيارات -->
+            <!-- الأقسام والخيارات (مفعلة بالكامل) -->
             <div class="space-y-1.5">
                 <span class="text-[9px] text-gray-400 font-bold block px-1">أدوات الإنتاج والجينات</span>
-                <button onclick="alert('حاسبة الجينات')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="window.location.href='modals.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-400"></i> حاسبة الجينات والألوان</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="alert('حاسبة الفقس')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-amber-300">
+                <button onclick="window.location.href='modals.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-amber-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-egg text-amber-400"></i> حاسبة حضانة البيض والفقس</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="alert('دليل الأمراض')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-purple-300">
+                <button onclick="window.location.href='modals.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-purple-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-book-medical text-purple-400"></i> دليل الأمراض والأدوية</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="alert('خريطة العيادات')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="alert('فتح خريطة عيادات الطيور')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-emerald-400"></i> خريطة عيادات الطيور</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="alert('تصدير Excel')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="alert('تصدير بيانات المزرعة إلى Excel')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-file-excel text-emerald-400"></i> تصدير بيانات المزرعة (Excel)</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
@@ -169,15 +291,15 @@
 
             <div class="space-y-1.5 pt-1">
                 <span class="text-[9px] text-gray-400 font-bold block px-1">خدماتي وإعلاناتي</span>
-                <button onclick="alert('الطيور المفقودة')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="alert('قسم الطيور المفقودة')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-crow text-emerald-400"></i> الطيور المفقودة</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="window.location.href='market-add.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="window.location.href='market-add.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-store text-emerald-400"></i> إعلاناتي في سوق الطيور</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="alert('طلباتي')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="alert('طلباتي في المتجر')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-cart-shopping text-emerald-400"></i> طلباتي</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
@@ -185,24 +307,24 @@
 
             <div class="space-y-1.5 pt-1">
                 <span class="text-[9px] text-gray-400 font-bold block px-1">الإعدادات والدعم</span>
-                <button onclick="window.location.href='settings.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="window.location.href='settings.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-gear text-emerald-400"></i> إعدادات التطبيق</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="alert('الدعم الفني')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="alert('الاتصال بالدعم الفني')" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-headset text-emerald-400"></i> اتصل بنا للدعم الفني</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
-                <button onclick="window.location.href='info.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] text-emerald-300">
+                <button onclick="window.location.href='info.html'" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#1a2318] hover:bg-emerald-950/40 text-emerald-300 transition-all">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-circle-info text-emerald-400"></i> عن التطبيق (من نحن)</span>
                     <i class="fa-solid fa-chevron-left text-[9px] text-gray-500"></i>
                 </button>
             </div>
 
-            <button onclick="alert('ترقية الحساب')" class="w-full py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 text-xs">
+            <button onclick="alert('ترقية الحساب إلى بريميوم')" class="w-full py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 text-xs hover:opacity-90 transition-all">
                 <i class="fa-solid fa-award"></i> ترقية الحساب إلى بريميوم
             </button>
-            <button onclick="window.location.href='auth.html'" class="w-full py-2.5 bg-[#1a2318] text-red-400 border border-red-900/30 rounded-xl font-bold flex items-center justify-center gap-2 text-xs">
+            <button onclick="window.location.href='auth.html'" class="w-full py-2.5 bg-[#1a2318] hover:bg-red-950/30 text-red-400 border border-red-900/30 rounded-xl font-bold flex items-center justify-center gap-2 text-xs transition-all">
                 <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
             </button>
 
@@ -210,19 +332,34 @@
     </div>
 
     <script>
-        function openSideMenu() { 
-            // تحديث اسم المستخدم تلقائياً عند فتح القائمة من الذاكرة
-            let savedUser = localStorage.getItem("toyoori_user") || "مهدي مرهون الشمري";
-            let drawerUser = document.getElementById("drawer-username");
-            if (drawerUser) drawerUser.innerText = savedUser;
+        // دالة جلب اسم المستخدم الحقيقي وعرضه في الشاشة الرئيسية والقائمة الجانبية تلقائياً
+        document.addEventListener("DOMContentLoaded", function() {
+            let registeredUser = localStorage.getItem("toyoori_user") || "مهدي مرهون الشمري";
             
+            let nameElement = document.getElementById("user-display-name");
+            if (nameElement) nameElement.innerText = registeredUser;
+
+            let drawerNameElement = document.getElementById("drawer-username");
+            if (drawerNameElement) drawerNameElement.innerText = registeredUser;
+
+            let avatarElement = document.getElementById("user-avatar-initial");
+            if (avatarElement && registeredUser.length > 0) {
+                avatarElement.innerText = registeredUser.charAt(0);
+            }
+
+            let drawerAvatarElement = document.getElementById("drawer-user-avatar");
+            if (drawerAvatarElement && registeredUser.length > 0) {
+                drawerAvatarElement.innerText = registeredUser.charAt(0);
+            }
+        });
+
+        function openSideMenu() { 
             document.getElementById('side-menu-drawer').classList.remove('hidden'); 
         }
         function closeSideMenu() { 
             document.getElementById('side-menu-drawer').classList.add('hidden'); 
         }
     </script>
-    <!-- سطر الربط المركزي -->
     <script src="app.js"></script>
 </body>
 </html>
