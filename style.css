@@ -1,0 +1,52 @@
+:root {
+    --bg-base: #1a2318;
+    --bg-card: #253322;
+    --text-color: #e2e8f0;
+    --accent-color: #83b672;
+    --body-bg: #121811;
+}
+body.theme-burgundy {
+    --bg-base: #23181a;
+    --bg-card: #332225;
+    --accent-color: #b67283;
+    --body-bg: #181112;
+    --text-color: #fce7ec;
+}
+body.theme-navy {
+    --bg-base: #181d23;
+    --bg-card: #222833;
+    --accent-color: #7296b6;
+    --body-bg: #111418;
+    --text-color: #e6edf5;
+}
+body.theme-olive {
+    --bg-base: #1a2318;
+    --bg-card: #253322;
+    --accent-color: #83b672;
+    --body-bg: #121811;
+    --text-color: #e2e8f0;
+}
+body.theme-light {
+    --bg-base: #f0f4ef;
+    --bg-card: #ffffff;
+    --accent-color: #558045;
+    --body-bg: #e6ebe4;
+    --text-color: #1a2318 !important;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.custom-card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(131, 182, 114, 0.2);
+}
+.app-header-title {
+    background: linear-gradient(135deg, #a7f3d0 0%, #4ade80 50%, #86efac 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
