@@ -3,148 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طيوري - القائمة الجانبية وإعدادات المالك</title>
+    <title>طيوري - إعدادات التطبيق ولوحة المالك</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #121811; color: #ffffff; }
         .custom-card { background-color: #1a2318; border: 1px solid rgba(16, 185, 129, 0.2); }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="p-4 max-w-md mx-auto min-h-screen relative flex flex-col justify-between">
+<body class="p-4 max-w-md mx-auto space-y-4 pb-20">
 
-    <!-- زر افتراضي لفتح القائمة الجانبية إن كانت مغلقة -->
-    <div class="flex items-center justify-between pb-2">
-        <h2 class="font-black text-base text-white">إعدادات وقائمة طيوري</h2>
-        <button onclick="window.location.href='main.html'" class="w-9 h-9 rounded-xl custom-card flex items-center justify-center text-xs text-emerald-400">
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
+    <!-- رأس الصفحة -->
+    <div class="flex items-center justify-between pb-2 border-b border-emerald-900/40">
+        <div class="flex items-center gap-2">
+            <button onclick="window.location.href='main.html'" class="w-10 h-10 rounded-2xl custom-card flex items-center justify-center text-emerald-400 text-sm shadow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <h1 class="font-black text-sm text-white">إعدادات التطبيق ولوحة المالك</h1>
+        </div>
     </div>
 
-    <!-- القائمة الجانبية المدمجة (Sidebar Drawer المتكاملة تماماً مع صورك) -->
-    <div class="custom-card p-4 rounded-3xl space-y-4 text-xs shadow-2xl overflow-y-auto max-h-[85vh] hide-scrollbar">
-        
-        <!-- معلومات المستخدم والملف الشخصي -->
-        <div class="flex items-center justify-between border-b border-emerald-900/40 pb-3">
+    <!-- بطاقة معلومات المالك -->
+    <div class="custom-card p-4 rounded-3xl space-y-3 shadow-xl">
+        <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="relative">
-                    <div class="w-12 h-12 rounded-full bg-emerald-900/40 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-base shadow-inner">
-                        2
-                    </div>
+                <div class="w-12 h-12 rounded-full bg-emerald-600/20 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-black text-base">
+                    م
                 </div>
                 <div>
-                    <h3 class="font-bold text-white text-sm">Md6 22</h3>
-                    <p class="text-[10px] text-emerald-400">عضو مجتمع طيوري</p>
+                    <h3 class="font-bold text-white text-xs">مهدي مرهون الشمري</h3>
+                    <p class="text-[10px] text-emerald-400">مالك ومنشئ المنصة</p>
                 </div>
             </div>
-            <button onclick="alert('تعديل الملف الشخصي')" class="w-9 h-9 rounded-xl bg-[#121811] border border-emerald-900/60 flex items-center justify-center text-emerald-400">
-                <i class="fa-solid fa-pen text-xs"></i>
-            </button>
+            <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2.5 py-1 rounded-full border border-emerald-800/40">مدير النظام</span>
         </div>
-
-        <!-- عدادات الإحصائيات (أزواج، أقفاص، طيور) -->
-        <div class="grid grid-cols-3 gap-2 bg-[#121811] p-2.5 rounded-2xl border border-emerald-900/40 text-center">
-            <div>
-                <span class="block font-black text-sm text-white">0</span>
-                <span class="text-[9px] text-amber-400 flex items-center justify-center gap-1"><i class="fa-solid fa-egg text-[8px]"></i> أزواج</span>
-            </div>
-            <div class="border-x border-emerald-900/40">
-                <span class="block font-black text-sm text-white">0</span>
-                <span class="text-[9px] text-blue-400 flex items-center justify-center gap-1"><i class="fa-solid fa-snowflake text-[8px]"></i> أقفاص</span>
-            </div>
-            <div>
-                <span class="block font-black text-sm text-white">0</span>
-                <span class="text-[9px] text-emerald-400 flex items-center justify-center gap-1"><i class="fa-solid fa-feather text-[8px]"></i> طيور</span>
-            </div>
-        </div>
-
-        <!-- قسم: أدوات الإنتاج والجينات -->
-        <div class="space-y-2">
-            <span class="text-[10px] text-gray-400 font-bold block px-1">أدوات الإنتاج والجينات</span>
-            
-            <button onclick="window.location.href='modals.html'" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-calculator text-emerald-400"></i> حاسبة الجينات والألوان</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="window.location.href='modals.html'" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-amber-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-egg text-amber-400"></i> حاسبة حضانة البيض والفقس</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="window.location.href='modals.html'" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-purple-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-book-medical text-purple-400"></i> دليل الأمراض والأدوية</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="alert('فتح خريطة عيادات الطيور')" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-map-location-dot text-emerald-400"></i> خريطة عيادات الطيور</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="alert('تصدير بيانات المزرعة إلى ملف Excel')" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-file-excel text-emerald-400"></i> تصدير بيانات المزرعة (Excel)</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-        </div>
-
-        <!-- قسم: خدماتي وإعلاناتي -->
-        <div class="space-y-2 pt-1">
-            <span class="text-[10px] text-gray-400 font-bold block px-1">خدماتي وإعلاناتي</span>
-
-            <button onclick="alert('الطيور المفقودة')" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-crow text-emerald-400"></i> الطيور المفقودة</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="window.location.href='market-add.html'" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-store text-emerald-400"></i> إعلاناتي في سوق الطيور</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="alert('طلباتي في المتجر')" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-cart-shopping text-emerald-400"></i> طلباتي</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-        </div>
-
-        <!-- قسم: الإعدادات والدعم -->
-        <div class="space-y-2 pt-1">
-            <span class="text-[10px] text-gray-400 font-bold block px-1">الإعدادات والدعم</span>
-
-            <button onclick="alert('إعدادات التطبيق')" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-gear text-emerald-400"></i> إعدادات التطبيق</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="alert('الاتصال بالدعم الفني')" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-headset text-emerald-400"></i> اتصل بنا للدعم الفني</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-
-            <button onclick="window.location.href='info.html'" class="w-full flex items-center justify-between p-3 rounded-2xl bg-[#121811] hover:bg-emerald-950/40 text-emerald-300 border border-emerald-900/20">
-                <span class="flex items-center gap-2.5"><i class="fa-solid fa-circle-info text-emerald-400"></i> عن التطبيق (من نحن)</span>
-                <i class="fa-solid fa-chevron-left text-[10px] text-gray-500"></i>
-            </button>
-        </div>
-
-        <!-- زر ترقية الحساب إلى بريميوم -->
-        <button onclick="alert('ترقية الحساب إلى بريميوم')" class="w-full py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-2xl font-bold shadow-lg flex items-center justify-center gap-2 text-xs">
-            <i class="fa-solid fa-award"></i>
-            <span>ترقية الحساب إلى بريميوم</span>
-        </button>
-
-        <!-- زر تسجيل الخروج -->
-        <button onclick="window.location.href='auth.html'" class="w-full py-3 bg-[#121811] hover:bg-red-950/30 text-red-400 border border-red-900/30 rounded-2xl font-bold flex items-center justify-center gap-2 text-xs transition-all">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>تسجيل الخروج</span>
-        </button>
     </div>
 
-    <!-- سطر الربط المركزي -->
+    <!-- إعدادات النظام وتفضيلات المربي -->
+    <div class="custom-card p-4 rounded-3xl space-y-3">
+        <h3 class="font-bold text-xs text-gray-300 px-1">خيارات التحكم العام</h3>
+        
+        <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 rounded-2xl bg-[#121811] border border-emerald-900/30 text-xs">
+                <span class="flex items-center gap-2.5 text-gray-300"><i class="fa-solid fa-bell text-emerald-400"></i> إشعارات التذكير بالفقس</span>
+                <input type="checkbox" checked class="accent-emerald-500 w-4 h-4">
+            </div>
+
+            <div class="flex items-center justify-between p-3 rounded-2xl bg-[#121811] border border-emerald-900/30 text-xs">
+                <span class="flex items-center gap-2.5 text-gray-300"><i class="fa-solid fa-language text-emerald-400"></i> لغة التطبيق الافتراضية</span>
+                <span class="text-[10px] text-emerald-400 font-bold">العربية (Arabic)</span>
+            </div>
+
+            <div class="flex items-center justify-between p-3 rounded-2xl bg-[#121811] border border-emerald-900/30 text-xs">
+                <span class="flex items-center gap-2.5 text-gray-300"><i class="fa-solid fa-database text-emerald-400"></i> النسخ الاحتياطي للبيانات</span>
+                <button onclick="alert('تم حفظ النسخة الاحتياطية بنجاح')" class="text-[10px] bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl font-bold">تصدير الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- زر العودة للرئيسية -->
+    <button onclick="window.location.href='main.html'" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-bold text-xs shadow-lg transition-all">
+        حفظ العودة للرئيسية
+    </button>
+
     <script src="app.js"></script>
 </body>
 </html>
