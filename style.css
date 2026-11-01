@@ -1,9 +1,9 @@
 :root {
-    --bg-base: #1a2318;
-    --bg-card: #253322;
-    --text-color: #e2e8f0;
-    --accent-color: #83b672;
-    --body-bg: #121811;
+    --bg-base: #23181a;
+    --bg-card: #332225;
+    --text-color: #fce7ec;
+    --accent-color: #b67283;
+    --body-bg: #181112;
 }
 body.theme-burgundy {
     --bg-base: #23181a;
@@ -19,19 +19,19 @@ body.theme-navy {
     --body-bg: #111418;
     --text-color: #e6edf5;
 }
-body.theme-olive {
-    --bg-base: #1a2318;
-    --bg-card: #253322;
-    --accent-color: #83b672;
-    --body-bg: #121811;
-    --text-color: #e2e8f0;
+body.theme-sunset {
+    --bg-base: #33221a;
+    --bg-card: #452b22;
+    --accent-color: #f69269;
+    --body-bg: #1a120f;
+    --text-color: #fdf2e9;
 }
 body.theme-light {
-    --bg-base: #f0f4ef;
+    --bg-base: #fcf4f6;
     --bg-card: #ffffff;
-    --accent-color: #558045;
-    --body-bg: #e6ebe4;
-    --text-color: #1a2318 !important;
+    --accent-color: #9c3f58;
+    --body-bg: #f5e6ea;
+    --text-color: #23181a !important;
 }
 
 body {
@@ -43,10 +43,10 @@ body {
 }
 .custom-card {
     background-color: var(--bg-card);
-    border: 1px solid rgba(131, 182, 114, 0.2);
+    border: 1px solid rgba(182, 114, 131, 0.25);
 }
 .app-header-title {
-    background: linear-gradient(135deg, #a7f3d0 0%, #4ade80 50%, #86efac 100%);
+    background: linear-gradient(135deg, #fbcfe8 0%, #f43f5e 50%, #fb7185 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
